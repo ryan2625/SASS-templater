@@ -3,11 +3,11 @@
 @use "../../Styles_SASS/_functions" as f;
 
 .test1 {
-    background-color: var(--bg2);
+    background-color: f.var_(bg2);
+    margin: f.getMultiVal(v.$margin, xxxl);
 
     p {
-        @warn map-get(v.$line-height, v.$standard) * 10;
-        line-height: f.calculateVal(v.$line-height, 20);
-        @include m.setTypography(accent-font, xxl, null, 2);
+        line-height: f.calculateVal(v.$line-height, 1);
+        @include m.setTypography(null, xxl, accents1, null, 2);
     }
 }

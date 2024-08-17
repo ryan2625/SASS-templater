@@ -4,12 +4,13 @@
 
 
 /// Get the value of the typography respective to its map
-/// @param {String} $var-font-family
-/// @param {String} $var-font-weight
-/// @param {String} $var-font-size
-/// @param {Int} $product
+/// @param {Identifier} $var-font-family - Key in $font-family
+/// @param {Identifier} $var-font-weight - Key in $font-weight
+/// @param {Identifier} $var-font-size - Key in $font-size
+/// @param {Identifier} $var-font-color - Key in $themes submap. Will retrieve light/dark mode color value
+/// @param {Int} $product - Value to multiply with
 @mixin setTypography($var-font-family: null, $var-font-weight: null,
-    $var-font-size: null, $product: 1
+    $var-font-color: null, $var-font-size: null, $product: 1, 
 ) {
     @if $var-font-family {
         font-family: map-get(v.$font-family, $var-font-family)
@@ -20,6 +21,11 @@
         font-weight: map-get(v.$font-weight, $var-font-weight)
     } @else {
         font-weight: map-get(v.$font-weight, v.$standard)
+    }
+    @if $var-font-color {
+        color: f.var_($var-font-color)
+    } @else {
+        color: var(--txt1)
     }
     @if $var-font-size {
         font-size: map-get(v.$font-size, $var-font-family)

@@ -1,23 +1,69 @@
 @use "./_variables" as v;
 
 // ---------------------------------------------
-// Defining helper functions to 
-// dynamically set property values
+// Defining functions to dynamically 
+// set property values
 // ---------------------------------------------
 
+/// Mapping out data-themes to their respective values
+/// @param {Map} $themes - Maps containing submaps for light/dark mode values
+@each $theme-name, $theme-properties in v.$themes {
+    html[data-theme=#{$theme-name}] {
+        @each $property, $value in $theme-properties {
+            --#{$property}: #{$value};
+        }
+    }
+}
+
 /// Get the value of a property respective to its map
-/// @param {String} $prop
-/// @param {Map} $map
-/// @return {String} Calculated Property
+/// @param {Map} $map - Property map containing variables to access
+/// @param {Identifier} $prop - Key to grab the corresponding value in the map
+/// @return {Any} - Retrieved Property
 @function getVal($map, $prop) {
     @return map-get($map, $prop)
 };
 
+/// Get multiple values of a property respective to its map
+/// @param {Map} $map - Property map containing variables to access
+/// @param {Identifier} $prop1 - Key to grab the corresponding value in the map
+/// @param {Identifier} $prop2 - Key to grab the corresponding value in the map
+/// @param {Identifier} $prop3 - (Optional) Key to grab the corresponding value in the map
+/// @param {Identifier} $prop4 - (Optional) Key to grab the corresponding value in the map
+/// @return {Any} - Retrieved Properties
+@function getMultiVal($map, $prop1, $prop2: null, $prop3: null, $prop4: null) {
+    @if $prop2 == null {
+        @warn Use getVal for retrieving single values
+    }
+    $combinedValues: null;
+    @each $property in $prop1, $prop2, $prop3, $prop4 {
+        @if $property != null {
+            $combinedValues: append($combinedValues, getVal($map, $property))
+        }
+    }
+    @return $combinedValues
+}; 
+
 /// Dynamically calculate custom value of property for
 /// cases when the base variables don't suffice.
-/// @param {Map} $style-map
-/// @param {Int} $product
-/// @return {Int} Calculated Property
+/// @param {Map} $style-map - Property map containing variables to access
+/// @param {Int} $product - Value to multiply with
+/// @return {Int} - Calculated Property
 @function calculateVal($style-map, $product) {
     @return map-get($style-map, v.$standard) * $product
 };
+
+/// Helper function to unify retrieval of values from variables
+/// @param {Identifier} $var - The value in the theme map to convert
+/// @return {Any} - The converted CSS variable
+@function var_($var) {
+    @return var(--#{$var})
+};
+
+/// Get the value of a property respective to its map
+/// @param {Map} $map - Property map containing variables to access
+/// @param {Identifier} $prop - Key to grab the corresponding value in the map
+/// @return {Any} - Retrieved Property
+@function getVal($map, $prop) {
+    @return map-get($map, $prop)
+};
+

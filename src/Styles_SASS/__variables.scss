@@ -1,33 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Seaweed+Script&display=swap');
 
 // ---------------------------------------------
-// Defining different global variables, 
-// especially for themeing purposes (light/dark)
+// Defining different global variables and themes
 // ---------------------------------------------
 
-// Setting up theme keys and values - themes are created at compilation time (see below)
+// Setting up theme keys and values - themes are created at compilation time (see __functions)
 $themes: (
     light: (
         bg1: rgb(245, 245, 245),
         bg2: rgb(193, 193, 193),
+        txt1: rgb(15, 15, 15),
+        txt2: rgb(45, 45, 45),
         accents1: rgb(255, 0, 0)
     ),
     dark: (
-        bg1: rgb(0, 0, 0),
-        bg2: rgb(255, 0, 0),
-        color1: rgb(52, 52, 52),
+        bg1: rgb(8, 8, 8),
+        bg2: rgb(49, 49, 49),
+        txt1: rgb(255, 255, 255),
+        txt2: rgb(230, 230, 230),
         accents1:rgb(81, 255, 0)
     )
 );
-
-// Mapping out data-themes to their respective values
-@each $theme-name, $theme-properties in $themes {
-    html[data-theme=#{$theme-name}] {
-        @each $property, $value in $theme-properties {
-            --#{$property}: #{$value};
-        }
-    }
-}
 
 // Constant for calculating default values in functions
 $standard: m;
@@ -38,8 +31,8 @@ $margin: (
     m: 1rem,
     l: 1.5rem,
     xl: 2rem,
-    xxl: 2.5rem,
-    xxxl: 4rem
+    xxl: 3.5rem,
+    xxxl: 5rem
 );
 
 // Line height can function similarly to margin for text
@@ -76,7 +69,7 @@ $font-size: (
     xxxl: 5.5rem
 );
 
-// Standard font, for unity's sake, is 'm'
+// Standard font, for unity's sake in the $standard variable, is 'm'
 $font-family: (
     m: #{"Roboto Flex", sans-serif},
     accent-font:  #{"Seaweed Script", cursive},
