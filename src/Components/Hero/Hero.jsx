@@ -14,4 +14,4 @@ const Hero = () => {
 
 export default Hero
 
-/* asd*/
+/*IMPLEMENT CURSOR HIGHLIGHT!*/

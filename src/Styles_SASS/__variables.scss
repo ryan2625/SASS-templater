@@ -1,4 +1,4 @@
-@use "./_functions";
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Seaweed+Script&display=swap');
 
 // ---------------------------------------------
 // Defining different global variables, 
@@ -8,8 +8,8 @@
 // Setting up theme keys and values - themes are created at compilation time (see below)
 $themes: (
     light: (
-        bg1: rgb(255, 255, 255),
-        bg2: rgb(235, 235, 235),
+        bg1: rgb(245, 245, 245),
+        bg2: rgb(193, 193, 193),
         accents1: rgb(255, 0, 0)
     ),
     dark: (
@@ -28,6 +28,9 @@ $themes: (
         }
     }
 }
+
+// Constant for calculating default values in functions
+$standard: m;
 
 $margin: (
     xs: .5rem,
@@ -51,19 +54,30 @@ $line-height: (
     xxxl: 15    
 );
 
-@function getVal($map, $prop) {
-    @return map-get($map, $prop)
-};
+$font-weight: (
+    xxs: 100,
+    xs: 200,
+    s: 300,
+    m: 400,
+    l: 500,
+    xl: 600,
+    xxl: 700,
+    xxxl: 900
+);
 
-// The mid value (m) in our map is chosen as the constant
-@function calculateVal($style-map, $product) {
-    @return map-get($style-map, m) * $product
-};
+$font-size: (
+    xxs: 0.5rem,
+    xs: .75rem,
+    s: 1rem,
+    m: 1.5rem,
+    l: 2rem,
+    xl: 2.75rem,
+    xxl: 4rem,
+    xxxl: 5.5rem
+);
 
-.test1 {
-    background-color: var(--bg2);
-
-    p {
-        line-height: calculateVal($margin, 20);
-    }
-}
+// Standard font, for unity's sake, is 'm'
+$font-family: (
+    m: #{"Roboto Flex", sans-serif},
+    accent-font:  #{"Seaweed Script", cursive},
+);

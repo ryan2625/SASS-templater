@@ -1,0 +1,29 @@
+@use "./_variables" as v;
+@use "./_functions" as f;
+
+
+
+/// Get the value of the typography respective to its map
+/// @param {String} $var-font-family
+/// @param {String} $var-font-weight
+/// @param {String} $var-font-size
+/// @param {Int} $product
+@mixin setTypography($var-font-family: null, $var-font-weight: null,
+    $var-font-size: null, $product: 1
+) {
+    @if $var-font-family {
+        font-family: map-get(v.$font-family, $var-font-family)
+    } @else {
+        font-family: map-get(v.$font-family, v.$standard)
+    }
+    @if $var-font-weight {
+        font-weight: map-get(v.$font-weight, $var-font-weight)
+    } @else {
+        font-weight: map-get(v.$font-weight, v.$standard)
+    }
+    @if $var-font-size {
+        font-size: map-get(v.$font-size, $var-font-family)
+    } @else {
+        font-size: f.calculateVal(v.$font-size, $product);
+    }
+};

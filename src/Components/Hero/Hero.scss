@@ -1,7 +1,13 @@
-@use "../../Styles_SASS/_variables";
+@use "../../Styles_SASS/_mixins"  as m;
+@use "../../Styles_SASS/_variables" as v;
+@use "../../Styles_SASS/_functions" as f;
 
 .test1 {
-    background-color: var(--accents_1);
-    height: 500px;
-    width: 500px;
+    background-color: var(--bg2);
+
+    p {
+        @warn map-get(v.$line-height, v.$standard) * 10;
+        line-height: f.calculateVal(v.$line-height, 20);
+        @include m.setTypography(accent-font, xxl, null, 2);
+    }
 }

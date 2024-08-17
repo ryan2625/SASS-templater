@@ -1,0 +1,23 @@
+@use "./_variables" as v;
+
+// ---------------------------------------------
+// Defining helper functions to 
+// dynamically set property values
+// ---------------------------------------------
+
+/// Get the value of a property respective to its map
+/// @param {String} $prop
+/// @param {Map} $map
+/// @return {String} Calculated Property
+@function getVal($map, $prop) {
+    @return map-get($map, $prop)
+};
+
+/// Dynamically calculate custom value of property for
+/// cases when the base variables don't suffice.
+/// @param {Map} $style-map
+/// @param {Int} $product
+/// @return {Int} Calculated Property
+@function calculateVal($style-map, $product) {
+    @return map-get($style-map, v.$standard) * $product
+};
