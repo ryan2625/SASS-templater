@@ -1,0 +1,7 @@
+@use "../../Styles_SASS/_variables";
+
+.test1 {
+    background-color: var(--accents_1);
+    height: 500px;
+    width: 500px;
+}

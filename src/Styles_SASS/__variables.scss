@@ -1,0 +1,29 @@
+@use "./_functions";
+
+// ---------------------------------------------
+// Defining different global variables, 
+// especially for themeing purposes (light/dark)
+// ---------------------------------------------
+
+// Setting theme keys and values
+$themes: (
+    light: (
+        bg_1: rgb(255, 255, 255),
+        bg_2: rgb(235, 235, 235),
+        accents_1: rgb(255, 0, 0),
+    ),
+    dark: (
+        bg_1: rgb(0, 0, 0),
+        bg_2: rgb(52, 52, 52),
+        accents_1:rgb(81, 255, 0),
+    )
+);
+
+// Mapping out data-themes to their respective values
+@each $theme_name, $theme_properties in $themes {
+    html[data-theme=#{$theme_name}] {
+        @each $property, $value in $theme_properties {
+            --#{$property}: #{$value};
+        }
+    }
+}
