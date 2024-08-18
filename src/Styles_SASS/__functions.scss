@@ -2,7 +2,8 @@
 
 // ---------------------------------------------
 // Defining functions to dynamically 
-// set property values
+// set property values. Probably
+// over-engineered the styles but its okay.
 // ---------------------------------------------
 
 /// Mapping out data-themes to their respective values
@@ -25,10 +26,10 @@
 
 /// Get multiple values of a property respective to its map
 /// @param {Map} $map - Property map containing variables to access
-/// @param {Identifier} $prop1 - Key to grab the corresponding value in the map
-/// @param {Identifier} $prop2 - Key to grab the corresponding value in the map
-/// @param {Identifier} $prop3 - (Optional) Key to grab the corresponding value in the map
-/// @param {Identifier} $prop4 - (Optional) Key to grab the corresponding value in the map
+/// @param {Identifier|Number} $prop1 - Key to grab the corresponding value in the map
+/// @param {Identifier|Number} $prop2 - Key to grab the corresponding value in the map
+/// @param {Identifier|Number} $prop3 - (Optional) Key to grab the corresponding value in the map
+/// @param {Identifier|Number} $prop4 - (Optional) Key to grab the corresponding value in the map
 /// @return {Any} - Retrieved Properties
 @function getMultiVal($map, $prop1, $prop2: null, $prop3: null, $prop4: null) {
     @if $prop2 == null {
@@ -37,7 +38,11 @@
     $combinedValues: null;
     @each $property in $prop1, $prop2, $prop3, $prop4 {
         @if $property != null {
-            $combinedValues: append($combinedValues, getVal($map, $property))
+            @if (type-of($property) == number) {
+                $combinedValues: append($combinedValues, calculateVal($map, $property))
+            } @else {
+                $combinedValues: append($combinedValues, getVal($map, $property))
+            }
         }
     }
     @return $combinedValues
@@ -53,17 +58,9 @@
 };
 
 /// Helper function to unify retrieval of values from variables
-/// @param {Identifier} $var - The value in the theme map to convert
+/// @param {Identifier} $var - The variable in the theme map to convert
 /// @return {Any} - The converted CSS variable
 @function var_($var) {
     @return var(--#{$var})
-};
-
-/// Get the value of a property respective to its map
-/// @param {Map} $map - Property map containing variables to access
-/// @param {Identifier} $prop - Key to grab the corresponding value in the map
-/// @return {Any} - Retrieved Property
-@function getVal($map, $prop) {
-    @return map-get($map, $prop)
 };
 

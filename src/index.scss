@@ -1,0 +1,8 @@
+@use "./Styles_SASS/_mixins"  as m;
+@use "./Styles_SASS/_variables" as v;
+@use "./Styles_SASS/_functions" as f;
+
+body {
+  @include m.setTypography();
+  margin: 0
+}

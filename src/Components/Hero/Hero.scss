@@ -1,13 +1,39 @@
-@use "../../Styles_SASS/_mixins"  as m;
-@use "../../Styles_SASS/_variables" as v;
-@use "../../Styles_SASS/_functions" as f;
+@use "../../Styles_SASS/_forwards" as *;
 
+.hero-container {
+
+    nav {
+        position: fixed;
+        top: 0;
+        height: 90px;
+        background-color: $c_black10;
+        width: 100%;
+    }
+
+    div {
+        width: 100%;
+        max-width: 1500px;
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+        margin: $m_center;
+
+        *{
+            display: inline-block;
+            height: fit-content;
+            margin: getMultiVal($margin, auto, xl)
+        }
+    }
+}
+
+
+// DELETE THIS LATER
 .test1 {
-    background-color: f.var_(bg2);
-    margin: f.getMultiVal(v.$margin, xxxl);
+    background-color: var_(bg2);
+    margin: getMultiVal($margin, xxl, s, 10, 20);
 
     p {
-        line-height: f.calculateVal(v.$line-height, 1);
-        @include m.setTypography(null, xxl, accents1, null, 2);
+        line-height: calculateVal($line-height, 1);
+        @include setTypography(null, xxl, accents1, null, 2);
     }
 }

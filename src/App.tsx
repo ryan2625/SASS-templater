@@ -4,11 +4,11 @@ import Hero from "./Components/Hero/Hero"
 import "./Styles_SASS/__variables.scss"
 function App() {
 
-useEffect(() => {
- document.documentElement.setAttribute('data-theme', theme)
-}, [])
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+  }, [])
 
-  const [theme, setTheme] = useState("dark")
+  const [theme, setTheme] = useState<string>("dark")
 
   const changeTheme = () => {
     setTheme(prev => {

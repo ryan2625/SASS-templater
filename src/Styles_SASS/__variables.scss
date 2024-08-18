@@ -4,49 +4,52 @@
 // Defining different global variables and themes
 // ---------------------------------------------
 
-// Setting up theme keys and values - themes are created at compilation time (see __functions)
+// Setting up color theme keys and values - themes are created at compilation time 
+// (see __functions). These colors will change respective to the current data theme
 $themes: (
     light: (
         bg1: rgb(245, 245, 245),
         bg2: rgb(193, 193, 193),
+        inverse-bg1: rgb(45, 45, 45),
+        inverse-bg2: rgb(45, 45, 45),
         txt1: rgb(15, 15, 15),
         txt2: rgb(45, 45, 45),
-        accents1: rgb(255, 0, 0)
+        inverse-txt1: rgb(45, 45, 45),
+        inverse-txt2: rgb(45, 45, 45),
+        accents1: rgb(255, 0, 0),
+        btn-bg1: rgb(255, 0, 0),
+        btn-txt1: rgb(255, 0, 0),
     ),
     dark: (
         bg1: rgb(8, 8, 8),
         bg2: rgb(49, 49, 49),
+        inverse-bg1: rgb(45, 45, 45),
+        inverse-bg2: rgb(45, 45, 45),
         txt1: rgb(255, 255, 255),
         txt2: rgb(230, 230, 230),
-        accents1:rgb(81, 255, 0)
+        inverse-txt1: rgb(45, 45, 45),
+        inverse-txt2: rgb(45, 45, 45),
+        accents1:rgb(81, 255, 0),
+        btn-bg1: rgb(255, 0, 0),
+        btn-txt1: rgb(255, 0, 0),
     )
 );
 
-// Constant for calculating default values in functions
+// Color Constants
+$c_black10: rgb(6, 6, 6);
+
+// Constant for general values and calculating default values in functions
 $standard: m;
+$auto: auto;
 
-$margin: (
-    xs: .5rem,
-    s: .75rem,
-    m: 1rem,
-    l: 1.5rem,
-    xl: 2rem,
-    xxl: 3.5rem,
-    xxxl: 5rem
+// Standard font, for unity's sake in the $standard variable, is 'm'
+$font-family: (
+    m: #{"Roboto Flex", sans-serif},
+    accent-font:  #{"Seaweed Script", cursive},
 );
 
-// Line height can function similarly to margin for text
-$line-height: (
-    xxs: 1.25, 
-    xs: 1.5,    
-    s: 2,    
-    m: 2.5,    
-    l: 3,     
-    xl: 5,  
-    xxl: 10,
-    xxxl: 15    
-);
 
+// Font weights
 $font-weight: (
     xxs: 100,
     xs: 200,
@@ -55,9 +58,11 @@ $font-weight: (
     l: 500,
     xl: 600,
     xxl: 700,
-    xxxl: 900
+    xxxl: 900,
+    auto: $auto
 );
 
+// Font sizes
 $font-size: (
     xxs: 0.5rem,
     xs: .75rem,
@@ -66,11 +71,46 @@ $font-size: (
     l: 2rem,
     xl: 2.75rem,
     xxl: 4rem,
-    xxxl: 5.5rem
+    xxxl: 5.5rem,
+    auto: $auto
 );
 
-// Standard font, for unity's sake in the $standard variable, is 'm'
-$font-family: (
-    m: #{"Roboto Flex", sans-serif},
-    accent-font:  #{"Seaweed Script", cursive},
+// Line heights
+$line-height: (
+    xxs: 1.25, 
+    xs: 1.5,    
+    s: 2,    
+    m: 2.5,    
+    l: 3,     
+    xl: 5,  
+    xxl: 10,
+    xxxl: 15,
+    auto: $auto    
+);
+
+// Margins
+$margin: (
+    xss: .25rem,
+    xs: .5rem,
+    s: .75rem,
+    m: 1rem,
+    l: 1.5rem,
+    xl: 2rem,
+    xxl: 3.5rem,
+    xxxl: 5rem,
+    auto: $auto
+);
+$m_center: 0 auto;
+
+// Paddings
+$padding: (
+    xss: .25rem,
+    xs: .5rem,
+    s: .75rem,
+    m: 1rem,
+    l: 1.5rem,
+    xl: 2rem,
+    xxl: 3.5rem,
+    xxxl: 5rem,
+    auto: $auto
 );

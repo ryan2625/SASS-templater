@@ -4,11 +4,14 @@ import "../../Styles_SASS/__variables.scss"
 const Hero = () => {
 
   return (
-    <div className="hero-container">
-      <div className="test1">
-        <p>asdasda</p>
-      </div>
-    </div>
+    <section className="hero-container">
+      <nav>
+        <div>
+          <p>Sass | Studios</p>
+          <p>About</p>
+        </div>
+      </nav>
+    </section>
   )
 }
 
