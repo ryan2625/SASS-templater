@@ -6,3 +6,7 @@ body {
   @include m.setTypography();
   margin: 0
 }
+
+.none {
+  display: none;
+}

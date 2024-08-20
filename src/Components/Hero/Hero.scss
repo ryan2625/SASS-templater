@@ -1,14 +1,16 @@
 @use "../../Styles_SASS/_forwards" as *;
 
 .hero-container {
+    height: 100vh;
+    background-color: $c_black10;
+}
 
-    nav {
-        position: fixed;
-        top: 0;
-        height: 90px;
-        background-color: $c_black10;
-        width: 100%;
-    }
+//=======NAVBAR STYLES=======\\
+//===========================\\
+nav {
+    background-color: $c_black10;
+    width: 100%;
+    height: 80px;
 
     div {
         width: 100%;
@@ -18,22 +20,54 @@
         height: 100%;
         margin: $m_center;
 
-        *{
+        * {
             display: inline-block;
             height: fit-content;
-            margin: getMultiVal($margin, auto, xl)
+            margin: getMultiVal($margin, auto, xl);
+            @include setTypography(null, xs, txt1, l);
+            letter-spacing: 10px;
         }
     }
 }
 
+.main-nav {
+    position: relative;
+    background-color: $c_black10;
+    z-index: 99999999999;
+}
 
-// DELETE THIS LATER
-.test1 {
-    background-color: var_(bg2);
-    margin: getMultiVal($margin, xxl, s, 10, 20);
+.fixed-nav {
+    position: fixed;
+    transition: all .5s ease-in-out;
+    top: 0px;
+}
 
+.static-nav {
+    position: fixed;
+    animation: changePosition .35s ease-in-out;
+    transition: all .25s ease-in-out;
+    top: -80px;
+}
+
+//===============================\\
+//=======END NAVBAR STYLES=======\\
+
+.headline {
+    max-width: 1500px;
+    display: flex;
+    margin: getMultiVal($margin, 6, auto, 2, auto);
+    overflow-x: hidden;
+
+    div {
+        flex: 0 0 50%;
+    }
+
+}
+
+.intro {
     p {
-        line-height: calculateVal($line-height, 1);
-        @include setTypography(null, xxl, accents1, null, 2);
+        span:nth-child(1) {
+            @include setTypography(accent-font, l, txt1, 3);
+        }
     }
 }

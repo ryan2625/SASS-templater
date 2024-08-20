@@ -16,14 +16,6 @@
     }
 }
 
-/// Get the value of a property respective to its map
-/// @param {Map} $map - Property map containing variables to access
-/// @param {Identifier} $prop - Key to grab the corresponding value in the map
-/// @return {Any} - Retrieved Property
-@function getVal($map, $prop) {
-    @return map-get($map, $prop)
-};
-
 /// Get multiple values of a property respective to its map
 /// @param {Map} $map - Property map containing variables to access
 /// @param {Identifier|Number} $prop1 - Key to grab the corresponding value in the map
@@ -47,6 +39,14 @@
     }
     @return $combinedValues
 }; 
+
+/// Get the value of a property respective to its map
+/// @param {Map} $map - Property map containing variables to access
+/// @param {Identifier} $prop - Key to grab the corresponding value in the map
+/// @return {Any} - Retrieved Property
+@function getVal($map, $prop) {
+    @return map-get($map, $prop)
+};
 
 /// Dynamically calculate custom value of property for
 /// cases when the base variables don't suffice.

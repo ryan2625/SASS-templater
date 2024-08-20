@@ -1,35 +1,46 @@
 @use "./_variables" as v;
 @use "./_functions" as f;
 
-
-
 /// Get the value of the typography respective to its map
 /// @param {Identifier} $var-font-family - Key in $font-family
 /// @param {Identifier} $var-font-weight - Key in $font-weight
-/// @param {Identifier} $var-font-size - Key in $font-size
 /// @param {Identifier} $var-font-color - Key in $themes submap. Will retrieve light/dark mode color value
-/// @param {Int} $product - Value to multiply with
+/// @param {Identifier|Int} $var-font-size - Key in $font-size
 @mixin setTypography($var-font-family: null, $var-font-weight: null,
-    $var-font-color: null, $var-font-size: null, $product: 1, 
-) {
+    $var-font-color: null, $var-font-size: null) {
     @if $var-font-family {
         font-family: map-get(v.$font-family, $var-font-family)
-    } @else {
+    }
+
+    @else {
         font-family: map-get(v.$font-family, v.$standard)
     }
+
     @if $var-font-weight {
+        @warn map-get(v.$font-weight, $var-font-weight);
         font-weight: map-get(v.$font-weight, $var-font-weight)
-    } @else {
+    }
+
+    @else {
         font-weight: map-get(v.$font-weight, v.$standard)
     }
+
     @if $var-font-color {
         color: f.var_($var-font-color)
-    } @else {
+    }
+
+    @else {
         color: var(--txt1)
     }
+
     @if $var-font-size {
-        font-size: map-get(v.$font-size, $var-font-family)
-    } @else {
-        font-size: f.calculateVal(v.$font-size, $product);
+        @if (type-of($var-font-size) == number) {
+            font-size: f.calculateVal(v.$font-size, $var-font-size);
+        }
+        @else {
+            font-size: map-get(v.$font-size, $var-font-size);
+        }
     }
-};
+}
+
+;

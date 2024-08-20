@@ -35,7 +35,7 @@ $themes: (
     )
 );
 
-// Color Constants
+// Color Constants, regardless of theme
 $c_black10: rgb(6, 6, 6);
 
 // Constant for general values and calculating default values in functions
@@ -47,7 +47,6 @@ $font-family: (
     m: #{"Roboto Flex", sans-serif},
     accent-font:  #{"Seaweed Script", cursive},
 );
-
 
 // Font weights
 $font-weight: (
@@ -114,3 +113,15 @@ $padding: (
     xxxl: 5rem,
     auto: $auto
 );
+
+// z-index - there should only be one mapping for max z-index
+$z-index: (
+    100: 100,
+    200: 200,
+    300: 300,
+    400: 400,
+    500: 500,
+    600: 600,
+    700: 700,
+    999999: 999999
+)
