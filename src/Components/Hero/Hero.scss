@@ -69,5 +69,19 @@ nav {
         span:nth-child(1) {
             @include setTypography(accent-font, l, txt1, 3);
         }
+
+        span:nth-child(2) {
+            display: inline-block;
+            position: relative;
+
+            &::after {
+                content: "";
+                background-image: url("../../Assets/Images/Other/swoosh.webp");
+                display: block;
+                background-color: wheat;
+                width: 100%;
+                aspect-ratio: 367/100;
+            }
+        }
     }
 }

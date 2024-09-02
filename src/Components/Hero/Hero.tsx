@@ -23,7 +23,6 @@ const Hero = () => {
       setWindowHeight(window.innerHeight)
     }
 
-
     window.addEventListener("scroll", onScroll)
     window.addEventListener("resize", onResize)
 
@@ -51,7 +50,7 @@ const Hero = () => {
       </nav>
       <div className="headline">
         <div className="intro">
-          <p><span>Design</span> made <span>easy</span></p>
+          <p><span>Design</span><span> made </span><span>easy</span></p>
           <p>View, edit, and export<br />
             styles in seconds</p>
           <div>
