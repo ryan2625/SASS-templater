@@ -23,7 +23,7 @@ $themes: (
     dark: (
         bg1: rgb(8, 8, 8),
         bg2: rgb(49, 49, 49),
-        inverse-bg1: rgb(45, 45, 45),
+        inverse-bg1: rgb(255, 255, 255),
         inverse-bg2: rgb(45, 45, 45),
         txt1: rgb(255, 255, 255),
         txt2: rgb(230, 230, 230),
@@ -88,6 +88,7 @@ $line-height: (
 );
 
 // Margins
+$m_center: 0 auto;
 $margin: (
     xss: .25rem,
     xs: .5rem,
@@ -97,9 +98,9 @@ $margin: (
     xl: 2rem,
     xxl: 3.5rem,
     xxxl: 5rem,
-    auto: $auto
+    auto: $auto,
+    center: $m_center
 );
-$m_center: 0 auto;
 
 // Paddings
 $padding: (
@@ -114,8 +115,21 @@ $padding: (
     auto: $auto
 );
 
+// Widths
+$width: (
+    s: 250px,
+    m: 500px,
+    l: 750px,
+    container: 1500px
+);
+
 // z-index - there should only be one mapping for max z-index
 $z-index: (
+    s: -1,
+    m: 0,
+    l: 10,
+    xl: 100,
+    xxl: 1000,
     100: 100,
     200: 200,
     300: 300,
@@ -123,5 +137,6 @@ $z-index: (
     500: 500,
     600: 600,
     700: 700,
-    999999: 999999
+    nav: 9999,
+    max: 9999999999
 )

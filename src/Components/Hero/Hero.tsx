@@ -18,19 +18,15 @@ const Hero = () => {
     const onScroll = () => {
       setScroll(window.scrollY)
     }
-
     const onResize = () => {
       setWindowHeight(window.innerHeight)
     }
-
     window.addEventListener("scroll", onScroll)
     window.addEventListener("resize", onResize)
-
     return () => {
       window.removeEventListener("scroll", onScroll)
       window.removeEventListener("resize", onResize)
     }
-
   }, [])
 
   return (
@@ -64,6 +60,7 @@ const Hero = () => {
           <img src={gradient2} alt="Background gradient" aria-label='hidden'/>
         </div>
       </div>
+      <div className="separator" aria-label='hidden'></div>
     </section>
   )
 }
