@@ -7,39 +7,35 @@
 /// @param {Identifier} $var-font-color - Key in $themes submap. Will retrieve light/dark mode color value
 /// @param {Identifier|Int} $var-font-size - Key in $font-size
 @mixin setTypography($var-font-family: null, $var-font-weight: null,
-    $var-font-color: null, $var-font-size: null) {
+    $var-font-color: null, $var-letter-spacing: null, $var-font-size: null) {
     @if $var-font-family {
-        font-family: map-get(v.$font-family, $var-font-family)
-    }
-
-    @else {
-        font-family: map-get(v.$font-family, v.$standard)
+        font-family: f.getVal(v.$font-family, $var-font-family)
+    } @else {
+        font-family: f.getVal(v.$font-family, v.$standard)
     }
 
     @if $var-font-weight {
-        @warn map-get(v.$font-weight, $var-font-weight);
-        font-weight: map-get(v.$font-weight, $var-font-weight)
-    }
-
-    @else {
-        font-weight: map-get(v.$font-weight, v.$standard)
+        font-weight: f.getVal(v.$font-weight, $var-font-weight)
+    } @else {
+        font-weight: f.getVal(v.$font-weight, v.$standard)
     }
 
     @if $var-font-color {
         color: f.var_($var-font-color)
-    }
-
-    @else {
+    } @else {
         color: var(--txt1)
     }
 
+    @if $var-letter-spacing {
+        letter-spacing: f.getVal(v.$letter-spacing, $var-letter-spacing)
+    } @else {
+        letter-spacing: f.getVal(v.$letter-spacing, v.$standard)
+    }
+
     @if $var-font-size {
-        @if (type-of($var-font-size) == number) {
-            font-size: f.calculateVal(v.$font-size, $var-font-size);
-        }
-        @else {
-            font-size: map-get(v.$font-size, $var-font-size);
-        }
+        font-size: f.getVal(v.$font-size, $var-font-size);
+    } @else {
+        font-size: f.getVal(v.$font-size, v.$standard);
     }
 }
 

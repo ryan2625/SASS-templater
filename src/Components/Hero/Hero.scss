@@ -1,11 +1,12 @@
 @use "../../Styles_SASS/_forwards" as *;
 
 .hero-container {
+    // TODO EDIT HEIGHTS
     height: 130vh;
     background-color: var_(bg1);
     position: relative;
     overflow: hidden;
-    
+
     &::after {
         content: "";
         position: absolute;
@@ -22,6 +23,7 @@
 
 //=======NAVBAR STYLES=======\\
 //===========================\\
+
 nav {
     background-color: $c_black10;
     width: 100%;
@@ -39,7 +41,7 @@ nav {
             display: inline-block;
             height: fit-content;
             margin: getMultiVal($margin, auto, xl);
-            @include setTypography(null, xs, txt1, l);
+            @include setTypography(null, xs, txt1, null, l);
             letter-spacing: 10px;
         }
     }
@@ -72,7 +74,9 @@ nav {
 .headline {
     max-width: getVal($width, container);
     display: flex;
-    margin: getMultiVal($margin, 6, auto, 2, auto);
+    margin: getMultiVal($margin, 2, auto, 2, auto);
+    padding: getVal($padding, xl);
+
 
     div {
         flex: 0 0 50%;
@@ -83,7 +87,7 @@ nav {
 .intro {
     p {
         span:nth-child(1) {
-            @include setTypography(accent-font, l, txt1, 3);
+            @include setTypography(accent-font, s, txt1, null, 8);
         }
 
         span:nth-child(2) {

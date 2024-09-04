@@ -16,7 +16,7 @@ $themes: (
         txt2: rgb(45, 45, 45),
         inverse-txt1: rgb(45, 45, 45),
         inverse-txt2: rgb(45, 45, 45),
-        accents1: rgb(255, 0, 0),
+        accents1: #ff0000,
         btn-bg1: rgb(255, 0, 0),
         btn-txt1: rgb(255, 0, 0),
     ),
@@ -76,14 +76,25 @@ $font-size: (
 
 // Line heights
 $line-height: (
-    xxs: 1.25, 
-    xs: 1.5,    
-    s: 2,    
-    m: 2.5,    
-    l: 3,     
-    xl: 5,  
-    xxl: 10,
-    xxxl: 15,
+    xxs: 1.25px, 
+    xs: 1.5px,    
+    s: 2px,    
+    m: 2.5px,    
+    l: 3px,     
+    xl: 5px,  
+    xxl: 10px,
+    xxxl: 15px,
+    auto: $auto    
+);
+
+// Letter Spacing
+$letter-spacing: (    
+    s: 1px,    
+    m: 2px,    
+    l: 3px,     
+    xl: 4px,  
+    xxl: 6px,
+    xxxl: 10px,
     auto: $auto    
 );
 

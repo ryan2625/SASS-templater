@@ -45,7 +45,11 @@
 /// @param {Identifier} $prop - Key to grab the corresponding value in the map
 /// @return {Any} - Retrieved Property
 @function getVal($map, $prop) {
-    @return map-get($map, $prop)
+    @if (type-of($prop) == number) {
+        @return calculateVal($map, $prop);
+    } @else {
+        @return map-get($map, $prop)
+    }
 };
 
 /// Dynamically calculate custom value of property for
@@ -54,7 +58,7 @@
 /// @param {Int} $product - Value to multiply with
 /// @return {Int} - Calculated Property
 @function calculateVal($style-map, $product) {
-    @return map-get($style-map, v.$standard) * $product
+    @return calc(map-get($style-map, v.$standard) * $product + 1vw)
 };
 
 /// Helper function to unify retrieval of values from variables
