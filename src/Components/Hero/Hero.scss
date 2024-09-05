@@ -77,8 +77,7 @@ nav {
     margin: getMultiVal($margin, 2, auto, 2, auto);
     padding: getVal($padding, xl);
 
-
-    div {
+    > div {
         flex: 0 0 50%;
     }
 
@@ -86,11 +85,11 @@ nav {
 
 .intro {
     p {
-        span:nth-child(1) {
+        span:first-child {
             @include setTypography(accent-font, s, txt1, null, 8);
         }
 
-        span:nth-child(2) {
+        span:nth-child(3) {
             display: inline-block;
             position: relative;
 
@@ -104,4 +103,29 @@ nav {
             }
         }
     }
+}
+
+.intro-container {
+    display: grid;
+    place-items: center
+}
+
+.intro-graphic {
+    position: relative;
+    margin: 0 auto;
+    height: 50%;
+    width: 50%;
+    background-color: red;
+
+    img:nth-child(3) {
+        width: 300px;
+    }
+
+    img {
+        position: absolute;
+    }
+}
+
+.intro-graphic-swap {
+    width: 300px;
 }

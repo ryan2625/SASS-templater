@@ -37,13 +37,14 @@ const Hero = () => {
           <p>about | @</p>
         </div>
       </nav>
-      {/*Possibly make /10 a constant the same heigght as the oval separator*/}
+      {/*Possibly make /10 a constant the same height as the oval separator*/}
       <nav className={scroll - (windowHeight / 10) > windowHeight ? "fixed-nav" : "static-nav"} aria-hidden="true">
         <div>
           <p>sass | studios</p>
           <p>about | @</p>
         </div>
       </nav>
+
       <div className="headline">
         <div className="intro">
           <p><span>Design</span><span> made </span><span>easy</span></p>
@@ -54,10 +55,12 @@ const Hero = () => {
             <p>Css Styling</p>
           </div>
         </div>
-        <div className="intro-graphic">
-          <img src={temp1} alt="SASS Styling graphic" />
-          <img src={temp2} alt="CSS Styling graphic" />
-          <img src={gradient2} alt="Background gradient" aria-label='hidden'/>
+        <div className='intro-container'>
+          <div className="intro-graphic">
+            <img src={temp1} className="intro-graphic-swap" alt="SASS Styling graphic" />
+            <img src={temp2} className="intro-graphic-swap" alt="CSS Styling graphic" />
+            <img src={gradient2} alt="Background gradient" aria-label='hidden' />
+          </div>
         </div>
       </div>
       <div className="separator" aria-label='hidden'></div>
