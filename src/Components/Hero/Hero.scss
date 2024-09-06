@@ -85,8 +85,17 @@ nav {
 
 .intro {
     p {
+        span {
+            word-spacing: 10px;
+            white-space: nowrap;
+        }
+
         span:first-child {
-            @include setTypography(accent-font, s, txt1, null, 8);
+            @include setTypography(accent-font, s, txt1, null, 7);
+        }
+
+        span:nth-child(2), span:nth-child(3) {
+            font-size: getVal($font-size, 2);
         }
 
         span:nth-child(3) {
@@ -102,6 +111,8 @@ nav {
                 aspect-ratio: 367/100;
             }
         }
+
+        
     }
 }
 
