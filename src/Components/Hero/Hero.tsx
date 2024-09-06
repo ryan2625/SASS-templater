@@ -50,9 +50,9 @@ const Hero = () => {
           <p><span>Design</span><span> made </span><span>easy</span></p>
           <p className='intro-sub-heading'>View, edit, and export<br />
             styles in seconds</p>
-          <div>
-            <p>SASS Styling</p>
-            <p>Css Styling</p>
+          <div className='intro-styling-container'>
+            <p className="intro-primary-styling">SASS Styling</p>
+            <p className="intro-secondary-styling">Css Styling</p>
           </div>
         </div>
         <div className='intro-container'>

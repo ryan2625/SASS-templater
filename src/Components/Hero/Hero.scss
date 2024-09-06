@@ -88,12 +88,17 @@ nav {
     padding: getVal($padding, xl);
 
     > div {
-        flex: 0 0 50%;
+        flex: 0 1 50%;
+        max-width: 750px;
     }
 
 }
 
 .intro {
+    p:nth-child(2) {
+        margin-top: getVal($margin, -2)
+    }
+
     p {
         span {
             word-spacing: 10px;
@@ -106,7 +111,7 @@ nav {
         }
 
         span:nth-child(2), span:nth-child(3) {
-            font-size: min(calc(getVal($font-size, m) + 3vw), 900px);
+            font-size: min(calc(getVal($font-size, m) + 3.5vw), 80px);
         }
 
         span:nth-child(3) {
@@ -122,13 +127,11 @@ nav {
                 aspect-ratio: 367/100;
             }
         }
-
-        
     }
 }
 
 .intro-sub-heading {
-    @include setTypography()
+    font-size: min(calc(getVal($font-size, m) + 3vw), 50px);
 }
 
 .intro-container {
@@ -140,11 +143,12 @@ nav {
 .intro-graphic {
     position: relative;
     margin: getVal($margin, center);
+    margin-right: 30%;
     height: 60%;
     width: 60%;
 
     img:first-child {
-        width: max(275%, 500px);
+        width: max(300%, 1000px);
         z-index:  getVal($z-index, m) !important;
         @include absoluteCenter(rotate(195deg));
         margin-left: getVal($margin, xxxl);
@@ -156,6 +160,20 @@ nav {
         z-index: getVal($z-index, l);
         border-radius: $Hero-graphic-radius;
     }
+}
+
+.intro-styling-container {
+    margin-top: 3.5rem;
+}
+
+.intro-primary-styling {
+    font-size: getVal($font-size, l);
+    line-height: 34px;
+}
+
+.intro-secondary-styling {
+    font-size: getVal($font-size, .25);
+    //COLOR DIMMED!!!
 }
 
 .primary-graphic {
@@ -171,6 +189,7 @@ nav {
         height: $Hero-graphic-height;
         width: $Hero-graphic-width;
         border-radius: $Hero-graphic-radius;
+        aspect-ratio: 1 / 1;
     }
 }
 
@@ -178,17 +197,19 @@ nav {
     background-position: center;
     background-repeat: no-repeat; 
     background-size: cover; 
-    height: 200%;  
+    height: 120%;  
 }
 
 #graphic-swap-1 {
     left: 40%;
     margin-top: -40%;
     background-image: url("../../Assets/Images/Other/temp1.png");
+    aspect-ratio: 1 / 1;
 }
 
 #graphic-swap-2 {
     background-image: url("../../Assets/Images/Other/temp1.png");
     left: 0%;
     margin-top: 0%;
+    aspect-ratio: 1 / 1 !important;
 }
