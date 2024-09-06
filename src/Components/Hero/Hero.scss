@@ -1,5 +1,15 @@
 @use "../../Styles_SASS/_forwards" as *;
 
+//=========================================\\
+//=======Individual Component Styles=======\\
+
+$Hero-graphic-radius: 30px;
+$Hero-graphic-height: 100%;
+$Hero-graphic-width: 100%;
+
+//=========================================\\
+//=========================================\\
+
 .hero-container {
     // TODO EDIT HEIGHTS
     height: 130vh;
@@ -74,7 +84,7 @@ nav {
 .headline {
     max-width: getVal($width, container);
     display: flex;
-    margin: getMultiVal($margin, 2, auto, 2, auto);
+    margin: getMultiVal($margin, 2.5, auto, 2.5, auto);
     padding: getVal($padding, xl);
 
     > div {
@@ -91,11 +101,12 @@ nav {
         }
 
         span:first-child {
-            @include setTypography(accent-font, s, txt1, null, 7);
+            @include setTypography(accent-font, s, txt1, null, null);
+            font-size: min(calc(getVal($font-size, 3) + 5vw), 150px);
         }
 
         span:nth-child(2), span:nth-child(3) {
-            font-size: getVal($font-size, 2);
+            font-size: min(calc(getVal($font-size, m) + 3vw), 900px);
         }
 
         span:nth-child(3) {
@@ -116,7 +127,12 @@ nav {
     }
 }
 
+.intro-sub-heading {
+    @include setTypography()
+}
+
 .intro-container {
+    margin-top: getVal($margin, xxxxl);
     display: grid;
     place-items: center
 }
@@ -124,11 +140,11 @@ nav {
 .intro-graphic {
     position: relative;
     margin: getVal($margin, center);
-    height: 50%;
-    width: 50%;
+    height: 60%;
+    width: 60%;
 
     img:first-child {
-        width: max(250%, 500px);
+        width: max(275%, 500px);
         z-index:  getVal($z-index, m) !important;
         @include absoluteCenter(rotate(195deg));
         margin-left: getVal($margin, xxxl);
@@ -138,7 +154,7 @@ nav {
         width: 100%;
         position: absolute;
         z-index: getVal($z-index, l);
-        border-radius: 30px;
+        border-radius: $Hero-graphic-radius;
     }
 }
 
@@ -146,20 +162,33 @@ nav {
     z-index: getVal($z-index, xxl);
 }
 
-.graphic-swap-overlay {
-    backdrop-filter: brightness(0.33) saturate(122%) blur(2px);
-    height: 100%;
-    z-index: getVal($z-index, xl);
+.secondary-graphic {
+    &::after {
+        content: "";
+        backdrop-filter: brightness(.6) saturate(122%) blur(2px);
+        z-index: getVal($z-index, xl);
+        position: absolute;
+        height: $Hero-graphic-height;
+        width: $Hero-graphic-width;
+        border-radius: $Hero-graphic-radius;
+    }
+}
+
+.intro-graphic-swap {
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    height: 200%;  
 }
 
 #graphic-swap-1 {
-    left: 30%;
-    margin-top: -15%;
-    display: block;
+    left: 40%;
+    margin-top: -40%;
+    background-image: url("../../Assets/Images/Other/temp1.png");
 }
 
-.graphic-swap-overlay, #graphic-swap-2 {
+#graphic-swap-2 {
+    background-image: url("../../Assets/Images/Other/temp1.png");
     left: 0%;
-    margin-top: 15%;
-    display: block;
+    margin-top: 0%;
 }

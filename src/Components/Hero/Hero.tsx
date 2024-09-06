@@ -48,7 +48,7 @@ const Hero = () => {
       <div className="headline">
         <div className="intro">
           <p><span>Design</span><span> made </span><span>easy</span></p>
-          <p>View, edit, and export<br />
+          <p className='intro-sub-heading'>View, edit, and export<br />
             styles in seconds</p>
           <div>
             <p>SASS Styling</p>
@@ -57,10 +57,9 @@ const Hero = () => {
         </div>
         <div className='intro-container'>
           <div className="intro-graphic">
-          <img src={gradient2} alt="Background gradient" aria-label='hidden' />
-            <div className="graphic-swap-overlay"></div>
-            <img src={temp1} id="graphic-swap-1" className="intro-graphic-swap primary-graphic" alt="SASS Styling graphic" />
-            <img src={temp2} id="graphic-swap-2"  className="intro-graphic-swap" alt="CSS Styling graphic" />
+            <img src={gradient2} alt="Background gradient" aria-label='hidden' />
+            <div role="img" id="graphic-swap-1" className="intro-graphic-swap primary-graphic" aria-label="SASS Styling graphic"></div>
+            <div role="img" id="graphic-swap-2" className="intro-graphic-swap secondary-graphic" aria-label="CSS Styling graphic"></div>
           </div>
         </div>
       </div>
