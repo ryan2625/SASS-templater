@@ -107,8 +107,9 @@ $margin: (
     m: 1rem,
     l: 1.5rem,
     xl: 2rem,
-    xxl: 3.5rem,
-    xxxl: 5rem,
+    xxl: 4rem,
+    xxxl: 6rem,
+    xxxxl: 10rem,
     auto: $auto,
     center: $m_center
 );
@@ -141,13 +142,7 @@ $z-index: (
     l: 10,
     xl: 100,
     xxl: 1000,
-    100: 100,
-    200: 200,
-    300: 300,
-    400: 400,
-    500: 500,
-    600: 600,
-    700: 700,
+    xxxl: 2000,
     nav: 9999,
     max: 9999999999
 )

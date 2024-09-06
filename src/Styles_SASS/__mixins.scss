@@ -39,4 +39,10 @@
     }
 }
 
-;
+/// Get the value of the typography respective to its map
+/// @param {Property} $tranform-properties - Extra value(s) for the transform property
+@mixin absoluteCenter($tranform-properties: null) {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) $tranform-properties;
+}

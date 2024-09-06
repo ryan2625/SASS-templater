@@ -22,7 +22,7 @@
 /// @param {Identifier|Number} $prop2 - Key to grab the corresponding value in the map
 /// @param {Identifier|Number} $prop3 - (Optional) Key to grab the corresponding value in the map
 /// @param {Identifier|Number} $prop4 - (Optional) Key to grab the corresponding value in the map
-/// @return {Any} - Retrieved Properties
+/// @return {Any} - Retrieved property values
 @function getMultiVal($map, $prop1, $prop2: null, $prop3: null, $prop4: null) {
     @if $prop2 == null {
         @warn Use getVal for retrieving single values
@@ -43,7 +43,7 @@
 /// Get the value of a property respective to its map
 /// @param {Map} $map - Property map containing variables to access
 /// @param {Identifier} $prop - Key to grab the corresponding value in the map
-/// @return {Any} - Retrieved Property
+/// @return {Any} - Retrieved property value
 @function getVal($map, $prop) {
     @if (type-of($prop) == number) {
         @return calculateVal($map, $prop);
@@ -56,7 +56,7 @@
 /// cases when the base variables don't suffice.
 /// @param {Map} $style-map - Property map containing variables to access
 /// @param {Int} $product - Value to multiply with
-/// @return {Int} - Calculated Property
+/// @return {Int} - Calculated property value
 @function calculateVal($style-map, $product) {
     @return calc(map-get($style-map, v.$standard) * $product + 1vw)
 };

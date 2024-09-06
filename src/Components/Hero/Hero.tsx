@@ -57,9 +57,10 @@ const Hero = () => {
         </div>
         <div className='intro-container'>
           <div className="intro-graphic">
-            <img src={temp1} className="intro-graphic-swap" alt="SASS Styling graphic" />
-            <img src={temp2} className="intro-graphic-swap" alt="CSS Styling graphic" />
-            <img src={gradient2} alt="Background gradient" aria-label='hidden' />
+          <img src={gradient2} alt="Background gradient" aria-label='hidden' />
+            <div className="graphic-swap-overlay"></div>
+            <img src={temp1} id="graphic-swap-1" className="intro-graphic-swap primary-graphic" alt="SASS Styling graphic" />
+            <img src={temp2} id="graphic-swap-2"  className="intro-graphic-swap" alt="CSS Styling graphic" />
           </div>
         </div>
       </div>

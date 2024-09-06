@@ -112,20 +112,43 @@ nav {
 
 .intro-graphic {
     position: relative;
-    margin: 0 auto;
+    margin: getVal($margin, center);
     height: 50%;
     width: 50%;
-    background-color: red;
 
-    img:nth-child(3) {
-        width: 300px;
+    img:first-child {
+        width: max(250%, 500px);
+        z-index:  getVal($z-index, m) !important;
+        @include absoluteCenter(rotate(195deg));
+        margin-left: getVal($margin, xxxl);
     }
 
-    img {
+    * {
+        width: 100%;
         position: absolute;
+        z-index: getVal($z-index, l);
+        border-radius: 30px;
     }
 }
 
-.intro-graphic-swap {
-    width: 300px;
+.primary-graphic {
+    z-index: getVal($z-index, xxl);
+}
+
+.graphic-swap-overlay {
+    backdrop-filter: brightness(0.33) saturate(122%) blur(2px);
+    height: 100%;
+    z-index: getVal($z-index, xl);
+}
+
+#graphic-swap-1 {
+    left: 30%;
+    margin-top: -15%;
+    display: block;
+}
+
+.graphic-swap-overlay, #graphic-swap-2 {
+    left: 0%;
+    margin-top: 15%;
+    display: block;
 }
