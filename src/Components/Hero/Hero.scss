@@ -35,7 +35,7 @@ $Hero-graphic-width: 100%;
 //===========================\\
 
 nav {
-    background-color: $c_black10;
+    background-color: $c_black80;
     width: 100%;
     height: 80px;
 
@@ -59,7 +59,7 @@ nav {
 
 .main-nav {
     position: relative;
-    background-color: $c_black10;
+    background-color: $c_black80;
     z-index: getVal($z-index, max)
 }
 

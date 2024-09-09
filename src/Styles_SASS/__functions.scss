@@ -7,14 +7,40 @@
 // ---------------------------------------------
 
 /// Mapping out data-themes to their respective values
-/// @param {Map} $themes - Maps containing submaps for light/dark mode values
-@each $theme-name, $theme-properties in v.$themes {
-    html[data-theme=#{$theme-name}] {
-        @each $property, $value in $theme-properties {
-            --#{$property}: #{$value};
-        }
+/// @param {Map} $themes - Submaps for light/dark mode values
+/// 
+/// 
+/// 
+
+
+
+@each $theme-name, $theme-properties 
+in v.$themes {
+  html[data-theme=#{$theme-name}] {
+    @each $property, $value 
+    in $theme-properties {
+      --#{$property}: #{$value};
     }
+  }
 }
+
+
+html[data-theme='light'] {
+    --primary-color: #ffffff;
+    --secondary-color: #f0f0f0;
+  }
+  
+  html[data-theme="dark"] {
+    --primary-color: #000000;
+    --secondary-color: #333333;
+  }
+
+
+$c_black80: 		#0F111A;
+
+$c_blue20: #52e5fa;
+$c_blue30: #7682ed;
+$c_purple20: rgba(207, 140, 243, 1);
 
 /// Get multiple values of a property respective to its map
 /// @param {Map} $map - Property map containing variables to access

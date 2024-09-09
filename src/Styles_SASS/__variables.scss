@@ -36,8 +36,11 @@ $themes: (
 );
 
 // Color Constants, regardless of theme
-$c_black10: rgb(6, 6, 6);
+$c_black80: rgb(6, 6, 6);
 
+$c_blue20: rgb(82, 229, 250);
+$c_blue30: rgb(118, 130, 237);
+$c_purple20: rgba(207, 140, 243, 1);
 // Constant for general values and calculating default values in functions
 $standard: m;
 $auto: auto;
