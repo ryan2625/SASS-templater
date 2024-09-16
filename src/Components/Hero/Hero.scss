@@ -166,20 +166,6 @@ nav {
     margin-top: 3.5rem;
     width: fit-content;
     position: relative;
-
-    &::after {
-        content: "";
-        width: 25px;
-        height: 25px;
-        background-image: url("../../Assets/Images/Other/swap2.png");
-        background-position: center;
-        background-repeat: no-repeat; 
-        background-size: cover; 
-        position: absolute;
-        top: -15px;
-        right: -25px;
-        cursor: pointer;
-    }
 }
 
 .intro-primary-styling {
@@ -229,3 +215,44 @@ nav {
     margin-top: 0%;
     aspect-ratio: 1 / 1 !important;
 }
+
+#intro-after {
+    content: "";
+    width: 25px;
+    height: 25px;
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    position: absolute;
+    top: -15px;
+    right: -25px;
+    cursor: pointer;
+}
+
+@keyframes bigToSmall {
+    0% {
+        font-size: getVal($font-size, l);
+    }
+
+    70% {
+        font-size: getVal($font-size, xxs);
+    }
+
+    100% {
+        font-size: getVal($font-size, .25);
+    }
+}                       
+
+@keyframes smallToBig {
+    0% {
+        font-size: getVal($font-size, .25);
+    }
+
+    70% {
+        font-size: getVal($font-size, xl);
+    }
+
+    100% {
+        font-size: getVal($font-size, l);
+    }
+}                       

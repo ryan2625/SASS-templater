@@ -5,7 +5,7 @@ import gradient1 from "../../Assets/Images/Other/blue-gradient.webp"
 import gradient2 from "../../Assets/Images/Other/purple-gradient.webp"
 import swoosh from "../../Assets/Images/Other/swoosh.webp"
 import swap1 from "../../Assets/Images/Other/swap1.png"
-import swap2 from "../../Assets/Images/Other/swap2.webp"
+import swap2 from "../../Assets/Images/Other/swap2.png"
 import temp1 from "../../Assets/Images/Other/temp1.png"
 import temp2 from "../../Assets/Images/Other/temp2.png"
 
@@ -23,6 +23,10 @@ const Hero = () => {
     }
     window.addEventListener("scroll", onScroll)
     window.addEventListener("resize", onResize)
+    document.getElementById("intro-after")?.addEventListener("click", function (e) {
+      console.log("Testing")
+      //Toggle between SASS and CSS for bg gradient, code pictures, and SASS/CSS styling
+    })
     return () => {
       window.removeEventListener("scroll", onScroll)
       window.removeEventListener("resize", onResize)
@@ -50,6 +54,7 @@ const Hero = () => {
           <p className='intro-sub-heading'>View, edit, and export<br />
             styles in seconds</p>
           <div className='intro-styling-container'>
+            <img src={swap2} id="intro-after" alt="Click to swap between SASS and CSS display" />
             <p className="intro-styling intro-primary-styling">SASS Styling</p>
             <p className="intro-styling intro-secondary-styling">Css Styling</p>
           </div>
