@@ -1,0 +1,20 @@
+@each $theme-name, $theme-properties 
+in v.$themes {
+  html[data-theme=#{$theme-name}] {
+    @each $property, $value 
+    in $theme-properties {
+      --#{$property}: #{$value};
+    }
+  }
+}
+
+
+html[data-theme='light'] {
+    --primary-color: #ffffff;
+    --secondary-color: #f0f0f0;
+  }
+  
+  html[data-theme="dark"] {
+    --primary-color: #000000;
+    --secondary-color: #333333;
+  }

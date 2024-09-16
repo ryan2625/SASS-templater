@@ -164,6 +164,22 @@ nav {
 
 .intro-styling-container {
     margin-top: 3.5rem;
+    width: fit-content;
+    position: relative;
+
+    &::after {
+        content: "";
+        width: 25px;
+        height: 25px;
+        background-image: url("../../Assets/Images/Other/swap2.png");
+        background-position: center;
+        background-repeat: no-repeat; 
+        background-size: cover; 
+        position: absolute;
+        top: -15px;
+        right: -25px;
+        cursor: pointer;
+    }
 }
 
 .intro-primary-styling {
@@ -173,7 +189,7 @@ nav {
 
 .intro-secondary-styling {
     font-size: getVal($font-size, .25);
-    //COLOR DIMMED!!!
+    color: $c_text_dimmed;
 }
 
 .primary-graphic {
