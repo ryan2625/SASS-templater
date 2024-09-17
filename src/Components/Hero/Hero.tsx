@@ -12,6 +12,7 @@ import temp2 from "../../Assets/Images/Other/temp2.png"
 const Hero = () => {
 
   const [scroll, setScroll] = useState<number>(0)
+  const [swap, setSwap] = useState<boolean>(true)
   const [windowHeight, setWindowHeight] = useState<number>(window.innerHeight)
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const Hero = () => {
     window.addEventListener("scroll", onScroll)
     window.addEventListener("resize", onResize)
     document.getElementById("intro-after")?.addEventListener("click", function (e) {
-      console.log("Testing")
+      setSwap(prev => !prev)
       //Toggle between SASS and CSS for bg gradient, code pictures, and SASS/CSS styling
     })
     return () => {
@@ -55,8 +56,9 @@ const Hero = () => {
             styles in seconds</p>
           <div className='intro-styling-container'>
             <img src={swap2} id="intro-after" alt="Click to swap between SASS and CSS display" />
-            <p className="intro-styling intro-primary-styling">SASS Styling</p>
-            <p className="intro-styling intro-secondary-styling">Css Styling</p>
+            <p className="intro-hold-width">SASS Styling</p>
+            <p className={"intro-styling " + (swap ? "intro-primary-styling" : "intro-secondary-styling")}>SASS Styling</p>
+            <p className={"intro-styling " + (swap ? "intro-secondary-styling" : "intro-primary-styling")}>CSS Styling</p>
           </div>
         </div>
         <div className='intro-container'>
