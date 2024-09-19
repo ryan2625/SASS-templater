@@ -24,28 +24,44 @@
 /// @param {Identifier|Number} $prop4 - (Optional) Key to grab the corresponding value in the map
 /// @return {Any} - Retrieved property values
 @function getMultiVal($map, $prop1, $prop2: null, $prop3: null, $prop4: null) {
+<<<<<<< HEAD
     @if $prop2 ==null {
+=======
+    @if $prop2==null {
+>>>>>>> a61af46aeb7830c523e04c9eb1d8467f27413b26
         @warn Use getVal for retrieving single values
     }
 
     $combinedValues: null;
 
     @each $property in $prop1, $prop2, $prop3, $prop4 {
+<<<<<<< HEAD
         @if $property !=null {
             @if (type-of($property)==number) {
                 $combinedValues: append($combinedValues, calculateVal($map, $property))
             }
 
+=======
+        @if $property != null {
+            @if (type-of($property)==number) {
+                $combinedValues: append($combinedValues, calculateVal($map, $property))
+            }
+>>>>>>> a61af46aeb7830c523e04c9eb1d8467f27413b26
             @else {
                 $combinedValues: append($combinedValues, getVal($map, $property))
             }
         }
     }
+<<<<<<< HEAD
 
     @return $combinedValues
 }
 
 ;
+=======
+    @return $combinedValues;
+}
+>>>>>>> a61af46aeb7830c523e04c9eb1d8467f27413b26
 
 /// Get the value of a property respective to its map
 /// @param {Map} $map - Property map containing variables to access
@@ -54,6 +70,7 @@
 @function getVal($map, $prop) {
     @if (type-of($prop)==number) {
         @return calculateVal($map, $prop);
+<<<<<<< HEAD
     }
 
     @else {
@@ -62,6 +79,13 @@
 }
 
 ;
+=======
+    }
+    @else {
+        @return map-get($map, $prop);
+    }
+}
+>>>>>>> a61af46aeb7830c523e04c9eb1d8467f27413b26
 
 /// Dynamically calculate custom value of property for
 /// cases when the base variables don't suffice.
@@ -69,16 +93,25 @@
 /// @param {Int} $product - Value to multiply with
 /// @return {Int} - Calculated property value
 @function calculateVal($style-map, $product) {
+<<<<<<< HEAD
     @return calc(map-get($style-map, v.$standard) * $product + 1vw)
 }
 
 ;
+=======
+    @return calc(map-get($style-map, v.$standard) * $product + 1vw);
+}
+>>>>>>> a61af46aeb7830c523e04c9eb1d8467f27413b26
 
 /// Helper function to unify retrieval of values from variables
 /// @param {Identifier} $var - The variable in the theme map to convert
 /// @return {Any} - The converted CSS variable
 @function var_($var) {
+<<<<<<< HEAD
     @return var(--#{$var})
+=======
+    @return var(--#{$var});
+>>>>>>> a61af46aeb7830c523e04c9eb1d8467f27413b26
 }
 
 ;

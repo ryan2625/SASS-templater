@@ -5,13 +5,14 @@ import gradient1 from "../../Assets/Images/Other/blue-gradient.webp"
 import gradient2 from "../../Assets/Images/Other/purple-gradient.webp"
 import swoosh from "../../Assets/Images/Other/swoosh.webp"
 import swap1 from "../../Assets/Images/Other/swap1.png"
-import swap2 from "../../Assets/Images/Other/swap2.webp"
+import swap2 from "../../Assets/Images/Other/swap2.png"
 import temp1 from "../../Assets/Images/Other/temp1.png"
 import temp2 from "../../Assets/Images/Other/temp2.png"
 
 const Hero = () => {
 
   const [scroll, setScroll] = useState<number>(0)
+  const [swap, setSwap] = useState<boolean>(true)
   const [windowHeight, setWindowHeight] = useState<number>(window.innerHeight)
 
   useEffect(() => {
@@ -23,6 +24,10 @@ const Hero = () => {
     }
     window.addEventListener("scroll", onScroll)
     window.addEventListener("resize", onResize)
+    document.getElementById("intro-after")?.addEventListener("click", function (e) {
+      setSwap(prev => !prev)
+      //Toggle between SASS and CSS for bg gradient, code pictures, and SASS/CSS styling
+    })
     return () => {
       window.removeEventListener("scroll", onScroll)
       window.removeEventListener("resize", onResize)
@@ -44,15 +49,16 @@ const Hero = () => {
           <p>about | @</p>
         </div>
       </nav>
-
       <div className="headline">
         <div className="intro">
           <p><span>Design</span><span> made </span><span>easy</span></p>
           <p className='intro-sub-heading'>View, edit, and export<br />
             styles in seconds</p>
           <div className='intro-styling-container'>
-            <p className="intro-primary-styling">SASS Styling</p>
-            <p className="intro-secondary-styling">Css Styling</p>
+            <img src={swap2} id="intro-after" alt="Click to swap between SASS and CSS display" />
+            <p className="intro-hold-width">SASS Styling</p>
+            <p className={"intro-styling " + (swap ? "intro-primary-styling" : "intro-secondary-styling")}>SASS Styling</p>
+            <p className={"intro-styling " + (swap ? "intro-secondary-styling" : "intro-primary-styling")}>CSS Styling</p>
           </div>
         </div>
         <div className='intro-container'>

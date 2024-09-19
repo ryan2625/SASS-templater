@@ -87,7 +87,7 @@ nav {
     margin: getMultiVal($margin, 2.5, auto, 2.5, auto);
     padding: getVal($padding, xl);
 
-    > div {
+    >div {
         flex: 0 1 50%;
         max-width: 750px;
     }
@@ -149,7 +149,7 @@ nav {
 
     img:first-child {
         width: max(300%, 1000px);
-        z-index:  getVal($z-index, m) !important;
+        z-index: getVal($z-index, m) !important;
         @include absoluteCenter(rotate(195deg));
         margin-left: getVal($margin, xxxl);
     }
@@ -164,16 +164,36 @@ nav {
 
 .intro-styling-container {
     margin-top: 3.5rem;
+    width: fit-content;
+    position: relative;
+}
+
+.intro-styling {
+    position: absolute;
+    white-space: nowrap;
+    width: fit-content;
 }
 
 .intro-primary-styling {
     font-size: getVal($font-size, l);
     line-height: 34px;
+    top: -2rem;
+    animation: smallToBig .4s ease-in-out forwards;
+}
+
+.intro-hold-width {
+    font-size: getVal($font-size, l);
+    line-height: 34px;
+    pointer-events: none;
+    opacity: 0;
 }
 
 .intro-secondary-styling {
-    font-size: getVal($font-size, .25);
-    //COLOR DIMMED!!!
+    font-size: getVal($font-size, m);
+    color: $c_text_dimmed;
+    top: 1.5rem;
+    animation: bigToSmall .4s ease-in-out forwards;
+
 }
 
 .primary-graphic {
@@ -195,9 +215,9 @@ nav {
 
 .intro-graphic-swap {
     background-position: center;
-    background-repeat: no-repeat; 
-    background-size: cover; 
-    height: 120%;  
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120%;
 }
 
 #graphic-swap-1 {
@@ -212,4 +232,49 @@ nav {
     left: 0%;
     margin-top: 0%;
     aspect-ratio: 1 / 1 !important;
+}
+
+#intro-after {
+    content: "";
+    width: 25px;
+    height: 25px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: -15px;
+    right: -25px;
+    cursor: pointer;
+}
+
+@keyframes bigToSmall {
+    0% {
+        font-size: getVal($font-size, l);
+        top: -2rem;
+    }
+
+    70% {
+        font-size: getVal($font-size, xs);
+    }
+
+    100% {
+        font-size: getVal($font-size, m);
+        top: 1rem;
+    }
+}
+
+@keyframes smallToBig {
+    0% {
+        font-size: getVal($font-size, m);
+        top: 1rem;
+    }
+
+    70% {
+        font-size: getVal($font-size, xl);
+    }
+
+    100% {
+        font-size: getVal($font-size, l);
+        top: -2rem;
+    }
 }
