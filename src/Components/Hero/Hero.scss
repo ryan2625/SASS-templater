@@ -117,17 +117,20 @@ nav {
         span:nth-child(3) {
             display: inline-block;
             position: relative;
+            z-index: getVal($z-index, l) !important;
 
-            &::after {
-                content: "";
-                background-image: url("../../Assets/Images/Other/swoosh.webp");
-                display: block;
-                background-color: wheat;
-                width: 100%;
-                aspect-ratio: 367/100;
-            }
         }
     }
+}
+
+.intro-swoosh {
+    display: block;
+    width: 100%;
+    aspect-ratio: 367/100;
+    position: absolute;
+    bottom: -20%;
+    transform: rotate(5deg);
+    z-index: getVal($z-index, s) !important;
 }
 
 .intro-sub-heading {
