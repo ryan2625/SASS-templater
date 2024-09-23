@@ -133,6 +133,14 @@ nav {
     z-index: getVal($z-index, s) !important;
 }
 
+.intro-swoosh-down {
+    animation: downFade .5s ease-in-out forwards;
+}
+
+.intro-swoosh-up {
+    animation: upFade .5s ease-in-out forwards;
+}
+
 .intro-sub-heading {
     font-size: min(calc(getVal($font-size, m) + 3vw), 50px);
 }
@@ -267,6 +275,38 @@ nav {
 }
 
 @keyframes smallToBig {
+    0% {
+        font-size: getVal($font-size, m);
+        top: 1rem;
+    }
+
+    70% {
+        font-size: getVal($font-size, xl);
+    }
+
+    100% {
+        font-size: getVal($font-size, l);
+        top: -2rem;
+    }
+}
+
+@keyframes downFade {
+    0% {
+        font-size: getVal($font-size, l);
+        top: -2rem;
+    }
+
+    70% {
+        font-size: getVal($font-size, xs);
+    }
+
+    100% {
+        font-size: getVal($font-size, m);
+        top: 1rem;
+    }
+}
+
+@keyframes upFade {
     0% {
         font-size: getVal($font-size, m);
         top: 1rem;

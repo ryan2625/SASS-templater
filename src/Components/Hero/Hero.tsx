@@ -52,7 +52,7 @@ const Hero = () => {
       </nav>
       <div className="headline">
         <div className="intro">
-          <p><span>Design</span><span> made </span><span>easy<img className='intro-swoosh' src={swoosh1} /> <img className='intro-swoosh' src={swoosh2} /> </span></p>
+          <p><span>Design</span><span> made </span><span>easy<img className={"intro-swoosh " + (swap ? "intro-swoosh-up" : "intro-swoosh-down")} src={swoosh1} /> <img className={"intro-swoosh " + (swap ? "intro-swoosh-down" : "intro-swoosh-up")} src={swoosh2} /> </span></p>
           <p className='intro-sub-heading'>View, edit, and export<br />
             styles in seconds</p>
           <div className='intro-styling-container'>
