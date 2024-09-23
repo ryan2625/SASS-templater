@@ -4,6 +4,7 @@ import "../../Styles_SASS/__variables.scss"
 import gradient1 from "../../Assets/Images/Other/blue-gradient.webp"
 import gradient2 from "../../Assets/Images/Other/purple-gradient.webp"
 import swoosh1 from "../../Assets/Images/Other/sass-swoosh.png"
+import swoosh2 from "../../Assets/Images/Other/css-swoosh.png"
 import swap1 from "../../Assets/Images/Other/swap1.png"
 import swap2 from "../../Assets/Images/Other/swap2.png"
 import temp1 from "../../Assets/Images/Other/temp1.png"
@@ -51,7 +52,7 @@ const Hero = () => {
       </nav>
       <div className="headline">
         <div className="intro">
-          <p><span>Design</span><span> made </span><span>easy<img className='intro-swoosh' src={swoosh1} /></span></p>
+          <p><span>Design</span><span> made </span><span>easy<img className='intro-swoosh' src={swoosh1} /> <img className='intro-swoosh' src={swoosh2} /> </span></p>
           <p className='intro-sub-heading'>View, edit, and export<br />
             styles in seconds</p>
           <div className='intro-styling-container'>
