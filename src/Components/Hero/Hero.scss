@@ -218,10 +218,10 @@ nav {
         backdrop-filter: brightness(.6) saturate(122%) blur(2px);
         z-index: getVal($z-index, xl);
         position: absolute;
+        top: 0;
         height: $Hero-graphic-height;
         width: $Hero-graphic-width;
         border-radius: $Hero-graphic-radius;
-        aspect-ratio: 1 / 1;
     }
 }
 
@@ -229,7 +229,8 @@ nav {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 120%;
+    height: 100%;
+    padding-top: 11.25%;
 }
 
 .gradient-fadein {
@@ -241,15 +242,15 @@ nav {
     transition: all .4s ease-in-out;
     opacity: 0;
 }
-#graphic-swap-1 {
+.graphic-swap-1-dark {
     left: 40%;
     margin-top: -40%;
-    background-image: url("../../Assets/Images/Other/temp1.png");
+    background-image: url("../../Assets/Images/Other/sass-dark.png");
     aspect-ratio: 1 / 1;
 }
 
-#graphic-swap-2 {
-    background-image: url("../../Assets/Images/Other/temp1.png");
+.graphic-swap-2-dark {
+    background-image: url("../../Assets/Images/Other/css-dark.png");
     left: 0%;
     margin-top: 0%;
     aspect-ratio: 1 / 1 !important;
@@ -300,26 +301,14 @@ nav {
     }
 }
 
-@keyframes downFade {
+@keyframes upFade {
     0% {
         bottom: -20%;
-        opacity: 1;
-    }
-
-    50% {
-        bottom: -50%;
         opacity: 0;
     }
 
-    100% {
-        bottom: -50%;
-        opacity: 0;
-    }
-}
-
-@keyframes upFade {
-    4% {
-        bottom: -50%;
+    30% {
+        
         opacity: 0;
     }
 
@@ -335,25 +324,13 @@ nav {
         opacity: 1;
     }
 
-    50% {
-        bottom: -50%;
-        opacity: 0;
-    }
-
-    100% {
-        bottom: -50%;
-        opacity: 0;
-    }
-}
-
-@keyframes upFade {
-    4% {
-        bottom: -50%;
+    70% {
+        
         opacity: 0;
     }
 
     100% {
         bottom: -20%;
-        opacity: 1;
+        opacity: 0;
     }
 }
