@@ -128,17 +128,17 @@ nav {
     width: 100%;
     aspect-ratio: 367/100;
     position: absolute;
-    bottom: -20%;
     transform: rotate(5deg);
     z-index: getVal($z-index, s) !important;
+    opacity: 0;
 }
 
 .intro-swoosh-down {
-    animation: downFade .5s ease-in-out forwards;
+    animation: downFade .4s ease-in-out forwards;
 }
 
 .intro-swoosh-up {
-    animation: upFade .5s ease-in-out forwards;
+    animation: upFade .4s ease-in-out forwards;
 }
 
 .intro-sub-heading {
@@ -158,11 +158,12 @@ nav {
     height: 60%;
     width: 60%;
 
-    img:first-child {
+    img {
         width: max(300%, 1000px);
         z-index: getVal($z-index, m) !important;
         @include absoluteCenter(rotate(195deg));
         margin-left: getVal($margin, xxxl);
+        transition: all .4s ease-in-out;
     }
 
     * {
@@ -231,6 +232,15 @@ nav {
     height: 120%;
 }
 
+.gradient-fadein {
+    transition: all .4s ease-in-out;
+    opacity: 1;
+}
+
+.gradient-fadeout {
+    transition: all .4s ease-in-out;
+    opacity: 0;
+}
 #graphic-swap-1 {
     left: 40%;
     margin-top: -40%;
@@ -292,32 +302,58 @@ nav {
 
 @keyframes downFade {
     0% {
-        font-size: getVal($font-size, l);
-        top: -2rem;
+        bottom: -20%;
+        opacity: 1;
     }
 
-    70% {
-        font-size: getVal($font-size, xs);
+    50% {
+        bottom: -50%;
+        opacity: 0;
     }
 
     100% {
-        font-size: getVal($font-size, m);
-        top: 1rem;
+        bottom: -50%;
+        opacity: 0;
     }
 }
 
 @keyframes upFade {
-    0% {
-        font-size: getVal($font-size, m);
-        top: 1rem;
-    }
-
-    70% {
-        font-size: getVal($font-size, xl);
+    4% {
+        bottom: -50%;
+        opacity: 0;
     }
 
     100% {
-        font-size: getVal($font-size, l);
-        top: -2rem;
+        bottom: -20%;
+        opacity: 1;
+    }
+}
+
+@keyframes downFade {
+    0% {
+        bottom: -20%;
+        opacity: 1;
+    }
+
+    50% {
+        bottom: -50%;
+        opacity: 0;
+    }
+
+    100% {
+        bottom: -50%;
+        opacity: 0;
+    }
+}
+
+@keyframes upFade {
+    4% {
+        bottom: -50%;
+        opacity: 0;
+    }
+
+    100% {
+        bottom: -20%;
+        opacity: 1;
     }
 }
