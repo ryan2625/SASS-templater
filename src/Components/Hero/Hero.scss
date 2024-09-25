@@ -158,7 +158,15 @@ nav {
     height: 60%;
     width: 60%;
 
-    img {
+    img:nth-child(1) {
+        width: max(300%, 1000px);
+        z-index: getVal($z-index, m) !important;
+        @include absoluteCenter(rotate(195deg));
+        margin-left: getVal($margin, xxxl);
+        transition: all .4s ease-in-out;
+    }
+
+    img:nth-child(2) {
         width: max(300%, 1000px);
         z-index: getVal($z-index, m) !important;
         @include absoluteCenter(rotate(195deg));
@@ -167,7 +175,6 @@ nav {
     }
 
     * {
-        width: 100%;
         position: absolute;
         z-index: getVal($z-index, l);
         border-radius: $Hero-graphic-radius;
@@ -213,6 +220,7 @@ nav {
 }
 
 .secondary-graphic {
+    position: relative;
     &::after {
         content: "";
         backdrop-filter: brightness(.6) saturate(122%) blur(2px);
@@ -226,11 +234,9 @@ nav {
 }
 
 .intro-graphic-swap {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
-    padding-top: 11.25%;
+    width: 300px;
+    height: auto;
+    aspect-ratio: 3/2;
 }
 
 .gradient-fadein {
@@ -245,15 +251,11 @@ nav {
 .graphic-swap-1-dark {
     left: 40%;
     margin-top: -40%;
-    background-image: url("../../Assets/Images/Other/sass-dark.png");
-    aspect-ratio: 1 / 1;
 }
 
 .graphic-swap-2-dark {
-    background-image: url("../../Assets/Images/Other/css-dark.png");
     left: 0%;
     margin-top: 0%;
-    aspect-ratio: 1 / 1 !important;
 }
 
 #intro-after {

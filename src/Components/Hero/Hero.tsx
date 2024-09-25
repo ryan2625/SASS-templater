@@ -9,6 +9,8 @@ import swap1 from "../../Assets/Images/Other/swap1.png"
 import swap2 from "../../Assets/Images/Other/swap2.png"
 import temp1 from "../../Assets/Images/Other/temp1.png"
 import temp2 from "../../Assets/Images/Other/temp2.png"
+import cssDark from "../../Assets/Images/Other/css-dark.png"
+import sassDark from "../../Assets/Images/Other/sass-dark.png"
 
 const Hero = () => {
 
@@ -66,8 +68,8 @@ const Hero = () => {
           <div className="intro-graphic">
             <img src={gradient2} className={swap ? "gradient-fadein" : "gradient-fadeout"} alt="Background gradient" aria-label='hidden' />
             <img src={gradient1} className={swap ? "gradient-fadeout" : "gradient-fadein"} alt="Background gradient" aria-label='hidden' />
-            <div role="img" className={"intro-graphic-swap graphic-swap-1-dark " + (swap ? "primary-graphic":"secondary-graphic")} aria-label="SASS Styling graphic"></div>
-            <div role="img" className={"intro-graphic-swap graphic-swap-2-dark " + (swap ? "secondary-graphic":"primary-graphic")} aria-label="CSS Styling graphic"></div>
+            <img src={sassDark} className={"intro-graphic-swap graphic-swap-1-dark " + (swap ? "primary-graphic":"secondary-graphic")} aria-label="SASS Styling graphic"/>
+            <img src={cssDark} className={"intro-graphic-swap graphic-swap-2-dark " + (swap ? "secondary-graphic":"primary-graphic")} aria-label="CSS Styling graphic"/>
           </div>
         </div>
       </div>
