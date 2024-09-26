@@ -3,7 +3,7 @@
 //=========================================\\
 //=======Individual Component Styles=======\\
 
-$Hero-graphic-radius: 30px;
+$Hero-graphic-radius: 15px;
 $Hero-graphic-height: 100%;
 $Hero-graphic-width: 100%;
 
@@ -110,7 +110,8 @@ nav {
             font-size: min(calc(getVal($font-size, 3) + 5vw), 150px);
         }
 
-        span:nth-child(2), span:nth-child(3) {
+        span:nth-child(2),
+        span:nth-child(3) {
             font-size: min(calc(getVal($font-size, m) + 3.5vw), 80px);
         }
 
@@ -158,7 +159,7 @@ nav {
     height: 60%;
     width: 60%;
 
-    img:nth-child(1) {
+    >img:nth-child(1) {
         width: max(300%, 1000px);
         z-index: getVal($z-index, m) !important;
         @include absoluteCenter(rotate(195deg));
@@ -166,7 +167,7 @@ nav {
         transition: all .4s ease-in-out;
     }
 
-    img:nth-child(2) {
+    >img:nth-child(2) {
         width: max(300%, 1000px);
         z-index: getVal($z-index, m) !important;
         @include absoluteCenter(rotate(195deg));
@@ -174,7 +175,7 @@ nav {
         transition: all .4s ease-in-out;
     }
 
-    * {
+    img {
         position: absolute;
         z-index: getVal($z-index, l);
         border-radius: $Hero-graphic-radius;
@@ -216,21 +217,11 @@ nav {
 }
 
 .primary-graphic {
-    z-index: getVal($z-index, xxl);
+    z-index: getVal($z-index, xxxl) !important;
 }
 
 .secondary-graphic {
     position: relative;
-    &::after {
-        content: "";
-        backdrop-filter: brightness(.6) saturate(122%) blur(2px);
-        z-index: getVal($z-index, xl);
-        position: absolute;
-        top: 0;
-        height: $Hero-graphic-height;
-        width: $Hero-graphic-width;
-        border-radius: $Hero-graphic-radius;
-    }
 }
 
 .intro-graphic-swap {
@@ -248,14 +239,49 @@ nav {
     transition: all .4s ease-in-out;
     opacity: 0;
 }
+
 .graphic-swap-1-dark {
-    left: 40%;
-    margin-top: -40%;
+    left: 175px;
+    margin-top: -175px;
 }
 
 .graphic-swap-2-dark {
     left: 0%;
     margin-top: 0%;
+}
+
+.intro-swap-cont2,
+.intro-swap-cont1 {
+    position: relative;
+}
+
+
+.hero-overlay {
+    &::after {
+        content: "";
+        backdrop-filter: brightness(.6) saturate(122%) blur(2px);
+        z-index: getVal($z-index, xl);
+        position: absolute;
+        top: 0;
+        width: 300px;
+        height: 200px !important;    
+        border-radius: $Hero-graphic-radius;
+    }
+}
+
+.hero-overlay-adjust {
+    &::after {
+        left: 175px;
+        margin-top: -175px;
+        content: "";
+        backdrop-filter: brightness(.6) saturate(122%) blur(2px);
+        z-index: getVal($z-index, l);
+        position: absolute;
+        top: 0;
+        width: 300px;
+        height: 200px !important;    
+        border-radius: $Hero-graphic-radius;
+    }
 }
 
 #intro-after {
@@ -310,7 +336,7 @@ nav {
     }
 
     30% {
-        
+
         opacity: 0;
     }
 
@@ -327,7 +353,7 @@ nav {
     }
 
     70% {
-        
+
         opacity: 0;
     }
 

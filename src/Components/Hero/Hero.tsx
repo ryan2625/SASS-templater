@@ -68,8 +68,12 @@ const Hero = () => {
           <div className="intro-graphic">
             <img src={gradient2} className={swap ? "gradient-fadein" : "gradient-fadeout"} alt="Background gradient" aria-label='hidden' />
             <img src={gradient1} className={swap ? "gradient-fadeout" : "gradient-fadein"} alt="Background gradient" aria-label='hidden' />
-            <img src={sassDark} className={"intro-graphic-swap graphic-swap-1-dark " + (swap ? "primary-graphic":"secondary-graphic")} aria-label="SASS Styling graphic"/>
-            <img src={cssDark} className={"intro-graphic-swap graphic-swap-2-dark " + (swap ? "secondary-graphic":"primary-graphic")} aria-label="CSS Styling graphic"/>
+            <div className={'intro-swap-cont1 ' + (swap ? "" : "hero-overlay-adjust")}>
+              <img src={sassDark} className={"intro-graphic-swap graphic-swap-1-dark " + (swap ? "primary-graphic" : "secondary-graphic")} aria-label="SASS Styling graphic" />
+            </div>
+            <div className={'intro-swap-cont2 ' + (swap ? "hero-overlay" : "")}>
+              <img src={cssDark} className={"intro-graphic-swap graphic-swap-2-dark " + (swap ? "secondary-graphic" : "primary-graphic")} aria-label="CSS Styling graphic" />
+            </div>
           </div>
         </div>
       </div>
