@@ -1,19 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { ThemeContext } from '../../Contexts/ThemeContext'
 import "./Hero.scss"
 import "../../Styles_SASS/__variables.scss"
-import gradient1 from "../../Assets/Images/Other/blue-gradient.webp"
-import gradient2 from "../../Assets/Images/Other/purple-gradient.webp"
-import swoosh1 from "../../Assets/Images/Other/sass-swoosh.png"
-import swoosh2 from "../../Assets/Images/Other/css-swoosh.png"
-import swap1 from "../../Assets/Images/Other/swap1.png"
-import swap2 from "../../Assets/Images/Other/swap2.png"
-import temp1 from "../../Assets/Images/Other/temp1.png"
-import temp2 from "../../Assets/Images/Other/temp2.png"
-import cssDark from "../../Assets/Images/Other/css-dark.png"
-import sassDark from "../../Assets/Images/Other/sass-dark.png"
+import { gradient1, gradient2, swoosh1, swoosh2, swap1, swap2, temp1, temp2, cssDark, sassDark, darkLightMode } from "./Imports"
 
 const Hero = () => {
-
+  const themeContext = useContext(ThemeContext)
   const [scroll, setScroll] = useState<number>(0)
   const [swap, setSwap] = useState<boolean>(true)
   const [windowHeight, setWindowHeight] = useState<number>(window.innerHeight)
@@ -42,7 +34,7 @@ const Hero = () => {
       <nav className='main-nav'>
         <div>
           <p>sass | studios</p>
-          <p>about | @</p>
+          <div className='hero-mode-constructor'><p>about |</p><div><img src={darkLightMode} alt="" /></div></div>
         </div>
       </nav>
       {/*Possibly make /10 a constant the same height as the oval separator*/}

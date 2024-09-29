@@ -6,20 +6,6 @@ import "./Styles_SASS/__variables.scss"
 import "./App.scss"
 function App() {
 
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-  }, [])
-
-  const [theme, setTheme] = useState<string>("dark")
-
-  const changeTheme = () => {
-    setTheme(prev => {
-      const newTheme = prev === 'light' ? 'dark' : 'light'
-      document.documentElement.setAttribute('data-theme', newTheme)
-      return newTheme
-    })
-  }
-
   return (
     <div className="App">
       <Hero />
