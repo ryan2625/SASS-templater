@@ -199,14 +199,14 @@ nav {
 
 .intro-primary-styling {
     font-size: getVal($font-size, l);
-    line-height: 34px;
+    line-height: min(getVal($line-height, 10), 35px);
     top: -2rem;
     animation: smallToBig .4s ease-in-out forwards;
 }
 
 .intro-hold-width {
     font-size: getVal($font-size, l);
-    line-height: 34px;
+    line-height: min(getVal($line-height, 10), 35px);
     pointer-events: none;
     opacity: 0;
 }
