@@ -2,6 +2,7 @@ import { useEffect, useState, useContext, ReactEventHandler } from 'react'
 import { ThemeContext } from '../../Contexts/ThemeContext'
 import "./Hero.scss"
 import "../../Styles_SASS/__variables.scss"
+import "../../Styles_SASS/__classes.scss"
 import { gradient1, gradient2, swoosh1, swoosh2, swap1, swap2, cssDark, sassDark, cssLight, sassLight, darkLightMode } from "./Imports"
 
 const Hero = () => {
@@ -11,9 +12,18 @@ const Hero = () => {
   const [windowHeight, setWindowHeight] = useState<number>(window.innerHeight)
 
   useEffect(() => {
+    var ele = document.getElementById("main-hero-container")
+    setTimeout(() => {
+      ele?.classList.add("no-animation")
+    }, 1);
+    setTimeout(() => {
+      ele?.classList.remove("no-animation")
+    }, 5);
+
     const onScroll = () => {
       setScroll(window.scrollY)
     }
+
     const onResize = () => {
       setWindowHeight(window.innerHeight)
     }
@@ -34,7 +44,7 @@ const Hero = () => {
   }
 
   return (
-    <section className="hero-container">
+    <section className="hero-container" id="main-hero-container">
       <nav className='main-nav'>
       <div>
           <p>sass | studios</p>

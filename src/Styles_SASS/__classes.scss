@@ -1,0 +1,8 @@
+.no-animation {
+    transition: none !important;
+    animation: none !important;
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}

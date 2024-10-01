@@ -17,7 +17,7 @@ $Hero-graphic-width: 100%;
     position: relative;
     overflow: hidden;
     transition: background-color .45s;
-    
+
     &::after {
         content: "";
         position: absolute;
