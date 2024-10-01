@@ -10,8 +10,9 @@ $themes: (
     light: (
         bg1: rgb(245, 245, 245),
         bg2: rgb(193, 193, 193),
-        inverse-bg1: rgb(45, 45, 45),
+        inverse-bg1: rgb(8, 8, 8),
         inverse-bg2: rgb(45, 45, 45),
+        dimmed-text: rgba(48, 48, 48, 0.799),
         txt1: rgb(15, 15, 15),
         txt2: rgb(45, 45, 45),
         inverse-txt1: rgb(45, 45, 45),
@@ -23,8 +24,9 @@ $themes: (
     dark: (
         bg1: rgb(8, 8, 8),
         bg2: rgb(49, 49, 49),
-        inverse-bg1: rgb(255, 255, 255),
+        inverse-bg1: rgb(245, 245, 245),
         inverse-bg2: rgb(45, 45, 45),
+        dimmed-text: rgba(243, 243, 243, 0.799),
         txt1: rgb(255, 255, 255),
         txt2: rgb(230, 230, 230),
         inverse-txt1: rgb(45, 45, 45),

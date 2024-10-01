@@ -51,7 +51,6 @@
     @if (type-of($prop)==number) {
         @return calculateVal($map, $prop);
     }
-
     @else {
         @return map-get($map, $prop)
     }
@@ -63,7 +62,7 @@
 /// @param {Int} $product - Value to multiply with
 /// @return {Int} - Calculated property value
 @function calculateVal($style-map, $product) {
-    @return calc(map-get($style-map, v.$standard) * $product + 1vw)
+    @return calc(map-get($style-map, v.$standard) * $product)
 };
 
 /// Helper function to unify retrieval of values from variables

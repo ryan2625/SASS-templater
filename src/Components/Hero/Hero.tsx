@@ -1,8 +1,8 @@
-import { useEffect, useState, useContext } from 'react'
+import { useEffect, useState, useContext, ReactEventHandler } from 'react'
 import { ThemeContext } from '../../Contexts/ThemeContext'
 import "./Hero.scss"
 import "../../Styles_SASS/__variables.scss"
-import { gradient1, gradient2, swoosh1, swoosh2, swap1, swap2, temp1, temp2, cssDark, sassDark, darkLightMode } from "./Imports"
+import { gradient1, gradient2, swoosh1, swoosh2, swap1, swap2, cssDark, sassDark, cssLight, sassLight, darkLightMode } from "./Imports"
 
 const Hero = () => {
   const themeContext = useContext(ThemeContext)
@@ -29,19 +29,29 @@ const Hero = () => {
     }
   }, [])
 
+  function setTheme(event: React.MouseEvent<HTMLDivElement>) {
+    themeContext.setTheme()
+  }
+
   return (
     <section className="hero-container">
       <nav className='main-nav'>
-        <div>
+      <div>
           <p>sass | studios</p>
-          <div className='hero-mode-constructor'><p>about |</p><div><img src={darkLightMode} alt="" /></div></div>
+          <div className='hero-mode-constructor'><p>about |</p>
+            <div className={"hero-mode-bg" + (themeContext.context == "light" ? " hero-mode-light" : " hero-mode-dark")} onClick={setTheme}>
+              <img className={"hero-mode-picture" + (themeContext.context == "light" ? " hero-to-dark" : " hero-to-light")} src={darkLightMode} alt="" /></div>
+          </div>
         </div>
       </nav>
       {/*Possibly make /10 a constant the same height as the oval separator*/}
       <nav className={scroll - (windowHeight / 10) > windowHeight ? "fixed-nav" : "static-nav"} aria-hidden="true">
         <div>
           <p>sass | studios</p>
-          <p>about | @</p>
+          <div className='hero-mode-constructor'><p>about |</p>
+            <div className={"hero-mode-bg" + (themeContext.context == "light" ? " hero-mode-light" : " hero-mode-dark")} onClick={setTheme}>
+              <img className={"hero-mode-picture" + (themeContext.context == "light" ? " hero-to-dark" : " hero-to-light")} src={darkLightMode} alt="" /></div>
+          </div>
         </div>
       </nav>
       <div className="headline">
@@ -50,7 +60,7 @@ const Hero = () => {
           <p className='intro-sub-heading'>View, edit, and export<br />
             styles in seconds</p>
           <div className='intro-styling-container'>
-            <img src={swap2} id="intro-after" alt="Click to swap between SASS and CSS display" />
+            <img src={themeContext.context == "dark" ? swap2 : swap1} id="intro-after" alt="Click to swap between SASS and CSS display" />
             <p className="intro-hold-width">SASS Styling</p>
             <p className={"intro-styling " + (swap ? "intro-primary-styling" : "intro-secondary-styling")}>SASS Styling</p>
             <p className={"intro-styling " + (swap ? "intro-secondary-styling" : "intro-primary-styling")}>CSS Styling</p>
@@ -61,10 +71,10 @@ const Hero = () => {
             <img src={gradient2} className={swap ? "gradient-fadein" : "gradient-fadeout"} alt="Background gradient" aria-label='hidden' />
             <img src={gradient1} className={swap ? "gradient-fadeout" : "gradient-fadein"} alt="Background gradient" aria-label='hidden' />
             <div className={'intro-swap-cont1 ' + (swap ? "" : "hero-overlay-adjust")}>
-              <img src={sassDark} className={"intro-graphic-swap graphic-swap-1-dark " + (swap ? "primary-graphic" : "secondary-graphic")} aria-label="SASS Styling graphic" />
+              <img src={themeContext.context == "dark" ? sassDark : sassLight} className={"intro-graphic-swap graphic-swap-1-dark " + (swap ? "primary-graphic" : "secondary-graphic")} aria-label="SASS Styling graphic" />
             </div>
             <div className={'intro-swap-cont2 ' + (swap ? "hero-overlay" : "")}>
-              <img src={cssDark} className={"intro-graphic-swap graphic-swap-2-dark " + (swap ? "secondary-graphic" : "primary-graphic")} aria-label="CSS Styling graphic" />
+              <img src={themeContext.context == "dark" ? cssDark : cssLight} className={"intro-graphic-swap graphic-swap-2-dark " + (swap ? "secondary-graphic" : "primary-graphic")} aria-label="CSS Styling graphic" />
             </div>
           </div>
         </div>

@@ -16,7 +16,8 @@ $Hero-graphic-width: 100%;
     background-color: var_(bg1);
     position: relative;
     overflow: hidden;
-
+    transition: background-color .45s;
+    
     &::after {
         content: "";
         position: absolute;
@@ -29,15 +30,23 @@ $Hero-graphic-width: 100%;
         z-index: getVal($z-index, l);
         background-color: var_(inverse-bg1);
     }
+
+    * { 
+        transition: background-color .45s;
+    }
 }
 
 //=======NAVBAR STYLES=======\\
 //===========================\\
 
 nav {
-    background-color: $c_black80;
     width: 100%;
     height: 80px;
+    background-color: var_(bg1);
+
+    * {
+        max-height: 80px;
+    }
 
     > div {
         width: 100%;
@@ -48,7 +57,6 @@ nav {
 
         > * {
             display: inline-block;
-            height: fit-content;
             margin: getMultiVal($margin, auto, xl);
             @include setTypography(null, xs, txt1, null, l);
             letter-spacing: 10px;
@@ -58,7 +66,7 @@ nav {
 
 .main-nav {
     position: relative;
-    background-color: $c_black80;
+    background-color:  var_(bg1);
     z-index: getVal($z-index, max)
 }
 
@@ -78,9 +86,36 @@ nav {
 }
 
 .hero-mode-constructor {
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.hero-mode-picture {
+    position: absolute;
+    height: 100px;
+    top: -12px;
+    left: -12px;
+}
+
+.hero-mode-bg {
+    background-color: var_(inverse-bg1);
+    position: relative;
+    transition: all .5s ease-in-out;
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    margin: getMultiVal($margin, .2, 0, 0, 0.7);
+    overflow: hidden;
+}
+
+.hero-to-dark {
+    animation: lightToDark .5s ease-in-out forwards;
+}
+
+.hero-to-light{
+    animation: darkToLight .5s ease-in-out forwards;
+}
 //===============================\\
 //=======END NAVBAR STYLES=======\\
 
@@ -213,7 +248,7 @@ nav {
 
 .intro-secondary-styling {
     font-size: getVal($font-size, m);
-    color: $c_text_dimmed;
+    color: var_(dimmed-text);
     top: 1.5rem;
     animation: bigToSmall .4s ease-in-out forwards;
 
@@ -266,7 +301,7 @@ nav {
         position: absolute;
         top: 0;
         width: 400px;
-        height: 266px !important;    
+        height: 267px !important;    
         border-radius: $Hero-graphic-radius;
     }
 }
@@ -281,7 +316,7 @@ nav {
         position: absolute;
         top: 0;
         width: 400px;
-        height: 266px !important;   
+        height: 267px !important;   
         border-radius: $Hero-graphic-radius;
     }
 }
@@ -302,7 +337,7 @@ nav {
 @keyframes bigToSmall {
     0% {
         font-size: getVal($font-size, l);
-        top: -2rem;
+        top: -2.45rem;
     }
 
     70% {
@@ -364,3 +399,33 @@ nav {
         opacity: 0;
     }
 }
+
+@keyframes lightToDark {
+    0% {
+        transform: rotate(360deg);
+    }
+
+    50% {
+
+    }
+
+    100% {
+        transform: rotate(180deg);
+
+    }
+} 
+
+@keyframes darkToLight {
+    0% {
+        transform: rotate(180deg);
+    }
+
+    50% {
+
+    }
+
+    100% {
+        transform: rotate(0deg);
+
+    }
+} 
