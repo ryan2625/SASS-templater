@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext, ReactEventHandler } from 'react'
+import React, { useEffect, useState, useContext, ReactEventHandler } from 'react'
 import { ThemeContext } from '../../Contexts/ThemeContext'
 import "./Hero.scss"
 import "../../Styles_SASS/__variables.scss"

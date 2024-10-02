@@ -67,14 +67,14 @@ nav {
 .main-nav {
     position: relative;
     background-color:  var_(bg1);
-    z-index: getVal($z-index, max)
+    z-index: getVal($z-index, l);
 }
 
 .fixed-nav {
     position: fixed;
     transition: all .5s ease-in-out;
     top: 0px;
-    z-index: getVal($z-index, nav)
+    z-index: getVal($z-index, nav);
 }
 
 .static-nav {
@@ -202,6 +202,7 @@ nav {
         z-index: getVal($z-index, m) !important;
         @include absoluteCenter(rotate(195deg));
         margin-left: getVal($margin, xxxl);
+        margin-top: getVal($margin, xl);
         transition: all .4s ease-in-out;
     }
 
