@@ -134,7 +134,7 @@ nav {
 
 .intro {
     p:nth-child(2) {
-        margin-top: getVal($margin, -2)
+        margin-top: getVal($margin, -1.5)
     }
 
     p {
@@ -195,7 +195,7 @@ nav {
 }
 
 .intro-container {
-    margin-top: getVal($margin, xxxxl);
+    margin-top: getVal($margin, 15);
     display: grid;
     place-items: center
 }
@@ -212,7 +212,7 @@ nav {
         z-index: getVal($z-index, m) !important;
         @include absoluteCenter(rotate(195deg));
         margin-left: getVal($margin, xxxl);
-        margin-top: getVal($margin, xl);
+        margin-top: getVal($margin, l);
         transition: all .4s ease-in-out;
     }
 
@@ -263,6 +263,16 @@ nav {
     top: 1.5rem;
     animation: bigToSmall .4s ease-in-out forwards;
 
+}
+
+.intro-primary-styling-first-render {
+    font-size: getVal($font-size, l);
+    top: -2.45rem;
+}
+
+.intro-secondary-styling-first-render {
+    font-size: getVal($font-size, m);
+    top: 1rem;
 }
 
 .primary-graphic {
@@ -364,7 +374,7 @@ nav {
 @keyframes smallToBig {
     0% {
         font-size: getVal($font-size, m);
-        top: 1rem;
+        top: 1.1rem;
     }
 
     70% {
