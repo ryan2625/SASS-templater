@@ -22,4 +22,4 @@ html[data-theme='light'] {
 
   Update cursor to be the league cursor?
 
-  todo: Fix animations firing on initial page load, fix transitions and set time out in useEffect for transitions in home banner, move purple gradient down, etc
+  todo: Fix animations firing on initial page load, fix transitions and set time out in useEffect for transitions in home banner, move purple gradient down, etc preload font

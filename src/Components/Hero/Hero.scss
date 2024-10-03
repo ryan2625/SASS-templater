@@ -180,6 +180,16 @@ nav {
     animation: upFade .4s ease-in-out forwards;
 }
 
+.intro-swoosh-first-render-sass {
+    opacity: 1;
+    bottom: -20%;
+}
+
+.intro-swoosh-first-render-css {
+    opacity: 0 !important;
+    transition: none !important;
+}
+
 .intro-sub-heading {
     font-size: min(calc(getVal($font-size, m) + 3vw), 50px);
 }

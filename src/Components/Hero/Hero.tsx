@@ -10,6 +10,7 @@ const Hero = () => {
   const [scroll, setScroll] = useState<number>(0)
   const [swap, setSwap] = useState<boolean>(true)
   const [windowHeight, setWindowHeight] = useState<number>(window.innerHeight)
+  const [notInitialRender, setNotInitialRender] = useState<boolean>(false)
 
   useEffect(() => {
     var ele = document.getElementById("main-hero-container")
@@ -27,11 +28,12 @@ const Hero = () => {
     const onResize = () => {
       setWindowHeight(window.innerHeight)
     }
+
     window.addEventListener("scroll", onScroll)
     window.addEventListener("resize", onResize)
     document.getElementById("intro-after")?.addEventListener("click", function (e) {
       setSwap(prev => !prev)
-      //Toggle between SASS and CSS for bg gradient, code pictures, and SASS/CSS styling
+      setNotInitialRender(true)
     })
     return () => {
       window.removeEventListener("scroll", onScroll)
@@ -49,7 +51,7 @@ const Hero = () => {
       <div>
           <p>sass | studios</p>
           <div className='hero-mode-constructor'><p>about |</p>
-            <div className={"hero-mode-bg" + (themeContext.context == "light" ? " hero-mode-light" : " hero-mode-dark")} onClick={setTheme}>
+            <div className="hero-mode-bg" onClick={setTheme}>
               <img className={"hero-mode-picture" + (themeContext.context == "light" ? " hero-to-dark" : " hero-to-light")} src={darkLightMode} alt="" /></div>
           </div>
         </div>
@@ -59,14 +61,14 @@ const Hero = () => {
         <div>
           <p>sass | studios</p>
           <div className='hero-mode-constructor'><p>about |</p>
-            <div className={"hero-mode-bg" + (themeContext.context == "light" ? " hero-mode-light" : " hero-mode-dark")} onClick={setTheme}>
+            <div className="hero-mode-bg" onClick={setTheme}>
               <img className={"hero-mode-picture" + (themeContext.context == "light" ? " hero-to-dark" : " hero-to-light")} src={darkLightMode} alt="" /></div>
           </div>
         </div>
       </nav>
       <div className="headline">
         <div className="intro">
-          <p><span>Design</span><span> made </span><span>easy<img className={"intro-swoosh " + (swap ? "intro-swoosh-up" : "intro-swoosh-down")} src={swoosh1} /> <img className={"intro-swoosh " + (swap ? "intro-swoosh-down" : "intro-swoosh-up")} src={swoosh2} /> </span></p>
+          <p><span>Design</span><span> made </span><span>easy<img className={"intro-swoosh " + (notInitialRender ? (swap ? "intro-swoosh-up" : "intro-swoosh-down") : "intro-swoosh-first-render-sass")} src={swoosh1} /> <img className={"intro-swoosh " + (notInitialRender ? (swap ? "intro-swoosh-down" : "intro-swoosh-up") : "intro-swoosh-first-render-css")} src={swoosh2} /> </span></p>
           <p className='intro-sub-heading'>View, edit, and export<br />
             styles in seconds</p>
           <div className='intro-styling-container'>
