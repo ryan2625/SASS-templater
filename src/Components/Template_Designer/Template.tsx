@@ -4,7 +4,7 @@ import "./Template.scss"
 function Template() {
   return (
     <div className="template-container">
-        Template
+        Templater functionality etc
     </div>
   )
 }
