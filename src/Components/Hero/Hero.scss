@@ -232,7 +232,7 @@ nav {
 }
 
 .intro-styling-container {
-    margin-top: 3.5rem;
+    margin-top: 4rem;
     width: fit-content;
     position: relative;
 }
@@ -465,13 +465,6 @@ nav {
         box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.129);
     }
     100% {
-        box-shadow: 0px 0px 30px 10px rgba(255, 255, 255, 0.8);
+        box-shadow: 0px 0px 30px 10px rgb(255, 255, 255);
     }
   }
-
-  /*
-    box-shadow: 10px 0px 60px 20px rgba(255, 255, 255, 0.5);
-  }
-  100% {
-    box-shadow: 10px 0px 100px 50px rgba(255, 255, 255, 0.8); 
-  */
