@@ -3,9 +3,11 @@ import "./Template.scss"
 
 function Template() {
   return (
-    <div className="template-container">
-        Templater functionality etc
-    </div>
+    <section className="template-container">
+        <div className="template-creator">
+          Template - Creator for SASS and CSS styles =)
+        </div>
+    </section>
   )
 }
 

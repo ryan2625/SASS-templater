@@ -12,7 +12,7 @@ $Hero-graphic-width: 100%;
 
 .hero-container {
     // TODO EDIT HEIGHTS
-    height: 130vh;
+    min-height: 130vh;
     background-color: var_(bg1);
     position: relative;
     overflow: hidden;

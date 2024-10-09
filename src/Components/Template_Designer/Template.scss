@@ -1,5 +1,11 @@
 @use "../../Styles_SASS/_forwards" as *;
 
 .template-container {
+    background-color: var_(inverse-bg1); ;
+}
+
+.template-creator {
     height: 1500px;
+    max-width: getVal($width, container);
+    margin: getMultiVal($margin, 0, auto);
 }
