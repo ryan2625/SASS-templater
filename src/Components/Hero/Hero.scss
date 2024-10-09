@@ -343,16 +343,25 @@ nav {
 }
 
 #intro-after {
-    content: "";
     width: 25px;
     height: 25px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     position: absolute;
     top: -15px;
     right: -25px;
     cursor: pointer;
+    z-index: getVal($z-index, xl);
+}
+
+#intro-highlight {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    top: -15px;
+    right: -25px;
+    animation: glow 1s infinite alternate;
+    z-index: getVal($z-index, l);
+    box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.129);
+    transform: translate(-12px, 10px);
 }
 
 @keyframes bigToSmall {
@@ -434,7 +443,7 @@ nav {
         transform: rotate(180deg);
 
     }
-} 
+}  
 
 @keyframes darkToLight {
     0% {
@@ -450,3 +459,19 @@ nav {
 
     }
 } 
+
+@keyframes glow {
+    0% {
+        box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.129);
+    }
+    100% {
+        box-shadow: 0px 0px 30px 10px rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  /*
+    box-shadow: 10px 0px 60px 20px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 10px 0px 100px 50px rgba(255, 255, 255, 0.8); 
+  */

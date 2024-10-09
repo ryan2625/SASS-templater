@@ -73,6 +73,7 @@ const Hero = () => {
             styles in seconds</p>
           <div className='intro-styling-container'>
             <img src={themeContext.context == "dark" ? swap2 : swap1} id="intro-after" alt="Click to swap between SASS and CSS display" />
+            <div aria-label='hidden' id="intro-highlight"></div>
             <p className="intro-hold-width">SASS Styling</p>
             <p className={"intro-styling " + (notInitialRender ? (swap ? "intro-primary-styling" : "intro-secondary-styling") : "intro-primary-styling-first-render")}>SASS Styling</p>
             <p className={"intro-styling " + (notInitialRender ? (swap ? "intro-secondary-styling" : "intro-primary-styling") : "intro-secondary-styling-first-render")}>CSS Styling</p>
