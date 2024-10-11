@@ -4,9 +4,10 @@ import "./Template.scss"
 function Template() {
   return (
     <section className="template-container">
-        <div className="template-creator">
-          Template - Creator for SASS and CSS styles =)
-        </div>
+      <div className="template-creator">
+        <div className="template-stage"></div>
+        <div className="template-config"></div>
+      </div>
     </section>
   )
 }
