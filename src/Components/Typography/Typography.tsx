@@ -1,7 +1,7 @@
 import React from 'react'
-import "./Template.scss"
+import "./Typography.scss"
 
-function Template() {
+function Typography() {
   return (
     <section className="template-container">
       <div className="template-creator">
@@ -12,4 +12,4 @@ function Template() {
   )
 }
 
-export default Template
+export default Typography
