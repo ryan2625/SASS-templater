@@ -1,14 +1,12 @@
 class SliderContainer {
     public sliderList: Slider[]
-    public increments: number
+    private body: HTMLDivElement
+    private styles: string
 
-    constructor(sliderList: Slider[], increments: number) {
+    constructor(sliderList: Slider[]) {
         this.sliderList = []
-        this.increments = 50
-    }
-
-    create():Slider {
-        return new Slider(1, null, null)
+        this.body = document.createElement("div")
+        this.styles = ``
     }
 
     addSlider(slider:Slider) {
@@ -16,12 +14,17 @@ class SliderContainer {
     }
 }
 
+//Be prepared to use boundind rect's BS
+//Make CSS class/styles. Absoulte positioning. The value will be the relative X coordinates in pixels. 
+//Update value function to ensure the position is not greater than the next position. Add event listeners.
+
 class Slider {
     private position: number
     private value: number 
     private prev: Slider | null
     private next: Slider | null
     private body: HTMLDivElement
+    private styles: string
 
     constructor(value: number, prev: Slider | null, next: Slider | null ) {
         this.position = (!!(prev?.position) ? prev.position + 1 : 1)
@@ -29,6 +32,7 @@ class Slider {
         this.prev = prev
         this.next = next
         this.body = document.createElement("div")
+        this.styles = ``
     }
 
     moveValue() {
