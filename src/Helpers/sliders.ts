@@ -11,7 +11,7 @@ class SliderContainer {
 
 
     constructor(sliderList: Slider[]) {
-        this.sliderList = []
+        this.sliderList = sliderList
         this.body = document.createElement("div")
         this.styles = ``
         this.len = 0

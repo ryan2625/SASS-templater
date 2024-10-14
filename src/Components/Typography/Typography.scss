@@ -1,11 +1,48 @@
 @use "../../Styles_SASS/_forwards" as *;
 
 .template-container {
-    background-color: var_(inverse-bg1); ;
+    background-color: var_(inverse-bg1); 
 }
 
 .template-creator {
     height: 1500px;
     max-width: getVal($width, container);
     margin: getMultiVal($margin, 0, auto);
+    display: flex;
+}
+
+.template-creator > div {
+    margin-top: getVal($margin, xxxxl);
+}
+
+.template-config {
+    background-color: rgb(255, 13, 13);
+    width: 450px;
+    padding: getVal($padding, xl);
+    box-sizing: border-box;
+}
+
+.config-columns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.config-columns > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.config-columns > div:nth-child(2) {
+    align-items: flex-end;
+}
+
+.config-columns > div > *{
+    height: 50px;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.template-stage {
+    background-color: rebeccapurple;
+    flex-grow: 1; 
 }
