@@ -47,37 +47,37 @@ function Typography() {
           <div>Absolutely positioned px/rem label</div>
           <div>
             <div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-            <div>
-              <div></div>
+              <div>h1</div>
               <div></div>
               <div></div>
             </div>
             <div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-            <div>
-              <div></div>
+              <div>h2</div>
               <div></div>
               <div></div>
             </div>
             <div>
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-            <div>
-              <div></div>
+              <div>h3</div>
               <div></div>
               <div></div>
             </div>
             <div>
+              <div>h4</div>
               <div></div>
+              <div></div>
+            </div>
+            <div>
+              <div>h5</div>
+              <div></div>
+              <div></div>
+            </div>
+            <div>
+              <div>h6</div>
+              <div></div>
+              <div></div>
+            </div>
+            <div>
+              <div>p</div>
               <div></div>
               <div></div>
             </div>
