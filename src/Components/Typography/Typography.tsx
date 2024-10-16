@@ -1,7 +1,30 @@
 import React from 'react'
 import "./Typography.scss"
+import useTypographyReducer from '../../Hooks/typographyReducer'
+import { SizeDictionary } from '../../Hooks/typographyReducer'
 
 function Typography() {
+
+  const [state, dispatch] = useTypographyReducer()
+
+  const sizes: string[] = [
+    "p",
+    "h6",
+    "h5",
+    "h4",
+    "h3",
+    "h2",
+    "h1"
+  ]
+
+  function calcVal(index: number, value: number): number {
+    if (index === sizes.length - 1) {
+      return value
+    } else {
+      return calcVal(index += 1, (value * state.scale))
+    }
+  }
+
   return (
     <section className="template-container">
       <div className="template-creator">
@@ -20,7 +43,7 @@ function Typography() {
                 <input type='number' step="0.5" name="font_size" />
               </div>
               <div>
-                <select name="scale">
+                <select name="scale" onChange={(e) => dispatch({ type: "CHANGE_SCALE", payload: Number(e.target.value) })}>
                   <option value="1.067">1.067 - Minor Second</option>
                   <option value="1.125">1.125 - Major Second</option>
                   <option value="1.200">1.200 - Minor Third</option>
@@ -46,41 +69,17 @@ function Typography() {
         <div className="template-stage">
           <div>Absolutely positioned px/rem label</div>
           <div>
-            <div>
-              <div>h1</div>
-              <div></div>
-              <div></div>
-            </div>
-            <div>
-              <div>h2</div>
-              <div></div>
-              <div></div>
-            </div>
-            <div>
-              <div>h3</div>
-              <div></div>
-              <div></div>
-            </div>
-            <div>
-              <div>h4</div>
-              <div></div>
-              <div></div>
-            </div>
-            <div>
-              <div>h5</div>
-              <div></div>
-              <div></div>
-            </div>
-            <div>
-              <div>h6</div>
-              <div></div>
-              <div></div>
-            </div>
-            <div>
-              <div>p</div>
-              <div></div>
-              <div></div>
-            </div>
+            {
+              sizes && sizes.reverse().map((tag, key) => {
+                return (
+                  <div>
+                    <div>{tag}</div>
+                    <div>{calcVal(key, state.size)}</div>
+                    <div>Woven silk pyjamas exchanged for blue quartz gems</div>
+                  </div>
+                )
+              })
+            }
           </div>
         </div>
       </div>

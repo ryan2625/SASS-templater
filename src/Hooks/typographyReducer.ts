@@ -10,14 +10,14 @@ interface State {
 
 type Action =
     { type: "CHANGE_SIZE", payload: number }
-    | { type: "CHANGE_NUMBER", payload: number }
+    | { type: "CHANGE_SCALE", payload: number }
     | { type: "CHANGE_SPACING", payload: number }
     | { type: "CHANGE_HEIGHT", payload: number }
     | { type: "CHANGE_COLOR", payload: string }
 
 const initialState: State = {
-    size: 0,
-    scale: 0,
+    size: 16,
+    scale: 1.2,
     spacing: 0,
     height: 0,
     color: ""
@@ -29,7 +29,7 @@ function Reducer(state: State, action: Action): State {
     switch (type) {
         case "CHANGE_SIZE":
             return { ...state, size: action.payload }
-        case "CHANGE_NUMBER":
+        case "CHANGE_SCALE":
             return { ...state, scale: action.payload }
         case "CHANGE_SPACING":
             return { ...state, spacing: action.payload }
@@ -40,4 +40,12 @@ function Reducer(state: State, action: Action): State {
     }
 }
 
-export const [state, action] = useReducer(Reducer, initialState)
+const useTypographyReducer = () => {
+    return useReducer(Reducer, initialState) 
+}
+
+//Not actually using this but I left it because its cute
+export interface SizeDictionary {
+    [key: string]: number
+}
+export default useTypographyReducer
