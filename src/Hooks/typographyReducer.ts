@@ -16,10 +16,10 @@ type Action =
     | { type: "CHANGE_COLOR", payload: string }
 
 const initialState: State = {
-    size: 16,
+    size: 10,
     scale: 1.2,
     spacing: 0,
-    height: 0,
+    height: 20,
     color: ""
 }
 

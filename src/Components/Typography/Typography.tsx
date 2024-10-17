@@ -7,6 +7,18 @@ function Typography() {
 
   const [state, dispatch] = useTypographyReducer()
 
+  interface Styles {
+    color?: string,
+    'line-height': number,
+    'letter-spacing': number
+  }
+
+  let styles: Styles = {
+    color: state.color,
+    'line-height': state.height,
+    'letter-spacing': state.spacing
+  }
+
   const sizes: string[] = [
     "p",
     "h6",
@@ -32,18 +44,18 @@ function Typography() {
           <h2>Styles</h2>
           <div className="config-columns">
             <div>
-              <label htmlFor="">Font Size</label>
-              <label htmlFor="">Scale</label>
-              <label htmlFor="">Letter Spacing</label>
-              <label htmlFor="">Line Height</label>
-              <label htmlFor="">Color</label>
+              <label htmlFor="typography-size">Font Size</label>
+              <label htmlFor="typography-scale">Scale</label>
+              <label htmlFor="typography-spacing">Letter Spacing</label>
+              <label htmlFor="typography-height">Line Height</label>
+              <label htmlFor="typography-color">Color</label>
             </div>
             <div>
               <div>
-                <input type='number' step="0.5" name="font_size" />
+                <input type='number' id="typography-size" step="0.5" name="scale" onChange={(e) => dispatch({ type: "CHANGE_SIZE", payload: Number(e.target.value)})} value={state.size}/>
               </div>
               <div>
-                <select name="scale" onChange={(e) => dispatch({ type: "CHANGE_SCALE", payload: Number(e.target.value) })}>
+                <select name="scale" id="typography-scale" onChange={(e) => dispatch({ type: "CHANGE_SCALE", payload: Number(e.target.value) })} >
                   <option value="1.067">1.067 - Minor Second</option>
                   <option value="1.125">1.125 - Major Second</option>
                   <option value="1.200">1.200 - Minor Third</option>
@@ -55,10 +67,10 @@ function Typography() {
                 </select>
               </div>
               <div>
-                <input type="number" step="0.02" name="letter_spacing" />
+                <input type="number" step="0.02" name="letter_spacing" id="typography-spacing" value={state.spacing}/>
               </div>
               <div>
-                <input type='number' step="0.05" name="font_size" />
+                <input type='number' step="0.05" name="height"  id="typography-height" value={state.height}/>
               </div>
               <div>
                 color
@@ -71,11 +83,12 @@ function Typography() {
           <div>
             {
               sizes && sizes.reverse().map((tag, key) => {
+                let parseScale = parseFloat(calcVal(key, state.size).toFixed(2))
                 return (
                   <div>
                     <div>{tag}</div>
-                    <div>{calcVal(key, state.size)}</div>
-                    <div>Woven silk pyjamas exchanged for blue quartz gems</div>
+                    <div>{parseScale.toFixed(2)}</div>
+                    <div style={{...styles, fontSize: parseScale}}>Woven silk pyjamas exchanged for blue quartz gems</div>
                   </div>
                 )
               })
