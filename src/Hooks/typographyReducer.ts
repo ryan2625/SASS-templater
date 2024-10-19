@@ -16,11 +16,11 @@ type Action =
     | { type: "CHANGE_COLOR", payload: string }
 
 const initialState: State = {
-    size: 10,
+    size: 16,
     scale: 1.2,
     spacing: 0,
-    height: 2,
-    color: ""
+    height: 1.5,
+    color: "#ffffff"
 }
 
 function Reducer(state: State, action: Action): State {

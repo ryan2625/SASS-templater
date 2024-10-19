@@ -16,14 +16,23 @@
 }
 
 .template-config {
-    background-color: rgb(255, 13, 13);
+    background-color: var_(bg2);
     width: 450px;
     padding: getVal($padding, xl);
     box-sizing: border-box;
+    flex-shrink: 0;
 }
 
-.template-config>h2 {
-    margin-top: 0;
+.template-stage {
+    background-color: rebeccapurple;
+    padding: getVal($padding, xl);
+    flex-grow: 1;
+    overflow-x: scroll;
+}
+
+.template-config h2 {
+    margin: getMultiVal($margin, xsss, xsss, xl, xsss);
+    @include setTypography(accent-font, s, txt1, null, xxxl);
 }
 
 .config-columns {
@@ -34,7 +43,7 @@
         display: flex;
         flex-direction: column;
 
-        &:nth-child(2){
+        &:nth-child(2) {
             align-items: flex-end;
         }
 
@@ -44,13 +53,6 @@
             white-space: nowrap;
         }
     }
-}
-
-.template-stage {
-    background-color: rebeccapurple;
-    padding: getVal($padding, xl);
-    flex-grow: 1;
-    overflow-x: scroll;
 }
 
 .template-scale-preview {
@@ -65,7 +67,8 @@
             margin-right: 5px;
         }
 
-        &:first-child, &:nth-child(2) {
+        &:first-child,
+        &:nth-child(2) {
             width: 30px;
             flex-shrink: 0;
         }
@@ -74,5 +77,14 @@
             margin-right: 65px;
             color: var_(dimmed-text);
         }
+    }
+}
+
+.typography-inputs {
+
+    select,
+    input {
+        width: 170px;
+        box-sizing: border-box;
     }
 }
