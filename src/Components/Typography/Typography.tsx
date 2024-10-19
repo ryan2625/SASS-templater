@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Typography.scss"
 import useTypographyReducer from '../../Hooks/typographyReducer'
 import { SizeDictionary } from '../../Hooks/typographyReducer'
@@ -6,17 +6,18 @@ import { SizeDictionary } from '../../Hooks/typographyReducer'
 function Typography() {
 
   const [state, dispatch] = useTypographyReducer()
+  const [units, setUnits] = useState<string>("px")
 
   interface Styles {
     color?: string,
-    'line-height': number,
-    'letter-spacing': number
+    lineHeight: number,
+    letterSpacing: number
   }
 
   let styles: Styles = {
     color: state.color,
-    'line-height': state.height,
-    'letter-spacing': state.spacing
+    lineHeight: state.height,
+    letterSpacing: state.spacing
   }
 
   const sizes: string[] = [
@@ -52,7 +53,7 @@ function Typography() {
             </div>
             <div>
               <div>
-                <input type='number' id="typography-size" step="0.5" name="scale" onChange={(e) => dispatch({ type: "CHANGE_SIZE", payload: Number(e.target.value)})} value={state.size}/>
+                <input type='number' id="typography-size" step="0.5" name="scale" onChange={(e) => dispatch({ type: "CHANGE_SIZE", payload: Number(e.target.value) })} value={state.size} min="5" max="20" />
               </div>
               <div>
                 <select name="scale" id="typography-scale" onChange={(e) => dispatch({ type: "CHANGE_SCALE", payload: Number(e.target.value) })} >
@@ -67,10 +68,10 @@ function Typography() {
                 </select>
               </div>
               <div>
-                <input type="number" step="0.02" name="letter_spacing" id="typography-spacing" value={state.spacing}/>
+                <input type="number" step="0.1" name="letter_spacing" id="typography-spacing" value={state.spacing} onChange={(e) => dispatch({ type: "CHANGE_SPACING", payload: Number(e.target.value) })} min="-4" />
               </div>
               <div>
-                <input type='number' step="0.05" name="height"  id="typography-height" value={state.height}/>
+                <input type='number' step="0.05" name="height" id="typography-height" value={state.height} onChange={(e) => dispatch({ type: "CHANGE_HEIGHT", payload: Number(e.target.value) })} />
               </div>
               <div>
                 color
@@ -79,16 +80,18 @@ function Typography() {
           </div>
         </div>
         <div className="template-stage">
-          <div>Absolutely positioned px/rem label</div>
+          <div>
+            <span onClick={() => setUnits("rem")}>rem </span><span onClick={() => setUnits("px")}>px</span>
+          </div>
           <div>
             {
               sizes && sizes.reverse().map((tag, key) => {
                 let parseScale = parseFloat(calcVal(key, state.size).toFixed(2))
                 return (
-                  <div>
-                    <div>{tag}</div>
-                    <div>{parseScale.toFixed(2)}</div>
-                    <div style={{...styles, fontSize: parseScale}}>Woven silk pyjamas exchanged for blue quartz gems</div>
+                  <div className="template-scale-preview" key={key}>
+                    <div  style={{ fontSize: "15px", lineHeight: state.height, letterSpacing: "2px"}}>{tag}</div>
+                    <div  style={{ fontSize: "15px", lineHeight: state.height, letterSpacing: "2px" }}>{( units === "px" ? parseScale : (parseScale*1/16).toFixed(2)) + units}</div>
+                    <div style={{ ...styles, fontSize: parseScale }}>Woven silk pyjamas exchanged for blue quartz gems</div>
                   </div>
                 )
               })

@@ -1,7 +1,7 @@
 @use "../../Styles_SASS/_forwards" as *;
 
 .template-container {
-    background-color: var_(inverse-bg1); 
+    background-color: var_(inverse-bg1);
 }
 
 .template-creator {
@@ -11,7 +11,7 @@
     display: flex;
 }
 
-.template-creator > div {
+.template-creator>div {
     margin-top: getVal($margin, xxxxl);
 }
 
@@ -22,27 +22,56 @@
     box-sizing: border-box;
 }
 
+.template-config>h2 {
+    margin-top: 0;
+}
+
 .config-columns {
     display: flex;
     justify-content: space-between;
-}
 
-.config-columns > div {
-    display: flex;
-    flex-direction: column;
-}
+    >div {
+        display: flex;
+        flex-direction: column;
 
-.config-columns > div:nth-child(2) {
-    align-items: flex-end;
-}
+        &:nth-child(2){
+            align-items: flex-end;
+        }
 
-.config-columns > div > *{
-    height: 50px;
-    display: inline-block;
-    white-space: nowrap;
+        >* {
+            height: 50px;
+            display: inline-block;
+            white-space: nowrap;
+        }
+    }
 }
 
 .template-stage {
     background-color: rebeccapurple;
-    flex-grow: 1; 
+    padding: getVal($padding, xl);
+    flex-grow: 1;
+    overflow-x: scroll;
+}
+
+.template-scale-preview {
+    display: flex;
+    white-space: nowrap;
+    align-items: baseline;
+
+    >div {
+        vertical-align: middle !important;
+
+        &:first-child {
+            margin-right: 5px;
+        }
+
+        &:first-child, &:nth-child(2) {
+            width: 30px;
+            flex-shrink: 0;
+        }
+
+        &:nth-child(2) {
+            margin-right: 65px;
+        }
+    }
 }

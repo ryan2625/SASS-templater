@@ -19,7 +19,7 @@ const initialState: State = {
     size: 10,
     scale: 1.2,
     spacing: 0,
-    height: 20,
+    height: 2,
     color: ""
 }
 
