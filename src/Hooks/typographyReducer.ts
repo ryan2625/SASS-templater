@@ -5,6 +5,7 @@ interface State {
     scale: number,
     spacing: number,
     height: number,
+    font: string,
     color: string
 }
 
@@ -13,6 +14,7 @@ type Action =
     | { type: "CHANGE_SCALE", payload: number }
     | { type: "CHANGE_SPACING", payload: number }
     | { type: "CHANGE_HEIGHT", payload: number }
+    | { type: "CHANGE_FONT", payload: number }
     | { type: "CHANGE_COLOR", payload: string }
 
 const initialState: State = {
@@ -20,6 +22,7 @@ const initialState: State = {
     scale: 1.2,
     spacing: 0,
     height: 1.5,
+    font: "auto",
     color: "#ffffff"
 }
 
@@ -35,13 +38,15 @@ function Reducer(state: State, action: Action): State {
             return { ...state, spacing: action.payload }
         case "CHANGE_HEIGHT":
             return { ...state, height: action.payload }
+        case "CHANGE_FONT":
+            return { ...state, height: action.payload }
         case "CHANGE_COLOR":
             return { ...state, color: action.payload }
     }
 }
 
 const useTypographyReducer = () => {
-    return useReducer(Reducer, initialState) 
+    return useReducer(Reducer, initialState)
 }
 
 //Not actually using this but I left it because its cute

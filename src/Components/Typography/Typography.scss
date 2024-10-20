@@ -81,10 +81,37 @@
 }
 
 .typography-inputs {
-
     select,
     input {
         width: 170px;
         box-sizing: border-box;
     }
+}
+
+.typography-decoration-h2 {
+    position: absolute;
+    background-color: var_(dimmed-text);
+    height: 4px;
+    left: 0;
+    border-radius: 40px;
+}
+
+.typography-styles-container {
+    position: relative;
+    width: fit-content;
+}
+
+#typography-h2-decoration1 {
+    width: 95%;
+    bottom: 2rem;
+}
+
+#typography-h2-decoration2 {
+    width: 50%;
+    bottom: 1.3rem;
+}
+
+#typography-h2-decoration3 {
+    width: 25%;
+    bottom: .6rem;
 }

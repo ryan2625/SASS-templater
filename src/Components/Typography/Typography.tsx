@@ -42,12 +42,12 @@ function Typography() {
     <section className="template-container">
       <div className="template-creator">
         <div className="template-config">
-          <div>
+          <div className='typography-styles-container'>
             <h2>Styles</h2>
             <div className="typography-decoration-h2" id="typography-h2-decoration1"></div>
             <div className="typography-decoration-h2" id="typography-h2-decoration2"></div>
             <div className="typography-decoration-h2" id="typography-h2-decoration3"></div>
-            </div>
+          </div>
           <div className="config-columns">
             <div>
               <label htmlFor="typography-size">Font Size</label>
@@ -83,12 +83,15 @@ function Typography() {
                   value={state.color}
                   onChange={(e) => dispatch({ type: "CHANGE_COLOR", payload: e.target.value })} />
               </div>
+              <div>
+                font
+              </div>
             </div>
           </div>
         </div>
         <div className="template-stage">
           <div>
-            <span onClick={() => setUnits("rem")}>rem </span><span onClick={() => setUnits("px")}>px</span>
+            <span onClick={() => setUnits("rem")} className={units === "rem" ? "typography-units-active" : "typography-units-inactive"}>rem </span><span onClick={() => setUnits("px")} className={units === "rem" ? "typography-units-inactive" : "typography-units-active"}>px</span>
           </div>
           <div>
             {
