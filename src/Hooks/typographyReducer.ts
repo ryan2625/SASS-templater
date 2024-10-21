@@ -14,7 +14,7 @@ type Action =
     | { type: "CHANGE_SCALE", payload: number }
     | { type: "CHANGE_SPACING", payload: number }
     | { type: "CHANGE_HEIGHT", payload: number }
-    | { type: "CHANGE_FONT", payload: number }
+    | { type: "CHANGE_FONT", payload: string }
     | { type: "CHANGE_COLOR", payload: string }
 
 const initialState: State = {
@@ -22,7 +22,7 @@ const initialState: State = {
     scale: 1.2,
     spacing: 0,
     height: 1.5,
-    font: "auto",
+    font: "Roboto Flex, sans-serif",
     color: "#ffffff"
 }
 
@@ -39,7 +39,7 @@ function Reducer(state: State, action: Action): State {
         case "CHANGE_HEIGHT":
             return { ...state, height: action.payload }
         case "CHANGE_FONT":
-            return { ...state, height: action.payload }
+            return { ...state, font: action.payload }
         case "CHANGE_COLOR":
             return { ...state, color: action.payload }
     }

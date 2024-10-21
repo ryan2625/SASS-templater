@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./Typography.scss"
 import useTypographyReducer from '../../Hooks/typographyReducer'
 import { SizeDictionary } from '../../Hooks/typographyReducer'
@@ -11,13 +11,15 @@ function Typography() {
   interface Styles {
     color: string,
     lineHeight: number,
-    letterSpacing: number
+    letterSpacing: number,
+    fontFamily: string
   }
 
   let styles: Styles = {
     color: state.color,
     lineHeight: state.height,
-    letterSpacing: state.spacing
+    letterSpacing: state.spacing,
+    fontFamily: state.font
   }
 
   const sizes: string[] = [
@@ -38,6 +40,11 @@ function Typography() {
     }
   }
 
+  useEffect(() => {
+    const parentEl = [].slice.call(document.getElementById("typography-font")?.children)
+    console.log(parentEl)
+  }, [])
+
   return (
     <section className="template-container">
       <div className="template-creator">
@@ -55,36 +62,62 @@ function Typography() {
               <label htmlFor="typography-spacing">Letter Spacing</label>
               <label htmlFor="typography-height">Line Height</label>
               <label htmlFor="typography-color">Color</label>
+              <label htmlFor="typography-font">Font</label>
             </div>
             <div className="typography-inputs">
               <div>
-                <input type='number' id="typography-size" step="0.5" name="scale" onChange={(e) => dispatch({ type: "CHANGE_SIZE", payload: Number(e.target.value) })} value={state.size} min="5" max="20" />
+                <input type='number' id="typography-size" step="0.5" name="typography-size" onChange={(e) => dispatch({ type: "CHANGE_SIZE", payload: Number(e.target.value) })} value={state.size} min="5" max="20" />
               </div>
               <div>
-                <select name="scale" id="typography-scale" onChange={(e) => dispatch({ type: "CHANGE_SCALE", payload: Number(e.target.value) })} >
+                <select id="typography-scale" name="typography-scale" onChange={(e) => dispatch({ type: "CHANGE_SCALE", payload: Number(e.target.value) })} defaultValue="1.333">
                   <option value="1.067">1.067 - Minor Second</option>
                   <option value="1.125">1.125 - Major Second</option>
                   <option value="1.200">1.200 - Minor Third</option>
                   <option value="1.250">1.250 - Major Third</option>
-                  <option value="1.333" selected>1.333 - Perfect Fourth</option>
+                  <option value="1.333">1.333 - Perfect Fourth</option>
                   <option value="1.414">1.414 - Augmented Fourth</option>
                   <option value="1.500">1.500 - Perfect Fifth</option>
                   <option value="1.618">1.618 - Golden Ratio</option>
                 </select>
               </div>
               <div>
-                <input type="number" step="0.1" name="letter_spacing" id="typography-spacing" value={state.spacing} onChange={(e) => dispatch({ type: "CHANGE_SPACING", payload: Number(e.target.value) })} min="-4" />
+                <input type="number" step="0.1" name="typography-spacing" id="typography-spacing" value={state.spacing} onChange={(e) => dispatch({ type: "CHANGE_SPACING", payload: Number(e.target.value) })} min="-4" />
               </div>
               <div>
-                <input type='number' step="0.05" name="height" id="typography-height" value={state.height} onChange={(e) => dispatch({ type: "CHANGE_HEIGHT", payload: Number(e.target.value) })} />
+                <input type='number' step="0.05" name="typography-height" id="typography-height" value={state.height} onChange={(e) => dispatch({ type: "CHANGE_HEIGHT", payload: Number(e.target.value) })} />
               </div>
               <div>
-                <input type="color" name="pseudo-body-color" data-pseudo-field="body-color" colorpick-eyedropper-active="true" data-gtm-form-interact-field-id="0"
+                <input type="color" name="typography-color" 
+                id="typography-color"
+                data-pseudo-field="body-color" colorpick-eyedropper-active="true" data-gtm-form-interact-field-id="0"
                   value={state.color}
                   onChange={(e) => dispatch({ type: "CHANGE_COLOR", payload: e.target.value })} />
               </div>
               <div>
-                font
+                <select name="typography-font" id="typography-font" onChange={(e) => dispatch({ type: "CHANGE_FONT", payload: e.target.value })} defaultValue="Roboto Flex, sans-serif">
+                  <option value="'Algerian', serif">Algerian</option>
+                  <option value="Arial Black, sans-serif">Arial Black</option>
+                  <option value="'Brush Script MT', cursive">Brush Script MT</option>
+                  <option value="'Century Gothic', sans-serif">Century Gothic</option>
+                  <option value="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</option>
+                  <option value="'Courier New', monospace">Courier New</option>
+                  <option value="Fantasy, fantasy">Fantasy</option>
+                  <option value="Garamond, serif">Garamond</option>
+                  <option value="Georgia, serif">Georgia</option>
+                  <option value="'Impact', sans-serif">Impact</option>
+                  <option value="'Jokerman', cursive">Jokerman</option>
+                  <option value="'Lucida Console', monospace">Lucida Console</option>
+                  <option value="'Papyrus', fantasy">Papyrus</option>
+                  <option value="Roboto Flex, sans-serif">Roboto Flex, sans-serif</option>
+                  <option value="'Seaweed Script', cursive">Seaweed Script, cursive</option>
+                  <option value="'Segoe Print', cursive">Segoe Print</option>
+                  <option value="'Tahoma', sans-serif">Tahoma</option>
+                  <option value="'Times New Roman', serif">Times New Roman</option>
+                  <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+                  <option value="'Verdana', sans-serif">Verdana</option>
+                  <option value="'Webdings', fantasy">Webdings</option>
+                  <option value="'Wingdings', fantasy">Wingdings</option>
+                </select>
               </div>
             </div>
           </div>
