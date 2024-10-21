@@ -39,6 +39,10 @@ function Reducer(state: State, action: Action): State {
         case "CHANGE_HEIGHT":
             return { ...state, height: action.payload }
         case "CHANGE_FONT":
+            const selectNode = document.getElementById("typography-font")
+            if (selectNode instanceof HTMLSelectElement) {
+                selectNode.style.fontFamily = selectNode.value
+            }
             return { ...state, font: action.payload }
         case "CHANGE_COLOR":
             return { ...state, color: action.payload }

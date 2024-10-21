@@ -42,7 +42,9 @@ function Typography() {
 
   useEffect(() => {
     const parentEl = [].slice.call(document.getElementById("typography-font")?.children)
-    console.log(parentEl)
+    parentEl.forEach((child: HTMLOptionElement) => {
+      child.style.fontFamily = child.value
+    })
   }, [])
 
   return (
@@ -58,43 +60,20 @@ function Typography() {
           <div className="config-columns">
             <div>
               <label htmlFor="typography-size">Font Size</label>
-              <label htmlFor="typography-scale">Scale</label>
-              <label htmlFor="typography-spacing">Letter Spacing</label>
-              <label htmlFor="typography-height">Line Height</label>
-              <label htmlFor="typography-color">Color</label>
-              <label htmlFor="typography-font">Font</label>
+              <label htmlFor="typography-scale">Font Family</label>
+              <label htmlFor="typography-spacing">Color</label>
+              <label htmlFor="typography-height">Scale</label>
+              <label htmlFor="typography-color">Spacing</label>
+              <label htmlFor="typography-font">Height</label>
             </div>
             <div className="typography-inputs">
               <div>
                 <input type='number' id="typography-size" step="0.5" name="typography-size" onChange={(e) => dispatch({ type: "CHANGE_SIZE", payload: Number(e.target.value) })} value={state.size} min="5" max="20" />
               </div>
               <div>
-                <select id="typography-scale" name="typography-scale" onChange={(e) => dispatch({ type: "CHANGE_SCALE", payload: Number(e.target.value) })} defaultValue="1.333">
-                  <option value="1.067">1.067 - Minor Second</option>
-                  <option value="1.125">1.125 - Major Second</option>
-                  <option value="1.200">1.200 - Minor Third</option>
-                  <option value="1.250">1.250 - Major Third</option>
-                  <option value="1.333">1.333 - Perfect Fourth</option>
-                  <option value="1.414">1.414 - Augmented Fourth</option>
-                  <option value="1.500">1.500 - Perfect Fifth</option>
-                  <option value="1.618">1.618 - Golden Ratio</option>
-                </select>
-              </div>
-              <div>
-                <input type="number" step="0.1" name="typography-spacing" id="typography-spacing" value={state.spacing} onChange={(e) => dispatch({ type: "CHANGE_SPACING", payload: Number(e.target.value) })} min="-4" />
-              </div>
-              <div>
-                <input type='number' step="0.05" name="typography-height" id="typography-height" value={state.height} onChange={(e) => dispatch({ type: "CHANGE_HEIGHT", payload: Number(e.target.value) })} />
-              </div>
-              <div>
-                <input type="color" name="typography-color" 
-                id="typography-color"
-                data-pseudo-field="body-color" colorpick-eyedropper-active="true" data-gtm-form-interact-field-id="0"
-                  value={state.color}
-                  onChange={(e) => dispatch({ type: "CHANGE_COLOR", payload: e.target.value })} />
-              </div>
-              <div>
                 <select name="typography-font" id="typography-font" onChange={(e) => dispatch({ type: "CHANGE_FONT", payload: e.target.value })} defaultValue="Roboto Flex, sans-serif">
+                  <option value="'Webdings', fantasy">Webdings</option>
+                  <option value="'Wingdings', fantasy">Wingdings</option>
                   <option value="'Algerian', serif">Algerian</option>
                   <option value="Arial Black, sans-serif">Arial Black</option>
                   <option value="'Brush Script MT', cursive">Brush Script MT</option>
@@ -115,9 +94,32 @@ function Typography() {
                   <option value="'Times New Roman', serif">Times New Roman</option>
                   <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
                   <option value="'Verdana', sans-serif">Verdana</option>
-                  <option value="'Webdings', fantasy">Webdings</option>
-                  <option value="'Wingdings', fantasy">Wingdings</option>
                 </select>
+              </div>
+              <div>
+                <input type="color" name="typography-color"
+                  id="typography-color"
+                  data-pseudo-field="body-color" colorpick-eyedropper-active="true" data-gtm-form-interact-field-id="0"
+                  value={state.color}
+                  onChange={(e) => dispatch({ type: "CHANGE_COLOR", payload: e.target.value })} />
+              </div>
+              <div>
+                <select id="typography-scale" name="typography-scale" onChange={(e) => dispatch({ type: "CHANGE_SCALE", payload: Number(e.target.value) })} defaultValue="1.333">
+                  <option value="1.067">1.067 - Minor Second</option>
+                  <option value="1.125">1.125 - Major Second</option>
+                  <option value="1.200">1.200 - Minor Third</option>
+                  <option value="1.250">1.250 - Major Third</option>
+                  <option value="1.333">1.333 - Perfect Fourth</option>
+                  <option value="1.414">1.414 - Augmented Fourth</option>
+                  <option value="1.500">1.500 - Perfect Fifth</option>
+                  <option value="1.618">1.618 - Golden Ratio</option>
+                </select>
+              </div>
+              <div>
+                <input type="number" step="0.1" name="typography-spacing" id="typography-spacing" value={state.spacing} onChange={(e) => dispatch({ type: "CHANGE_SPACING", payload: Number(e.target.value) })} min="-4" />
+              </div>
+              <div>
+                <input type='number' step="0.05" name="typography-height" id="typography-height" value={state.height} onChange={(e) => dispatch({ type: "CHANGE_HEIGHT", payload: Number(e.target.value) })} />
               </div>
             </div>
           </div>
