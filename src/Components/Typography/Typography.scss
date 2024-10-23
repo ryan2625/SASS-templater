@@ -9,6 +9,7 @@
     max-width: getVal($width, container);
     margin: getMultiVal($margin, 0, auto);
     display: flex;
+    gap: 2.5rem;
 }
 
 .template-creator>div {
@@ -21,11 +22,11 @@
     padding: getVal($padding, xl);
     box-sizing: border-box;
     flex-shrink: 0;
+    border-radius: 20px;
 }
 
 .template-stage {
-    background-color: rebeccapurple;
-    padding: getVal($padding, xl);
+    padding: getMultiVal($padding, xxxl, xss, xss xss);
     flex-grow: 1;
     overflow-x: scroll;
 }
@@ -76,6 +77,10 @@
         &:nth-child(2) {
             margin-right: 65px;
             color: var_(dimmed-text);
+        }
+
+        &:nth-child(3) {
+            color: var_(inverse-txt2);
         }
     }
 }

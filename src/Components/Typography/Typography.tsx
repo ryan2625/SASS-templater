@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import "./Typography.scss"
 import useTypographyReducer from '../../Hooks/typographyReducer'
+import { ThemeContext } from '../../Contexts/ThemeContext'
 import { SizeDictionary } from '../../Hooks/typographyReducer'
 
 function Typography() {
-
+  const themeContext = useContext(ThemeContext)
   const [state, dispatch] = useTypographyReducer()
   const [units, setUnits] = useState<string>("px")
 
@@ -46,6 +47,14 @@ function Typography() {
       child.style.fontFamily = child.value
     })
   }, [])
+
+  useEffect(() => {
+    dispatchTypographyStyle()
+  }, [themeContext.context])
+
+  function dispatchTypographyStyle() {
+    dispatch({ type: "CHANGE_COLOR", payload: getComputedStyle(document.documentElement).getPropertyValue("--bg1")})
+  }
 
   return (
     <section className="template-container">
