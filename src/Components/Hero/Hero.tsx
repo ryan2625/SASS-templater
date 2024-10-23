@@ -48,7 +48,7 @@ const Hero = () => {
   return (
     <section className="hero-container" id="main-hero-container">
       <nav className='main-nav'>
-      <div>
+        <div>
           <p>sass | studios</p>
           <div className='hero-mode-constructor'><p>about |</p>
             <div className="hero-mode-bg" onClick={setTheme}>

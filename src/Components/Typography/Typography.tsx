@@ -143,7 +143,7 @@ function Typography() {
                 let parseScale = parseFloat(calcVal(key, state.size).toFixed(2))
                 return (
                   <div className="template-scale-preview" key={key}>
-                    <div style={{ fontSize: "15px", lineHeight: state.height, letterSpacing: "2px" }}>{tag}</div>
+                    <div style={{ fontSize: "15px", lineHeight: state.height, letterSpacing: "2px", color: computeStyleVariables("--inverse-txt1") }}>{tag}</div>
                     <div style={{ fontSize: "15px", lineHeight: state.height, letterSpacing: "2px" }}>{(units === "px" ? parseScale : (parseScale * 1 / 16).toFixed(2)) + units}</div>
                     <div style={{ ...styles, fontSize: parseScale }}>Woven silk pyjamas exchanged for blue quartz gems</div>
                   </div>

@@ -273,6 +273,7 @@ nav {
 .intro-secondary-styling-first-render {
     font-size: getVal($font-size, m);
     top: 1rem;
+    color: var_(dimmed-text);
 }
 
 .primary-graphic {
