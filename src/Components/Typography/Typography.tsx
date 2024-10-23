@@ -49,12 +49,8 @@ function Typography() {
   }, [])
 
   useEffect(() => {
-    dispatchTypographyStyle()
+    dispatch({ type: "CHANGE_COLOR", payload: getComputedStyle(document.documentElement).getPropertyValue("--bg1") })
   }, [themeContext.context])
-
-  function dispatchTypographyStyle() {
-    dispatch({ type: "CHANGE_COLOR", payload: getComputedStyle(document.documentElement).getPropertyValue("--bg1")})
-  }
 
   return (
     <section className="template-container">
