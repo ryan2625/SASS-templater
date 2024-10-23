@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react'
 import "./Typography.scss"
 import useTypographyReducer from '../../Hooks/typographyReducer'
 import { ThemeContext } from '../../Contexts/ThemeContext'
-import { SizeDictionary } from '../../Hooks/typographyReducer'
 
 function Typography() {
   const themeContext = useContext(ThemeContext)
