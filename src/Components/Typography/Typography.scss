@@ -2,10 +2,10 @@
 
 .template-container {
     background-color: var_(inverse-bg1);
+    height: 1500px;
 }
 
 .template-creator {
-    height: 1500px;
     max-width: getVal($width, container);
     margin: getMultiVal($margin, 0, auto);
     display: flex;
@@ -24,6 +24,7 @@
     flex-shrink: 0;
     border-radius: 20px;
     position: relative;
+    height: fit-content;
 
     &::after {
         content: "";

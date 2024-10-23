@@ -41,6 +41,10 @@ function Typography() {
     }
   }
 
+  function computeStyleVariables(variable: string) {
+    return getComputedStyle(document.documentElement).getPropertyValue(variable)
+  }
+
   useEffect(() => {
     const parentEl = [].slice.call(document.getElementById("typography-font")?.children)
     parentEl.forEach((child: HTMLOptionElement) => {
@@ -49,7 +53,7 @@ function Typography() {
   }, [])
 
   useEffect(() => {
-    dispatch({ type: "CHANGE_COLOR", payload: getComputedStyle(document.documentElement).getPropertyValue("--bg1") })
+    dispatch({ type: "CHANGE_COLOR", payload: computeStyleVariables("--bg1") })
   }, [themeContext.context])
 
   return (
@@ -109,7 +113,7 @@ function Typography() {
                   onChange={(e) => dispatch({ type: "CHANGE_COLOR", payload: e.target.value })} />
               </div>
               <div>
-                <select id="typography-scale" name="typography-scale" onChange={(e) => dispatch({ type: "CHANGE_SCALE", payload: Number(e.target.value) })} defaultValue="1.333">
+                <select id="typography-scale" name="typography-scale" onChange={(e) => dispatch({ type: "CHANGE_SCALE", payload: Number(e.target.value) })} defaultValue="1.200">
                   <option value="1.067">1.067 - Minor Second</option>
                   <option value="1.125">1.125 - Major Second</option>
                   <option value="1.200">1.200 - Minor Third</option>
@@ -131,7 +135,8 @@ function Typography() {
         </div>
         <div className="template-stage">
           <div>
-            <span onClick={() => setUnits("rem")} className={units === "rem" ? "typography-units-active" : "typography-units-inactive"}>rem </span><span onClick={() => setUnits("px")} className={units === "rem" ? "typography-units-inactive" : "typography-units-active"}>px</span>
+            <span onClick={() => setUnits("rem")} style={{ color: computeStyleVariables("--inverse-txt1") }} className={units === "rem" ? "typography-units-active" : "typography-units-inactive"}>rem </span>
+            <span onClick={() => setUnits("px")} style={{ color: computeStyleVariables("--inverse-txt1") }} className={units === "rem" ? "typography-units-inactive" : "typography-units-active"}>px</span>
           </div>
           <div>
             {
