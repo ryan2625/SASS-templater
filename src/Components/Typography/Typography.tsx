@@ -134,8 +134,8 @@ function Typography() {
         </div>
         <div className="template-stage">
           <div>
+            <span onClick={() => setUnits("px")} style={{ color: computeStyleVariables("--inverse-txt1") }} className={units === "rem" ? "typography-units-inactive" : "typography-units-active"}>px | </span>
             <span onClick={() => setUnits("rem")} style={{ color: computeStyleVariables("--inverse-txt1") }} className={units === "rem" ? "typography-units-active" : "typography-units-inactive"}>rem </span>
-            <span onClick={() => setUnits("px")} style={{ color: computeStyleVariables("--inverse-txt1") }} className={units === "rem" ? "typography-units-inactive" : "typography-units-active"}>px</span>
           </div>
           <div>
             {
