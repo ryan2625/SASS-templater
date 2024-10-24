@@ -17,7 +17,8 @@
 }
 
 .template-config {
-    background-color: var_(bg2);
+    background-color: var_(alternate-bg);
+    background: var_(alternate-bg);
     width: 450px;
     padding: getVal($padding, xl);
     box-sizing: border-box;
@@ -25,28 +26,33 @@
     border-radius: 20px;
     position: relative;
     height: fit-content;
+    z-index: getVal($z-index, xl);
 
     &::after {
         content: "";
         display: block;
+        border-radius: 20px;
         position: absolute;
-        left: calc(-100vw + getVal($padding, l));
+        left: calc(-100vw + getVal($padding, l) + 450px);
         top: 0;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
         background-color: inherit;
+        background: inherit;
         height: 100%;
         width: 100vw;
+        z-index: getVal($z-index, s);
     }
 }
 
 .template-stage {
-    padding: getMultiVal($padding, xxxl, xss, xss xss);
+    padding: getMultiVal($padding, xxxl, xss, xss, l);
     flex-grow: 1;
     overflow-x: scroll;
 }
 
 .template-config h2 {
     margin: getMultiVal($margin, xsss, xsss, xl, xsss);
-    @include setTypography(accent-font, s, txt1, null, xxxl);
+    @include setTypography(accent-font, s, inverse-txt2, null, xxxl);
 }
 
 .config-columns {
@@ -56,6 +62,7 @@
     >div {
         display: flex;
         flex-direction: column;
+        color: var_(inverse-txt2);
 
         &:nth-child(2) {
             align-items: flex-end;
@@ -99,10 +106,24 @@
 }
 
 .typography-inputs {
+
     select,
     input {
         width: 160px;
         box-sizing: border-box;
+        border: 1px solid $c_grey50;
+        border-radius: 6px;
+        outline: none;
+        padding: .5em;
+        background: $c_white00;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, .04);
+        color: #000;
+        font-family: inherit;
+        text-overflow: ellipsis;
+    }
+
+    input[type=color] {
+        padding: .25em;
     }
 }
 

@@ -5,12 +5,13 @@
 // Setting up color theme keys and values - themes are created at compilation time 
 // (see __functions). These colors will change respective to the current data theme
 $themes: (
-    light: (
-        bg1: rgb(245, 245, 245),
+    light: (bg1: rgb(245, 245, 245),
         bg2: rgb(193, 193, 193),
         inverse-bg1: rgb(8, 8, 8),
         inverse-bg2: rgb(45, 45, 45),
+        alternate-bg: linear-gradient(107deg, rgba(0, 0, 0, 1) 0%, rgba(48, 48, 48, 1) 100%),
         dimmed-text: rgba(209, 209, 209, 0.799),
+        dimmed-text2: rgba(255, 255, 255, 0.799),
         txt1: rgb(15, 15, 15),
         txt2: rgb(45, 45, 45),
         inverse-txt1: rgb(255, 255, 255),
@@ -19,17 +20,17 @@ $themes: (
         btn-bg1: rgb(255, 0, 0),
         btn-txt1: rgb(255, 0, 0),
     ),
-    dark: (
-        bg1: rgb(8, 8, 8),
+    dark: (bg1: rgb(8, 8, 8),
         bg2: rgb(49, 49, 49),
         inverse-bg1: rgb(245, 245, 245),
-        inverse-bg2: rgb(45, 45, 45),
+        inverse-bg2: rgb(237, 237, 237),
+        alternate-bg: rgb(245, 245, 245),
         dimmed-text: rgba(187, 187, 187, 0.799),
         dimmed-text2: rgba(115, 115, 115, 0.799),
         txt1: rgb(255, 255, 255),
-        txt2: rgb(230, 230, 230),
+        txt2: rgb(235, 235, 235),
         inverse-txt1: rgb(45, 45, 45),
-        inverse-txt2: rgb(45, 45, 45),
+        inverse-txt2: rgb(8, 8, 8),
         accents1:rgb(81, 255, 0),
         btn-bg1: rgb(255, 0, 0),
         btn-txt1: rgb(255, 0, 0),
@@ -37,7 +38,9 @@ $themes: (
 );
 
 // Color Constants, regardless of theme
+$c_white00: rgb(245, 245, 245);
 $c_black80: rgb(6, 6, 6);
+$c_grey50: rgb(138, 138, 138);
 $c_text_dimmed: rgba(243, 243, 243, 0.799);
 $c_blue20: #52e5fa;
 $c_blue30: rgb(118, 130, 237);
@@ -49,7 +52,7 @@ $auto: auto;
 // Standard font, for unity's sake in the $standard variable, is 'm'
 $font-family: (
     m: #{"Roboto Flex", sans-serif},
-    accent-font:  #{"Seaweed Script", cursive},
+    accent-font: #{"Seaweed Script", cursive},
 );
 
 // Font weights
@@ -81,26 +84,26 @@ $font-size: (
 
 // Line heights
 $line-height: (
-    xxs: 1.25px, 
-    xs: 1.5px,    
-    s: 2px,    
-    m: 2.5px,    
-    l: 3px,     
-    xl: 5px,  
+    xxs: 1.25px,
+    xs: 1.5px,
+    s: 2px,
+    m: 2.5px,
+    l: 3px,
+    xl: 5px,
     xxl: 10px,
     xxxl: 15px,
-    auto: $auto    
+    auto: $auto
 );
 
 // Letter Spacing
-$letter-spacing: (    
-    s: 1px,    
-    m: 2px,    
-    l: 3px,     
-    xl: 4px,  
+$letter-spacing: (
+    s: 1px,
+    m: 2px,
+    l: 3px,
+    xl: 4px,
     xxl: 6px,
     xxxl: 10px,
-    auto: $auto    
+    auto: $auto
 );
 
 // Margins
@@ -150,6 +153,4 @@ $z-index: (
     xxl: 1000,
     xxxl: 2000,
     nav: 9999,
-    max: 9999999999
-)
-
+    max: 9999999999)
