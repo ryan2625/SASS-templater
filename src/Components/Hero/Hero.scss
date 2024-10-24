@@ -44,6 +44,10 @@ nav {
     height: 80px;
     background-color: var_(bg1);
 
+    img {
+        cursor: pointer;
+    }
+
     * {
         max-height: 80px;
     }

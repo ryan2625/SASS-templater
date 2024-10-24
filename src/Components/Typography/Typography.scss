@@ -13,7 +13,7 @@
 }
 
 .template-creator>div {
-    margin-top: getVal($margin, xxxxl);
+    margin-top: getVal($margin, xxxl);
 }
 
 .template-config {
@@ -129,7 +129,7 @@
 
 .typography-decoration-h2 {
     position: absolute;
-    background-color: var_(dimmed-text);
+    background-color: var_(dimmed-text2);
     height: 4px;
     left: 0;
     border-radius: 40px;
@@ -138,6 +138,22 @@
 .typography-styles-container {
     position: relative;
     width: fit-content;
+}
+
+.typography-units-inactive, .typography-units-active {
+    padding: getMultiVal($padding, xs, s);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.typography-units-active { 
+    background-color: var_(slight-background);
+    transition: background-color .3s ease-in-out
+}
+
+.typography-units-inactive {
+    background-color: rgba(255, 255, 255, 0);
+    transition: background-color .3s ease-in-out
 }
 
 #typography-h2-decoration1 {

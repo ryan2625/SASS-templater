@@ -40,7 +40,7 @@ function Typography() {
     }
   }
 
-  function computeStyleVariables(variable: string) {
+  function getCssVariableValue(variable: string) {
     return getComputedStyle(document.documentElement).getPropertyValue(variable)
   }
 
@@ -51,8 +51,9 @@ function Typography() {
     })
   }, [])
 
+
   useEffect(() => {
-    dispatch({ type: "CHANGE_COLOR", payload: computeStyleVariables("--bg1") })
+    dispatch({ type: "CHANGE_COLOR", payload: getCssVariableValue("--bg1") })
   }, [themeContext.context])
 
   return (
@@ -80,7 +81,7 @@ function Typography() {
               </div>
               <div>
                 <select name="typography-font" id="typography-font" onChange={(e) => dispatch({ type: "CHANGE_FONT", payload: e.target.value })} defaultValue="Roboto Flex, sans-serif">
-                  <option value="'Webdings', fantasy">Webdings</option>
+                  <option value="'Webdings', fantasy" id="aaa">Webdings</option>
                   <option value="'Wingdings', fantasy">Wingdings</option>
                   <option value="'Algerian', serif">Algerian</option>
                   <option value="Arial Black, sans-serif">Arial Black</option>
@@ -134,8 +135,8 @@ function Typography() {
         </div>
         <div className="template-stage">
           <div>
-            <span onClick={() => setUnits("px")} style={{ color: computeStyleVariables("--inverse-txt1") }} className={units === "rem" ? "typography-units-inactive" : "typography-units-active"}>px | </span>
-            <span onClick={() => setUnits("rem")} style={{ color: computeStyleVariables("--inverse-txt1") }} className={units === "rem" ? "typography-units-active" : "typography-units-inactive"}>rem </span>
+            <span onClick={() => setUnits("px")} style={{ color: getCssVariableValue("--inverse-txt1") }} className={units === "rem" ? "typography-units-inactive" : "typography-units-active"}>px</span>
+            <span style={{ color: getCssVariableValue("--inverse-txt1") }}> | </span><span onClick={() => setUnits("rem")} style={{ color: getCssVariableValue("--inverse-txt1") }} className={units === "rem" ? "typography-units-active" : "typography-units-inactive"}>rem</span>
           </div>
           <div>
             {
@@ -143,7 +144,7 @@ function Typography() {
                 let parseScale = parseFloat(calcVal(key, state.size).toFixed(2))
                 return (
                   <div className="template-scale-preview" key={key}>
-                    <div style={{ fontSize: "15px", lineHeight: state.height, letterSpacing: "2px", color: computeStyleVariables("--inverse-txt1") }}>{tag}</div>
+                    <div style={{ fontSize: "15px", lineHeight: state.height, letterSpacing: "2px", color: getCssVariableValue("--inverse-txt1") }}>{tag}</div>
                     <div style={{ fontSize: "15px", lineHeight: state.height, letterSpacing: "2px" }}>{(units === "px" ? parseScale : (parseScale * 1 / 16).toFixed(2)) + units}</div>
                     <div style={{ ...styles, fontSize: parseScale }}>Woven silk pyjamas exchanged for blue quartz gems</div>
                   </div>
