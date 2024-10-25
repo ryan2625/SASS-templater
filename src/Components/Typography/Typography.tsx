@@ -74,6 +74,7 @@ function Typography() {
               <label htmlFor="typography-height">Scale</label>
               <label htmlFor="typography-color">Spacing</label>
               <label htmlFor="typography-font">Height</label>
+              <label htmlFor="typography-weight">Weight</label>
             </div>
             <div className="typography-inputs">
               <div>
@@ -113,7 +114,7 @@ function Typography() {
                   onChange={(e) => dispatch({ type: "CHANGE_COLOR", payload: e.target.value })} />
               </div>
               <div>
-                <select id="typography-scale" name="typography-scale" onChange={(e) => dispatch({ type: "CHANGE_SCALE", payload: Number(e.target.value) })} defaultValue="1.200">
+                <select id="typography-scale" name="typography-scale" onChange={(e) => dispatch({ type: "CHANGE_SCALE", payload: Number(e.target.value) })} defaultValue="1.250">
                   <option value="1.067">1.067 - Minor Second</option>
                   <option value="1.125">1.125 - Major Second</option>
                   <option value="1.200">1.200 - Minor Third</option>
@@ -129,6 +130,12 @@ function Typography() {
               </div>
               <div>
                 <input type='number' step="0.05" name="typography-height" id="typography-height" value={state.height} onChange={(e) => dispatch({ type: "CHANGE_HEIGHT", payload: Number(e.target.value) })} />
+              </div>
+              <div>
+                <select id="typography-weight" name="typography-weight" onChange={(e) => dispatch({ type: "CHANGE_WEIGHT", payload: Boolean(e.target.value) })}>
+                  <option value="true">Disabled</option>
+                  <option value="false">Enabled</option>
+                </select>
               </div>
             </div>
           </div>
@@ -146,7 +153,7 @@ function Typography() {
                   <div className="template-scale-preview" key={key}>
                     <div style={{ fontSize: "15px", lineHeight: state.height, letterSpacing: "2px", color: getCssVariableValue("--inverse-txt1") }}>{tag}</div>
                     <div style={{ fontSize: "15px", lineHeight: state.height, letterSpacing: "2px" }}>{(units === "px" ? parseScale : (parseScale * 1 / 16).toFixed(2)) + units}</div>
-                    <div style={{ ...styles, fontSize: parseScale }}>Woven silk pyjamas exchanged for blue quartz gems</div>
+                    <div style={{ ...styles, fontSize: parseScale, fontWeight: (state.weight === true ? (sizes.length - key + 1) * 100 : 400) }}>Woven silk pyjamas exchanged for blue quartz gems</div>
                   </div>
                 )
               })

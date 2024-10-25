@@ -5,6 +5,7 @@ interface State {
     scale: number,
     spacing: number,
     height: number,
+    weight: boolean,
     font: string,
     color: string
 }
@@ -14,14 +15,16 @@ type Action =
     | { type: "CHANGE_SCALE", payload: number }
     | { type: "CHANGE_SPACING", payload: number }
     | { type: "CHANGE_HEIGHT", payload: number }
+    | { type: "CHANGE_WEIGHT", payload: boolean }
     | { type: "CHANGE_FONT", payload: string }
     | { type: "CHANGE_COLOR", payload: string }
 
 const initialState: State = {
     size: 16,
-    scale: 1.2,
+    scale: 1.250,
     spacing: 0,
     height: 1.5,
+    weight: false,
     font: "Roboto Flex, sans-serif",
     color: "#ffffff"
 }
@@ -38,6 +41,8 @@ function Reducer(state: State, action: Action): State {
             return { ...state, spacing: action.payload }
         case "CHANGE_HEIGHT":
             return { ...state, height: action.payload }
+        case "CHANGE_WEIGHT":
+            return { ...state, weight: !state.weight }
         case "CHANGE_FONT":
             const selectNode = document.getElementById("typography-font")
             if (selectNode instanceof HTMLSelectElement) {
