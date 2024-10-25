@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from 'react'
 import { ThemeContext } from '../../Contexts/ThemeContext'
 import "./Hero.scss"
 import "../../Styles_SASS/__variables.scss"
-import "../../Styles_SASS/__classes.scss"
 import { gradient1, gradient2, swoosh1, swoosh2, swap1, swap2, cssDark, sassDark, cssLight, sassLight, darkLightMode } from "./Imports"
 
 const Hero = () => {
@@ -57,7 +56,7 @@ const Hero = () => {
         </div>
       </nav>
       {/*Possibly make /10 a constant the same height as the oval separator*/}
-      <nav className={scroll - (windowHeight / 10) > windowHeight ? "fixed-nav" : "static-nav"} aria-hidden="true">
+      <nav className={scroll - (windowHeight / 150) > windowHeight ? "fixed-nav" : "static-nav"} aria-hidden="true">
         <div>
           <p>sass | studios</p>
           <div className='hero-mode-constructor'><p>about |</p>
