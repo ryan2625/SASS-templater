@@ -82,7 +82,7 @@ function Typography() {
               </div>
               <div>
                 <select name="typography-font" id="typography-font" onChange={(e) => dispatch({ type: "CHANGE_FONT", payload: e.target.value })} defaultValue="Roboto Flex, sans-serif">
-                  <option value="'Webdings', fantasy" id="aaa">Webdings</option>
+                  <option value="'Webdings', fantasy">Webdings</option>
                   <option value="'Wingdings', fantasy">Wingdings</option>
                   <option value="'Algerian', serif">Algerian</option>
                   <option value="Arial Black, sans-serif">Arial Black</option>
@@ -129,7 +129,7 @@ function Typography() {
                 <input type="number" step="0.1" name="typography-spacing" id="typography-spacing" value={state.spacing} onChange={(e) => dispatch({ type: "CHANGE_SPACING", payload: Number(e.target.value) })} min="-4" />
               </div>
               <div>
-                <input type='number' step="0.05" name="typography-height" id="typography-height" value={state.height} onChange={(e) => dispatch({ type: "CHANGE_HEIGHT", payload: Number(e.target.value) })} />
+                <input type='number' step="0.05" min="0" name="typography-height" id="typography-height" value={state.height} onChange={(e) => dispatch({ type: "CHANGE_HEIGHT", payload: Number(e.target.value) })} />
               </div>
               <div>
                 <select id="typography-weight" name="typography-weight" onChange={(e) => dispatch({ type: "CHANGE_WEIGHT", payload: Boolean(e.target.value) })}>

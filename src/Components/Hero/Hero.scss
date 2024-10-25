@@ -129,8 +129,8 @@ nav {
     margin: getMultiVal($margin, 2.5, auto, 2.5, auto);
     padding: getVal($padding, xl);
 
-    >div {
-        flex: 0 1 50%;
+    > div {
+        flex: 1 1 50%;
         max-width: 750px;
     }
 
@@ -252,6 +252,7 @@ nav {
     line-height: min(getVal($line-height, 10), 35px);
     top: -2rem;
     animation: smallToBig .4s ease-in-out forwards;
+    transition: color .4s ease-in-out;
 }
 
 .intro-hold-width {
@@ -266,7 +267,7 @@ nav {
     color: var_(dimmed-text);
     top: 1.5rem;
     animation: bigToSmall .4s ease-in-out forwards;
-
+    transition: color .4s ease-in-out;
 }
 
 .intro-primary-styling-first-render {
@@ -310,7 +311,6 @@ nav {
 }
 
 .graphic-swap-2-dark {
-    left: -100;
     margin-top: 0%;
 }
 
@@ -471,5 +471,38 @@ nav {
     }
     100% {
         box-shadow: 0px 0px 30px 10px rgb(255, 255, 255);
+    }
+  }
+
+  @media (max-width: 1360px) {
+    .intro-container {
+    margin-left: calc(20vw - 300px);
+    padding-top: getVal($padding, xl)
+    }
+
+    .intro-graphic > img:nth-child(2), 
+    .intro-graphic > img:nth-child(1) {  
+        max-width: 1100px;
+    }
+
+    .intro {
+        max-width: 500px !important;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .intro-container {
+        padding-top: getVal($padding, 15);
+        margin-left: calc(0rem - (getVal($margin, xxxxl) * 1.5));
+    }
+
+    .graphic-swap-1-dark,
+    .hero-overlay-adjust::after {
+        left: 50px;
+    }
+
+    .graphic-swap-2-dark,
+    .hero-overlay::after {
+        left: -100px;
     }
   }
