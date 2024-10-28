@@ -55,7 +55,7 @@ nav {
         max-height: 80px;
     }
 
-    >div {
+    > div {
         width: 100%;
         max-width: getVal($width, container);
         display: flex;
@@ -68,6 +68,10 @@ nav {
             @include setTypography(null, xs, txt1, null, l);
             letter-spacing: 10px;
         }
+    }
+
+    > div:first-child {
+        height: 100%;
     }
 }
 
