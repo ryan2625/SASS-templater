@@ -6,6 +6,9 @@
 $Hero-graphic-radius: 15px;
 $Hero-graphic-height: 100%;
 $Hero-graphic-width: 100%;
+$imageAndOverlayDimensions: 400px;
+$imageAndOverlayDimensionsSmall: 275px;
+$imageAndOverlayHeightSmall: 189px;
 
 //=========================================\\
 //=========================================\\
@@ -31,7 +34,7 @@ $Hero-graphic-width: 100%;
         background-color: var_(inverse-bg1);
     }
 
-    * { 
+    * {
         transition: background-color .45s;
     }
 }
@@ -52,14 +55,14 @@ nav {
         max-height: 80px;
     }
 
-    > div {
+    >div {
         width: 100%;
         max-width: getVal($width, container);
         display: flex;
         justify-content: space-between;
         margin: $m_center;
 
-        > * {
+        >* {
             display: inline-block;
             margin: getMultiVal($margin, auto, xl);
             @include setTypography(null, xs, txt1, null, l);
@@ -70,7 +73,7 @@ nav {
 
 .main-nav {
     position: relative;
-    background-color:  var_(bg1);
+    background-color: var_(bg1);
     z-index: getVal($z-index, l);
 }
 
@@ -117,9 +120,14 @@ nav {
     animation: lightToDark .5s ease-in-out forwards;
 }
 
-.hero-to-light{
+.hero-to-light {
     animation: darkToLight .5s ease-in-out forwards;
 }
+
+.sass-studios {
+    white-space: nowrap;
+}
+
 //===============================\\
 //=======END NAVBAR STYLES=======\\
 
@@ -129,7 +137,7 @@ nav {
     margin: getMultiVal($margin, 2.5, auto, 2.5, auto);
     padding: getVal($padding, xl);
 
-    > div {
+    >div {
         flex: 1 1 50%;
         max-width: 750px;
     }
@@ -290,7 +298,7 @@ nav {
 }
 
 .intro-graphic-swap {
-    width: 400px;
+    width: $imageAndOverlayDimensions;
     height: auto;
     aspect-ratio: 3/2;
 }
@@ -326,8 +334,8 @@ nav {
         z-index: getVal($z-index, xl);
         position: absolute;
         top: 0;
-        width: 400px;
-        height: 267px !important;    
+        width: $imageAndOverlayDimensions;
+        height: 267px !important;
         border-radius: $Hero-graphic-radius;
     }
 }
@@ -341,8 +349,8 @@ nav {
         z-index: getVal($z-index, l);
         position: absolute;
         top: 0;
-        width: 400px;
-        height: 267px !important;   
+        width: $imageAndOverlayDimensions;
+        height: 267px !important;
         border-radius: $Hero-graphic-radius;
     }
 }
@@ -440,57 +448,54 @@ nav {
         transform: rotate(360deg);
     }
 
-    50% {
-
-    }
+    50% {}
 
     100% {
         transform: rotate(180deg);
 
     }
-}  
+}
 
 @keyframes darkToLight {
     0% {
         transform: rotate(180deg);
     }
 
-    50% {
-
-    }
+    50% {}
 
     100% {
         transform: rotate(0deg);
 
     }
-} 
+}
 
 @keyframes glow {
     0% {
         box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.129);
     }
+
     100% {
         box-shadow: 0px 0px 30px 10px rgb(255, 255, 255);
     }
-  }
+}
 
-  @media (max-width: 1360px) {
+@media (max-width: 1360px) {
     .intro-container {
-    margin-left: calc(20vw - 300px);
-    padding-top: getVal($padding, xl)
+        margin-left: calc(20vw - 300px);
+        padding-top: getVal($padding, xl)
     }
 
-    .intro-graphic > img:nth-child(2), 
-    .intro-graphic > img:nth-child(1) {  
+    .intro-graphic>img:nth-child(2),
+    .intro-graphic>img:nth-child(1) {
         max-width: 1100px;
     }
 
     .intro {
         max-width: 500px !important;
     }
-  }
+}
 
-  @media (max-width: 1100px) {
+@media (max-width: 1100px) {
     .intro-container {
         padding-top: getVal($padding, 15);
         margin-left: calc(0rem - (getVal($margin, xxxxl) * 1.5));
@@ -505,4 +510,76 @@ nav {
     .hero-overlay::after {
         left: -100px;
     }
-  }
+}
+
+@media (max-width: 800px) {
+    .headline {
+        flex-direction: column;
+    }
+
+    .intro-container {
+        padding: 0;
+        margin: 0;
+    }
+
+    .graphic-swap-1-dark,
+    .hero-overlay-adjust::after,
+    .graphic-swap-2-dark,
+    .hero-overlay::after {
+        width: $imageAndOverlayDimensionsSmall;
+        height: $imageAndOverlayHeightSmall !important;
+        transform: translate(30%, 40%);
+    }
+
+    .intro-graphic>img:nth-child(2),
+    .intro-graphic>img:nth-child(1) {
+        max-width: 1400px;
+        transform: translate(-50%, -20%) rotate(195deg);
+    }
+
+    .graphic-swap-1-dark,
+    .hero-overlay-adjust::after {
+        left: 100px;
+        top: 125px;
+    }
+
+    .graphic-swap-2-dark,
+    .hero-overlay::after {
+        left: -80px;
+    }
+
+    .hero-container {
+        min-height: 100vh;
+    }
+
+    .intro p:nth-child(2) {
+        margin-bottom: getVal($margin, s);
+    }
+
+    .headline {
+        margin: getMultiVal($margin, m, s);
+    }
+
+    .sass-studios {
+        white-space: nowrap;
+        letter-spacing: 2px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .graphic-swap-1-dark,
+    .hero-overlay-adjust::after {
+        left: 0px;
+        top: 125px;
+    }
+
+    .graphic-swap-2-dark,
+    .hero-overlay::after {
+        left: -100px;
+    }
+
+    .intro>p>span {
+        white-space: wrap;
+    }
+}

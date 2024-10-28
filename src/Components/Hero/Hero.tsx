@@ -48,18 +48,17 @@ const Hero = () => {
     <section className="hero-container" id="main-hero-container">
       <nav className='main-nav'>
         <div>
-          <p>sass | studios</p>
-          <div className='hero-mode-constructor'><p>about |</p>
+          <p className="sass-studios">sass | studios</p>
+          <div className='hero-mode-constructor'><p></p>
             <div className="hero-mode-bg" onClick={setTheme}>
               <img className={"hero-mode-picture" + (themeContext.context == "light" ? " hero-to-dark" : " hero-to-light")} src={darkLightMode} alt="" /></div>
           </div>
         </div>
       </nav>
-      {/*Possibly make /10 a constant the same height as the oval separator*/}
       <nav className={scroll - (windowHeight / 150) > windowHeight ? "fixed-nav" : "static-nav"} aria-hidden="true">
         <div>
-          <p>sass | studios</p>
-          <div className='hero-mode-constructor'><p>about |</p>
+          <p className="sass-studios">sass | studios</p>
+          <div className='hero-mode-constructor'><p></p>
             <div className="hero-mode-bg" onClick={setTheme}>
               <img className={"hero-mode-picture" + (themeContext.context == "light" ? " hero-to-dark" : " hero-to-light")} src={darkLightMode} alt="" /></div>
           </div>
@@ -83,10 +82,10 @@ const Hero = () => {
             <img src={gradient2} className={swap ? "gradient-fadein" : "gradient-fadeout"} alt="Background gradient" aria-label='hidden' />
             <img src={gradient1} className={swap ? "gradient-fadeout" : "gradient-fadein"} alt="Background gradient" aria-label='hidden' />
             <div className={'intro-swap-cont1 ' + (swap ? "" : "hero-overlay-adjust")}>
-              <img src={themeContext.context == "dark" ? sassDark : sassLight} className={"intro-graphic-swap graphic-swap-1-dark " + (swap ? "primary-graphic" : "secondary-graphic")} aria-label="SASS Styling graphic" />
+              <img src={themeContext.context == "dark" ? sassDark : sassLight} className={"intro-graphic-swap graphic-swap-1-dark " + (swap ? "primary-graphic" : "secondary-graphic")} aria-label="SASS Styling graphic" alt="SASS Styling graphic" />
             </div>
             <div className={'intro-swap-cont2 ' + (swap ? "hero-overlay" : "")}>
-              <img src={themeContext.context == "dark" ? cssDark : cssLight} className={"intro-graphic-swap graphic-swap-2-dark " + (swap ? "secondary-graphic" : "primary-graphic")} aria-label="CSS Styling graphic" />
+              <img src={themeContext.context == "dark" ? cssDark : cssLight} className={"intro-graphic-swap graphic-swap-2-dark " + (swap ? "secondary-graphic" : "primary-graphic")} aria-label="CSS Styling graphic" alt="CSS Styling graphic"/>
             </div>
           </div>
         </div>
