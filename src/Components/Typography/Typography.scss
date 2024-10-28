@@ -48,7 +48,22 @@
     padding: getMultiVal($padding, xxxl, xss, xss, l);
     flex-grow: 1;
     overflow-x: scroll;
+    box-shadow: inset -12px 0 15px -5px rgba(0, 0, 0, 0.7);
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 1500px;
+        background-color: var(--inverse-bg1);
+        z-index: getVal($z-index, xl);
+    }
 }
+
+
 
 .template-config h2 {
     margin: getMultiVal($margin, xsss, xsss, xl, xsss);
