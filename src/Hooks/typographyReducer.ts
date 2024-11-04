@@ -1,6 +1,6 @@
 import React, { useReducer } from "react"
 
-interface State {
+export interface State {
     size: number,
     scale: number,
     spacing: number,
