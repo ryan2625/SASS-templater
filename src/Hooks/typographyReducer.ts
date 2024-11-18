@@ -19,7 +19,7 @@ type Action =
     | { type: "CHANGE_FONT", payload: string }
     | { type: "CHANGE_COLOR", payload: string }
 
-const initialState: State = {
+export const initialState: State = {
     size: 16,
     scale: 1.250,
     spacing: 0,
@@ -58,7 +58,7 @@ const useTypographyReducer = () => {
     return useReducer(Reducer, initialState)
 }
 
-//Not actually using this but I left it because its cute
+//Not actually using this but I left it in because why not
 export interface SizeDictionary {
     [key: string]: number
 }

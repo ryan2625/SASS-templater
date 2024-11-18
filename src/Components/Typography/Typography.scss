@@ -57,7 +57,7 @@
         top: 0;
         left: 0;
         height: 20px;
-        width: 1500px;
+        width:100vw;
         background-color: var(--inverse-bg1);
         z-index: getVal($z-index, xl);
     }

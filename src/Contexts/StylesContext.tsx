@@ -1,16 +1,27 @@
-import { createContext, useState, useEffect, Children } from "react";
+import { createContext, useState, useMemo } from "react";
 import { State as TypographyState, initialState as initialTypographyState } from "../Hooks/typographyReducer";
+
 interface StylesContext  {
     tags: TypographyState,
     margins: number[],
     colors: {
         primary: string,
         secondary: string,
-        
+        bg1: string,
+        bg2: string,
+        primaryDark: string,
+        secondaryDark: string,
+        bg1Dark: string,
+        bg2Dark: string
     }
 }
 
-var defaultContext: StylesContext = {
+interface TotalStylesContext {
+    styles: StylesContext,
+    setStyles: React.Dispatch<React.SetStateAction<StylesContext>>
+}
+
+let defaultContext: StylesContext = {
     tags: initialTypographyState,
     margins: [
         .25,
@@ -21,20 +32,33 @@ var defaultContext: StylesContext = {
     ],
     colors: {
         primary: "",
-        secondary: ""
+        secondary: "",
+        bg1: "",
+        bg2: "",
+        primaryDark: "",
+        secondaryDark: "",
+        bg1Dark: "",
+        bg2Dark: ""
     }
 }
 
-export const StylesContext = createContext<StylesContext>(defaultContext);
+let BaseTotalStylesContext: TotalStylesContext = {
+    styles: defaultContext,
+    setStyles: () => {}
+}
+
+export const StylesContext = createContext<TotalStylesContext>(BaseTotalStylesContext);
 
 const StylesContextProvider = ({children}: { children: React.ReactNode }) => {    
-      
-      var contextTheme = {
+      const [styles, setStyles] = useState<StylesContext>(defaultContext)
 
-      }
+      const stylesTheme = useMemo(() => ({
+        styles: styles,
+        setStyles: setStyles,
+      }), [styles, setStyles]);
 
       return (
-        <StylesContext.Provider value={contextTheme}>
+        <StylesContext.Provider value={stylesTheme}>
             {children}
         </StylesContext.Provider>
       )

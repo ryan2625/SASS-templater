@@ -1,8 +1,10 @@
 import { createContext, useState, useEffect, Children } from "react";
 
+type themes = "light" | "dark"
+
 interface ThemeContextType  {
     context: "light" | "dark",
-    setTheme: Function
+    setTheme: React.Dispatch<React.SetStateAction<themes | null>>
 }
 
 var defaultContext:ThemeContextType = {

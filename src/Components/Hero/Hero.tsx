@@ -41,7 +41,7 @@ const Hero = () => {
   }, [])
 
   function setTheme(event: React.MouseEvent<HTMLDivElement>) {
-    themeContext.setTheme()
+    themeContext.setTheme(null)
   }
 
   return (
