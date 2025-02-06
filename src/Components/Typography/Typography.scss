@@ -1,5 +1,12 @@
 @use "../../Styles_SASS/_forwards" as *;
 
+//=========================================\\
+//=======Individual Component Styles=======\\
+
+
+//=========================================\\
+//=========================================\\
+
 .template-container {
     background-color: var_(inverse-bg1);
     height: 1500px;
@@ -57,9 +64,10 @@
         top: 0;
         left: 0;
         height: 20px;
-        width:100vw;
+        width:v;
         background-color: var(--inverse-bg1);
         z-index: getVal($z-index, xl);
+        overflow: hidden;
     }
 }
 

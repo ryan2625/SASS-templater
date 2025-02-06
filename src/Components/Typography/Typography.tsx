@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import "./Typography.scss"
 import useTypographyReducer from '../../Hooks/typographyReducer'
 import { ThemeContext } from '../../Contexts/ThemeContext'
@@ -7,6 +7,7 @@ function Typography() {
   const themeContext = useContext(ThemeContext)
   const [state, dispatch] = useTypographyReducer()
   const [units, setUnits] = useState<string>("px")
+  const boxShadowElement = useRef<HTMLDivElement>(null)
 
   interface Styles {
     color: string,
@@ -44,6 +45,16 @@ function Typography() {
     return getComputedStyle(document.documentElement).getPropertyValue(variable)
   }
 
+  function setShadowCover(ref: React.RefObject<HTMLDivElement>) {
+    if (ref.current) {
+      const width = ref.current.offsetWidth
+      console.log("WWW", width)
+      // Create custom css Variable
+      // Set custom variable in afterPseudo with js by setting it to width
+      //
+    }
+  }
+
   useEffect(() => {
     const parentEl = [].slice.call(document.getElementById("typography-font")?.children)
     parentEl.forEach((child: HTMLOptionElement) => {
@@ -51,6 +62,9 @@ function Typography() {
     })
   }, [])
 
+  useEffect(() => {
+    setShadowCover(boxShadowElement)
+  }, [])
 
   useEffect(() => {
     dispatch({ type: "CHANGE_COLOR", payload: getCssVariableValue("--bg1") })
@@ -140,7 +154,7 @@ function Typography() {
             </div>
           </div>
         </div>
-        <div className="template-stage">
+        <div className="template-stage" ref={boxShadowElement}>
           <div>
             <span onClick={() => setUnits("px")} style={{ color: getCssVariableValue("--inverse-txt1") }} className={units === "rem" ? "typography-units-inactive" : "typography-units-active"}>px</span>
             <span style={{ color: getCssVariableValue("--inverse-txt1") }}> | </span><span onClick={() => setUnits("rem")} style={{ color: getCssVariableValue("--inverse-txt1") }} className={units === "rem" ? "typography-units-active" : "typography-units-inactive"}>rem</span>
