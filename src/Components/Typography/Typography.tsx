@@ -2,12 +2,11 @@ import React, { useState, useEffect, useContext, useRef } from 'react'
 import "./Typography.scss"
 import useTypographyReducer from '../../Hooks/typographyReducer'
 import { ThemeContext } from '../../Contexts/ThemeContext'
-
+import { sizes, fonts } from './constants'
 function Typography() {
   const themeContext = useContext(ThemeContext)
   const [state, dispatch] = useTypographyReducer()
   const [units, setUnits] = useState<string>("px")
-  const boxShadowElement = useRef<HTMLDivElement>(null)
 
   interface Styles {
     color: string,
@@ -23,16 +22,6 @@ function Typography() {
     fontFamily: state.font
   }
 
-  const sizes: string[] = [
-    "p",
-    "h6",
-    "h5",
-    "h4",
-    "h3",
-    "h2",
-    "h1"
-  ]
-
   function calcVal(index: number, value: number): number {
     if (index === sizes.length - 1) {
       return value
@@ -45,25 +34,11 @@ function Typography() {
     return getComputedStyle(document.documentElement).getPropertyValue(variable)
   }
 
-  function setShadowCover(ref: React.RefObject<HTMLDivElement>) {
-    if (ref.current) {
-      const width = ref.current.offsetWidth
-      console.log("WWW", width)
-      // Create custom css Variable
-      // Set custom variable in afterPseudo with js by setting it to width
-      //
-    }
-  }
-
   useEffect(() => {
     const parentEl = [].slice.call(document.getElementById("typography-font")?.children)
     parentEl.forEach((child: HTMLOptionElement) => {
       child.style.fontFamily = child.value
     })
-  }, [])
-
-  useEffect(() => {
-    setShadowCover(boxShadowElement)
   }, [])
 
   useEffect(() => {
@@ -96,28 +71,15 @@ function Typography() {
               </div>
               <div>
                 <select name="typography-font" id="typography-font" onChange={(e) => dispatch({ type: "CHANGE_FONT", payload: e.target.value })} defaultValue="Roboto Flex, sans-serif">
-                  <option value="'Webdings', fantasy">Webdings</option>
-                  <option value="'Wingdings', fantasy">Wingdings</option>
-                  <option value="'Algerian', serif">Algerian</option>
-                  <option value="Arial Black, sans-serif">Arial Black</option>
-                  <option value="'Brush Script MT', cursive">Brush Script MT</option>
-                  <option value="'Century Gothic', sans-serif">Century Gothic</option>
-                  <option value="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</option>
-                  <option value="'Courier New', monospace">Courier New</option>
-                  <option value="Fantasy, fantasy">Fantasy</option>
-                  <option value="Garamond, serif">Garamond</option>
-                  <option value="Georgia, serif">Georgia</option>
-                  <option value="'Impact', sans-serif">Impact</option>
-                  <option value="'Jokerman', cursive">Jokerman</option>
-                  <option value="'Lucida Console', monospace">Lucida Console</option>
-                  <option value="'Papyrus', fantasy">Papyrus</option>
-                  <option value="Roboto Flex, sans-serif">Roboto Flex, sans-serif</option>
-                  <option value="'Seaweed Script', cursive">Seaweed Script, cursive</option>
-                  <option value="'Segoe Print', cursive">Segoe Print</option>
-                  <option value="'Tahoma', sans-serif">Tahoma</option>
-                  <option value="'Times New Roman', serif">Times New Roman</option>
-                  <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
-                  <option value="'Verdana', sans-serif">Verdana</option>
+                  {
+                    fonts.map((font) => {
+                      return (
+                        <option key={font.displayName} value={font.value}>
+                          {font.displayName}
+                        </option>
+                      )
+                    })
+                  }
                 </select>
               </div>
               <div>
@@ -154,7 +116,7 @@ function Typography() {
             </div>
           </div>
         </div>
-        <div className="template-stage" ref={boxShadowElement}>
+        <div className="template-stage">
           <div>
             <span onClick={() => setUnits("px")} style={{ color: getCssVariableValue("--inverse-txt1") }} className={units === "rem" ? "typography-units-inactive" : "typography-units-active"}>px</span>
             <span style={{ color: getCssVariableValue("--inverse-txt1") }}> | </span><span onClick={() => setUnits("rem")} style={{ color: getCssVariableValue("--inverse-txt1") }} className={units === "rem" ? "typography-units-active" : "typography-units-inactive"}>rem</span>
@@ -162,11 +124,11 @@ function Typography() {
           <div>
             {
               sizes && sizes.reverse().map((tag, key) => {
-                let parseScale = parseFloat(calcVal(key, state.size).toFixed(2))
+                let parseScale = Math.floor(parseFloat(calcVal(key, state.size).toString()))
                 return (
                   <div className="template-scale-preview" key={key}>
                     <div style={{ fontSize: "15px", lineHeight: state.height, letterSpacing: "2px", color: getCssVariableValue("--inverse-txt1") }}>{tag}</div>
-                    <div style={{ fontSize: "15px", lineHeight: state.height, letterSpacing: "2px" }}>{(units === "px" ? parseScale : (parseScale * 1 / 16).toFixed(2)) + units}</div>
+                    <div style={{ fontSize: "15px", lineHeight: state.height, letterSpacing: "2px" }}>{(units === "px" ? parseScale : (parseScale * 1 / 16)) + units}</div>
                     <div style={{ ...styles, fontSize: parseScale, fontWeight: (state.weight === true ? (sizes.length - key + 1) * 100 : 400) }}>Woven silk pyjamas exchanged for blue quartz gems</div>
                   </div>
                 )
