@@ -1,14 +1,6 @@
-export const sizes: string[] = [
-  "h1",
-  "h2",
-  "h3",
-  "h4",
-  "h5",
-  "h6",
-  "p"
-]
+import { Scale, Label, Font } from "./types";
 
-export const fonts = [
+export const fonts: Font[] = [
   { value: "'Webdings', fantasy", displayName: "Webdings" },
   { value: "'Wingdings', fantasy", displayName: "Wingdings" },
   { value: "'Algerian', serif", displayName: "Algerian" },
@@ -33,7 +25,7 @@ export const fonts = [
   { value: "'Verdana', sans-serif", displayName: "Verdana" }
 ];
 
-export const scales = [
+export const scales: Scale[] = [
   { value: "1.067", label: "1.067 - Minor Second" },
   { value: "1.125", label: "1.125 - Major Second" },
   { value: "1.200", label: "1.200 - Minor Third" },
@@ -44,7 +36,7 @@ export const scales = [
   { value: "1.618", label: "1.618 - Golden Ratio" }
 ];
 
-export const labels = [
+export const labels: Label[] = [
   { htmlFor: "typography-size", text: "Font Size" },
   { htmlFor: "typography-font", text: "Font Family" },
   { htmlFor: "typography-color", text: "Color" },
@@ -53,3 +45,13 @@ export const labels = [
   { htmlFor: "typography-height", text: "Height" },
   { htmlFor: "typography-weight", text: "Weight" }
 ];
+
+export const sizes: string[] = [
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "p"
+]

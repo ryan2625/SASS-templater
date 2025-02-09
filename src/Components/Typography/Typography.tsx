@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import "./Typography.scss"
 import useTypographyReducer from '../../Hooks/typographyReducer'
 import { ThemeContext } from '../../Contexts/ThemeContext'
@@ -42,7 +42,7 @@ function Typography() {
           <div className="config-columns">
             <div>
               {
-                labels.map((label) => {
+                labels && labels.map((label) => {
                   return (
                     <label key={label.htmlFor}>{label.text}</label>
                   )
@@ -56,7 +56,7 @@ function Typography() {
               <div>
                 <select name="typography-font" id="typography-font" onChange={(e) => dispatch({ type: "CHANGE_FONT", payload: e.target.value })} defaultValue="Roboto Flex, sans-serif">
                   {
-                    fonts.map((font) => {
+                    fonts && fonts.map((font) => {
                       return (
                         <option key={font.displayName} value={font.value}>
                           {font.displayName}
@@ -76,7 +76,7 @@ function Typography() {
               <div>
                 <select id="typography-scale" name="typography-scale" onChange={(e) => dispatch({ type: "CHANGE_SCALE", payload: Number(e.target.value) })} defaultValue="1.250">
                   {
-                    scales.map((scale) => {
+                    scales && scales.map((scale) => {
                       return (
                         <option key={scale.value} value={scale.value}>{scale.label}</option>
                       )
