@@ -62,4 +62,5 @@ const useTypographyReducer = () => {
 export interface SizeDictionary {
     [key: string]: number
 }
+
 export default useTypographyReducer

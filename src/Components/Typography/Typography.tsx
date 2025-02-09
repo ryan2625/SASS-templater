@@ -2,7 +2,9 @@ import React, { useState, useEffect, useContext, useRef } from 'react'
 import "./Typography.scss"
 import useTypographyReducer from '../../Hooks/typographyReducer'
 import { ThemeContext } from '../../Contexts/ThemeContext'
-import { sizes, fonts } from './constants'
+import { calcVal, getCssVariableValue } from './utils'
+import { sizes, fonts, scales, labels } from './constants'
+
 function Typography() {
   const themeContext = useContext(ThemeContext)
   const [state, dispatch] = useTypographyReducer()
@@ -20,18 +22,6 @@ function Typography() {
     lineHeight: state.height,
     letterSpacing: state.spacing,
     fontFamily: state.font
-  }
-
-  function calcVal(index: number, value: number): number {
-    if (index === sizes.length - 1) {
-      return value
-    } else {
-      return calcVal(index += 1, (value * state.scale))
-    }
-  }
-
-  function getCssVariableValue(variable: string) {
-    return getComputedStyle(document.documentElement).getPropertyValue(variable)
   }
 
   useEffect(() => {
@@ -57,13 +47,13 @@ function Typography() {
           </div>
           <div className="config-columns">
             <div>
-              <label htmlFor="typography-size">Font Size</label>
-              <label htmlFor="typography-scale">Font Family</label>
-              <label htmlFor="typography-spacing">Color</label>
-              <label htmlFor="typography-height">Scale</label>
-              <label htmlFor="typography-color">Spacing</label>
-              <label htmlFor="typography-font">Height</label>
-              <label htmlFor="typography-weight">Weight</label>
+              {
+                labels.map((label) => {
+                  return (
+                    <label key={label.htmlFor}>{label.text}</label>
+                  )
+                })
+              }
             </div>
             <div className="typography-inputs">
               <div>
@@ -91,14 +81,13 @@ function Typography() {
               </div>
               <div>
                 <select id="typography-scale" name="typography-scale" onChange={(e) => dispatch({ type: "CHANGE_SCALE", payload: Number(e.target.value) })} defaultValue="1.250">
-                  <option value="1.067">1.067 - Minor Second</option>
-                  <option value="1.125">1.125 - Major Second</option>
-                  <option value="1.200">1.200 - Minor Third</option>
-                  <option value="1.250">1.250 - Major Third</option>
-                  <option value="1.333">1.333 - Perfect Fourth</option>
-                  <option value="1.414">1.414 - Augmented Fourth</option>
-                  <option value="1.500">1.500 - Perfect Fifth</option>
-                  <option value="1.618">1.618 - Golden Ratio</option>
+                  {
+                    scales.map((scale) => {
+                      return (
+                        <option key={scale.value} value={scale.value}>{scale.label}</option>
+                      )
+                    })
+                  }
                 </select>
               </div>
               <div>
@@ -124,11 +113,11 @@ function Typography() {
           <div>
             {
               sizes && sizes.reverse().map((tag, key) => {
-                let parseScale = Math.floor(parseFloat(calcVal(key, state.size).toString()))
+                let parseScale = parseFloat(calcVal(key, state.size, state.scale, sizes).toFixed(1))
                 return (
                   <div className="template-scale-preview" key={key}>
                     <div style={{ fontSize: "15px", lineHeight: state.height, letterSpacing: "2px", color: getCssVariableValue("--inverse-txt1") }}>{tag}</div>
-                    <div style={{ fontSize: "15px", lineHeight: state.height, letterSpacing: "2px" }}>{(units === "px" ? parseScale : (parseScale * 1 / 16)) + units}</div>
+                    <div style={{ fontSize: "15px", lineHeight: state.height, letterSpacing: "2px" }}>{(units === "px" ? parseScale : ((parseScale * 1 / 16).toFixed(1))) + units}</div>
                     <div style={{ ...styles, fontSize: parseScale, fontWeight: (state.weight === true ? (sizes.length - key + 1) * 100 : 400) }}>Woven silk pyjamas exchanged for blue quartz gems</div>
                   </div>
                 )

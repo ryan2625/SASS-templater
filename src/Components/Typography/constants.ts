@@ -32,3 +32,24 @@ export const fonts = [
   { value: "'Trebuchet MS', sans-serif", displayName: "Trebuchet MS" },
   { value: "'Verdana', sans-serif", displayName: "Verdana" }
 ];
+
+export const scales = [
+  { value: "1.067", label: "1.067 - Minor Second" },
+  { value: "1.125", label: "1.125 - Major Second" },
+  { value: "1.200", label: "1.200 - Minor Third" },
+  { value: "1.250", label: "1.250 - Major Third" },
+  { value: "1.333", label: "1.333 - Perfect Fourth" },
+  { value: "1.414", label: "1.414 - Augmented Fourth" },
+  { value: "1.500", label: "1.500 - Perfect Fifth" },
+  { value: "1.618", label: "1.618 - Golden Ratio" }
+];
+
+export const labels = [
+  { htmlFor: "typography-size", text: "Font Size" },
+  { htmlFor: "typography-font", text: "Font Family" },
+  { htmlFor: "typography-color", text: "Color" },
+  { htmlFor: "typography-scale", text: "Scale" },
+  { htmlFor: "typography-spacing", text: "Spacing" },
+  { htmlFor: "typography-height", text: "Height" },
+  { htmlFor: "typography-weight", text: "Weight" }
+];

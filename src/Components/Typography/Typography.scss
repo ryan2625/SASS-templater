@@ -69,6 +69,10 @@
         z-index: getVal($z-index, xl);
         overflow: hidden;
     }
+
+    > div:first-child {
+        margin-bottom: getVal($margin, m);;
+    }
 }
 
 
