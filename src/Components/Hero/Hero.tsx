@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { ThemeContext } from '../../Contexts/ThemeContext'
 import "./Hero.scss"
-import "../../Styles_SASS/__variables.scss"
+import "../../Styles/__variables.scss"
 import { gradient1, gradient2, swoosh1, swoosh2, swap1, swap2, cssDark, sassDark, cssLight, sassLight, darkLightMode } from "./Imports"
 
 const Hero = () => {
@@ -85,7 +85,7 @@ const Hero = () => {
               <img src={themeContext.context == "dark" ? sassDark : sassLight} className={"intro-graphic-swap graphic-swap-1-dark " + (swap ? "primary-graphic" : "secondary-graphic")} aria-label="SASS Styling graphic" alt="SASS Styling graphic" />
             </div>
             <div className={'intro-swap-cont2 ' + (swap ? "hero-overlay" : "")}>
-              <img src={themeContext.context == "dark" ? cssDark : cssLight} className={"intro-graphic-swap graphic-swap-2-dark " + (swap ? "secondary-graphic" : "primary-graphic")} aria-label="CSS Styling graphic" alt="CSS Styling graphic"/>
+              <img src={themeContext.context == "dark" ? cssDark : cssLight} className={"intro-graphic-swap graphic-swap-2-dark " + (swap ? "secondary-graphic" : "primary-graphic")} aria-label="CSS Styling graphic" alt="CSS Styling graphic" />
             </div>
           </div>
         </div>

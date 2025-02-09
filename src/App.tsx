@@ -3,7 +3,7 @@ import './App.scss';
 import Hero from "./Components/Hero/Hero"
 import Template from './Components/Template/Template';
 import Typography from './Components/Typography/Typography';
-import "./Styles_SASS/__variables.scss"
+import "./Styles/__variables.scss"
 import "./App.scss"
 function App() {
 

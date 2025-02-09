@@ -1,11 +1,11 @@
 export const sizes: string[] = [
-  "p",
-  "h6",
-  "h5",
-  "h4",
-  "h3",
+  "h1",
   "h2",
-  "h1"
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "p"
 ]
 
 export const fonts = [

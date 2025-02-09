@@ -1,21 +1,15 @@
-import React, { useState, useEffect, useContext, useRef } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import "./Typography.scss"
 import useTypographyReducer from '../../Hooks/typographyReducer'
 import { ThemeContext } from '../../Contexts/ThemeContext'
 import { calcVal, getCssVariableValue } from './utils'
 import { sizes, fonts, scales, labels } from './constants'
+import { Styles } from './types'
 
 function Typography() {
   const themeContext = useContext(ThemeContext)
   const [state, dispatch] = useTypographyReducer()
   const [units, setUnits] = useState<string>("px")
-
-  interface Styles {
-    color: string,
-    lineHeight: number,
-    letterSpacing: number,
-    fontFamily: string
-  }
 
   let styles: Styles = {
     color: state.color,
@@ -112,7 +106,7 @@ function Typography() {
           </div>
           <div>
             {
-              sizes && sizes.reverse().map((tag, key) => {
+              sizes && sizes.map((tag, key) => {
                 let parseScale = parseFloat(calcVal(key, state.size, state.scale, sizes).toFixed(1))
                 return (
                   <div className="template-scale-preview" key={key}>

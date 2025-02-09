@@ -49,6 +49,7 @@ $c_text_dimmed: rgba(243, 243, 243, 0.799);
 $c_blue20: #52e5fa;
 $c_blue30: rgb(118, 130, 237);
 $c_purple20: #cf8cf3;
+
 // Constant for general values and calculating default values in functions
 $standard: m;
 $auto: auto;
@@ -113,8 +114,8 @@ $letter-spacing: (
 // Margins
 $m_center: 0 auto;
 $margin: (
-    xsss: 0,
-    xss: .25rem,
+    xxxs: 0,
+    xxs: .25rem,
     xs: .5rem,
     s: .75rem,
     m: 1rem,
