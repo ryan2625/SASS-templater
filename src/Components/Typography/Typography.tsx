@@ -11,7 +11,7 @@ function Typography() {
   const [state, dispatch] = useTypographyReducer()
   const [units, setUnits] = useState<string>("px")
 
-  let styles: Styles = {
+  const styles: Styles = {
     color: state.color,
     lineHeight: state.height,
     letterSpacing: state.spacing,
@@ -107,7 +107,7 @@ function Typography() {
           <div>
             {
               sizes && sizes.map((tag, key) => {
-                let parseScale = parseFloat(calcVal(key, state.size, state.scale, sizes).toFixed(1))
+                const parseScale = parseFloat(calcVal(key, state.size, state.scale, sizes).toFixed(1))
                 return (
                   <div className="template-scale-preview" key={key}>
                     <div style={{ fontSize: "15px", lineHeight: state.height, letterSpacing: "2px", color: getCssVariableValue("--inverse-txt1") }}>{tag}</div>
