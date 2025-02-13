@@ -2,41 +2,43 @@
 // Defining different global variables and themes
 // ---------------------------------------------
 
-// Setting up color theme keys and values - themes are created at compilation time 
+// Setting up color theme keys and values - themes are created at compilation time
 // (see __functions). These colors will change respective to the current data theme
 $themes: (
-    light: (bg1: rgb(245, 245, 245),
-        bg2: rgb(193, 193, 193),
-        inverse-bg1: rgb(8, 8, 8),
-        inverse-bg2: rgb(45, 45, 45),
-        alternate-bg: linear-gradient(107deg, rgba(0, 0, 0, 1) 0%, rgba(48, 48, 48, 1) 100%),
-        dimmed-text: rgba(95, 95, 95, 0.799),
-        dimmed-text2: rgba(255, 255, 255, 0.799),
-        txt1: rgb(15, 15, 15),
-        txt2: rgb(45, 45, 45),
-        inverse-txt1: rgb(255, 255, 255),
-        inverse-txt2: rgb(230, 230, 230),
-        accents1: #ff0000,
-        btn-bg1: rgb(255, 0, 0),
-        btn-txt1: rgb(255, 0, 0),
-        slight-background: rgba(255, 255, 255, 0.445)
-    ),
-    dark: (bg1: rgb(8, 8, 8),
-        bg2: rgb(49, 49, 49),
-        inverse-bg1: rgb(245, 245, 245),
-        inverse-bg2: rgb(237, 237, 237),
-        alternate-bg: rgb(245, 245, 245),
-        dimmed-text: rgba(187, 187, 187, 0.799),
-        dimmed-text2: rgba(115, 115, 115, 0.799),
-        txt1: rgb(255, 255, 255),
-        txt2: rgb(235, 235, 235),
-        inverse-txt1: rgb(45, 45, 45),
-        inverse-txt2: rgb(8, 8, 8),
-        accents1:rgb(81, 255, 0),
-        btn-bg1: rgb(255, 0, 0),
-        btn-txt1: rgb(255, 0, 0),
-        slight-background: rgba(128, 128, 128, 0.174)
-    )
+  light: (
+    bg1: rgb(245, 245, 245),
+    bg2: rgb(193, 193, 193),
+    inverse-bg1: rgb(8, 8, 8),
+    inverse-bg2: rgb(45, 45, 45),
+    alternate-bg: linear-gradient(107deg, rgba(0, 0, 0, 1) 0%, rgba(48, 48, 48, 1) 100%),
+    dimmed-text: rgba(95, 95, 95, 0.799),
+    dimmed-text2: rgba(255, 255, 255, 0.799),
+    txt1: rgb(15, 15, 15),
+    txt2: rgb(45, 45, 45),
+    inverse-txt1: rgb(255, 255, 255),
+    inverse-txt2: rgb(230, 230, 230),
+    accents1: #ff0000,
+    btn-bg1: rgb(255, 0, 0),
+    btn-txt1: rgb(255, 0, 0),
+    slight-background: rgba(255, 255, 255, 0.445),
+  ),
+  dark: (
+    bg1: rgb(8, 8, 8),
+    bg2: rgb(49, 49, 49),
+    inverse-bg1: rgb(245, 245, 245),
+    inverse-bg2: rgb(237, 237, 237),
+    alternate-bg: rgb(245, 245, 245),
+    dimmed-text: rgba(187, 187, 187, 0.799),
+    dimmed-text2: rgba(115, 115, 115, 0.799),
+    txt1: rgb(255, 255, 255),
+    txt2: rgb(235, 235, 235),
+    inverse-txt1: rgb(45, 45, 45),
+    inverse-txt2: rgb(8, 8, 8),
+    accents1: rgb(81, 255, 0),
+    btn-bg1: rgb(255, 0, 0),
+    btn-txt1: rgb(255, 0, 0),
+    slight-background: rgba(128, 128, 128, 0.174),
+  ),
 );
 
 // Color Constants, regardless of theme
@@ -56,107 +58,109 @@ $auto: auto;
 
 // Standard font, for unity's sake in the $standard variable, is 'm'
 $font-family: (
-    m: #{"Roboto Flex", sans-serif},
-    accent-font: #{"Seaweed Script", cursive},
+  m: #{'Roboto Flex',
+  sans-serif},
+  accent-font: #{'Seaweed Script',
+  cursive},
 );
 
 // Font weights
 $font-weight: (
-    xxs: 100,
-    xs: 200,
-    s: 300,
-    m: 400,
-    l: 500,
-    xl: 600,
-    xxl: 700,
-    xxxl: 900,
-    auto: $auto
+  xxs: 100,
+  xs: 200,
+  s: 300,
+  m: 400,
+  l: 500,
+  xl: 600,
+  xxl: 700,
+  xxxl: 900,
+  auto: $auto,
 );
 
 // Font sizes
 $font-size: (
-    xxxs: .15rem,
-    xxs: 0.5rem,
-    xs: .75rem,
-    s: 1rem,
-    m: 1.5rem,
-    l: 2rem,
-    xl: 2.75rem,
-    xxl: 4rem,
-    xxxl: 5.5rem,
-    auto: $auto
+  xxxs: 0.15rem,
+  xxs: 0.5rem,
+  xs: 0.75rem,
+  s: 1rem,
+  m: 1.5rem,
+  l: 2rem,
+  xl: 2.75rem,
+  xxl: 4rem,
+  xxxl: 5.5rem,
+  auto: $auto,
 );
 
 // Line heights
 $line-height: (
-    xxs: 1.25px,
-    xs: 1.5px,
-    s: 2px,
-    m: 2.5px,
-    l: 3px,
-    xl: 5px,
-    xxl: 10px,
-    xxxl: 15px,
-    auto: $auto
+  xxs: 1.25px,
+  xs: 1.5px,
+  s: 2px,
+  m: 2.5px,
+  l: 3px,
+  xl: 5px,
+  xxl: 10px,
+  xxxl: 15px,
+  auto: $auto,
 );
 
 // Letter Spacing
 $letter-spacing: (
-    s: 1px,
-    m: 2px,
-    l: 3px,
-    xl: 4px,
-    xxl: 6px,
-    xxxl: 10px,
-    auto: $auto
+  s: 1px,
+  m: 2px,
+  l: 3px,
+  xl: 4px,
+  xxl: 6px,
+  xxxl: 10px,
+  auto: $auto,
 );
 
 // Margins
 $m_center: 0 auto;
 $margin: (
-    xxxs: 0,
-    xxs: .25rem,
-    xs: .5rem,
-    s: .75rem,
-    m: 1rem,
-    l: 1.5rem,
-    xl: 2rem,
-    xxl: 4rem,
-    xxxl: 6rem,
-    xxxxl: 10rem,
-    auto: $auto,
-    center: $m_center
+  xxxs: 0,
+  xxs: 0.25rem,
+  xs: 0.5rem,
+  s: 0.75rem,
+  m: 1rem,
+  l: 1.5rem,
+  xl: 2rem,
+  xxl: 4rem,
+  xxxl: 6rem,
+  xxxxl: 10rem,
+  auto: $auto,
+  center: $m_center,
 );
 
 // Paddings
 $padding: (
-    xss: .25rem,
-    xs: .5rem,
-    s: .75rem,
-    m: 1rem,
-    l: 1.5rem,
-    xl: 2rem,
-    xxl: 3.5rem,
-    xxxl: 5rem,
-    auto: $auto
+  xss: 0.25rem,
+  xs: 0.5rem,
+  s: 0.75rem,
+  m: 1rem,
+  l: 1.5rem,
+  xl: 2rem,
+  xxl: 3.5rem,
+  xxxl: 5rem,
+  auto: $auto,
 );
 
 // Widths
 $width: (
-    s: 250px,
-    m: 500px,
-    l: 750px,
-    container: 1500px
+  s: 250px,
+  m: 500px,
+  l: 750px,
+  container: 1500px,
 );
 
 // z-index - there should only be one mapping for max z-index
 $z-index: (
-    s: -1,
-    m: 0,
-    l: 10,
-    xl: 100,
-    xxl: 1000,
-    xxxl: 2000,
-    nav: 9999,
-    max: 9999999999
-    );
+  s: -1,
+  m: 0,
+  l: 10,
+  xl: 100,
+  xxl: 1000,
+  xxxl: 2000,
+  nav: 9999,
+  max: 9999999999,
+);

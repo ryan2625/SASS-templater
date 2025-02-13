@@ -1,48 +1,53 @@
-@use "./_variables" as v;
-@use "./_functions" as f;
+@use './_variables' as v;
+@use './_functions' as f;
 
 /// Get the value of the typography respective to its map
 /// @param {Identifier} $var-font-family - Key in $font-family
 /// @param {Identifier} $var-font-weight - Key in $font-weight
 /// @param {Identifier} $var-font-color - Key in $themes submap. Will retrieve light/dark mode color value
 /// @param {Identifier|Int} $var-font-size - Key in $font-size
-@mixin setTypography($var-font-family: null, $var-font-weight: null,
-    $var-font-color: null, $var-letter-spacing: null, $var-font-size: null) {
-    @if $var-font-family {
-        font-family: f.getVal(v.$font-family, $var-font-family)
-    } @else {
-        font-family: f.getVal(v.$font-family, v.$standard)
-    }
+@mixin setTypography(
+  $var-font-family: null,
+  $var-font-weight: null,
+  $var-font-color: null,
+  $var-letter-spacing: null,
+  $var-font-size: null
+) {
+  @if $var-font-family {
+    font-family: f.getVal(v.$font-family, $var-font-family);
+  } @else {
+    font-family: f.getVal(v.$font-family, v.$standard);
+  }
 
-    @if $var-font-weight {
-        font-weight: f.getVal(v.$font-weight, $var-font-weight)
-    } @else {
-        font-weight: f.getVal(v.$font-weight, v.$standard)
-    }
+  @if $var-font-weight {
+    font-weight: f.getVal(v.$font-weight, $var-font-weight);
+  } @else {
+    font-weight: f.getVal(v.$font-weight, v.$standard);
+  }
 
-    @if $var-font-color {
-        color: f.var_($var-font-color)
-    } @else {
-        color: var(--txt1)
-    }
+  @if $var-font-color {
+    color: f.var_($var-font-color);
+  } @else {
+    color: var(--txt1);
+  }
 
-    @if $var-letter-spacing {
-        letter-spacing: f.getVal(v.$letter-spacing, $var-letter-spacing)
-    } @else {
-        letter-spacing: f.getVal(v.$letter-spacing, v.$standard)
-    }
+  @if $var-letter-spacing {
+    letter-spacing: f.getVal(v.$letter-spacing, $var-letter-spacing);
+  } @else {
+    letter-spacing: f.getVal(v.$letter-spacing, v.$standard);
+  }
 
-    @if $var-font-size {
-        font-size: f.getVal(v.$font-size, $var-font-size);
-    } @else {
-        font-size: f.getVal(v.$font-size, v.$standard);
-    }
+  @if $var-font-size {
+    font-size: f.getVal(v.$font-size, $var-font-size);
+  } @else {
+    font-size: f.getVal(v.$font-size, v.$standard);
+  }
 }
 
 /// Get the value of the typography respective to its map
 /// @param {Property} $tranform-properties - Extra value(s) for the transform property
 @mixin absoluteCenter($tranform-properties: null) {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) $tranform-properties;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) $tranform-properties;
 }

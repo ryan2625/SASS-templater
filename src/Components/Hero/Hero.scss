@@ -1,4 +1,4 @@
-@use "../../Styles/_forwards" as *;
+@use '../../Styles/_forwards' as *;
 
 //=========================================\\
 //=======Individual Component Styles=======\\
@@ -14,576 +14,571 @@ $imageAndOverlayHeightSmall: 189px;
 //=========================================\\
 
 .hero-container {
-    // TODO EDIT HEIGHTS
-    min-height: 130vh;
-    background-color: var_(bg1);
-    position: relative;
-    overflow: hidden;
-    transition: background-color .45s;
+  // TODO EDIT HEIGHTS
+  min-height: 130vh;
+  background-color: var_(bg1);
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.45s;
 
-    &::after {
-        content: "";
-        position: absolute;
-        bottom: 0px;
-        width: 100vw;
-        height: 150px;
-        border-top-left-radius: 50% 70%;
-        border-top-right-radius: 50% 70%;
-        overflow-x: hidden;
-        z-index: getVal($z-index, l);
-        background-color: var_(inverse-bg1);
-    }
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    width: 100vw;
+    height: 150px;
+    border-top-left-radius: 50% 70%;
+    border-top-right-radius: 50% 70%;
+    overflow-x: hidden;
+    z-index: getVal($z-index, l);
+    background-color: var_(inverse-bg1);
+  }
 
-    * {
-        transition: background-color .45s;
-    }
+  * {
+    transition: background-color 0.45s;
+  }
 }
 
 //=======NAVBAR STYLES=======\\
 //===========================\\
 
 nav {
+  width: 100%;
+  height: 80px;
+  background-color: var_(bg1);
+
+  img {
+    cursor: pointer;
+  }
+
+  * {
+    max-height: 80px;
+  }
+
+  > div {
     width: 100%;
-    height: 80px;
-    background-color: var_(bg1);
+    max-width: getVal($width, container);
+    display: flex;
+    justify-content: space-between;
+    margin: $m_center;
 
-    img {
-        cursor: pointer;
+    > * {
+      display: inline-block;
+      margin: getMultiVal($margin, auto, xl);
+      @include setTypography(null, xs, txt1, null, l);
+      letter-spacing: 10px;
     }
+  }
 
-    * {
-        max-height: 80px;
-    }
-
-    > div {
-        width: 100%;
-        max-width: getVal($width, container);
-        display: flex;
-        justify-content: space-between;
-        margin: $m_center;
-
-        >* {
-            display: inline-block;
-            margin: getMultiVal($margin, auto, xl);
-            @include setTypography(null, xs, txt1, null, l);
-            letter-spacing: 10px;
-        }
-    }
-
-    > div:first-child {
-        height: 100%;
-    }
+  > div:first-child {
+    height: 100%;
+  }
 }
 
 .main-nav {
-    position: relative;
-    background-color: var_(bg1);
-    z-index: getVal($z-index, l);
+  position: relative;
+  background-color: var_(bg1);
+  z-index: getVal($z-index, l);
 }
 
 .fixed-nav {
-    position: fixed;
-    transition: all .5s ease-in-out;
-    top: 0px;
-    z-index: getVal($z-index, nav);
+  position: fixed;
+  transition: all 0.5s ease-in-out;
+  top: 0px;
+  z-index: getVal($z-index, nav);
 }
 
 .static-nav {
-    position: fixed;
-    animation: changePosition .35s ease-in-out;
-    transition: all .25s ease-in-out;
-    top: -80px;
-    z-index: getVal($z-index, nav)
+  position: fixed;
+  animation: changePosition 0.35s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  top: -80px;
+  z-index: getVal($z-index, nav);
 }
 
 .hero-mode-constructor {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero-mode-picture {
-    position: absolute;
-    height: 100px;
-    top: -12px;
-    left: -12px;
+  position: absolute;
+  height: 100px;
+  top: -12px;
+  left: -12px;
 }
 
 .hero-mode-bg {
-    background-color: var_(inverse-bg1);
-    position: relative;
-    transition: all .5s ease-in-out;
-    height: 30px;
-    width: 30px;
-    border-radius: 100%;
-    margin: getMultiVal($margin, .2, 0, 0, 0.7);
-    overflow: hidden;
+  background-color: var_(inverse-bg1);
+  position: relative;
+  transition: all 0.5s ease-in-out;
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  margin: getMultiVal($margin, 0.2, 0, 0, 0.7);
+  overflow: hidden;
 }
 
 .hero-to-dark {
-    animation: lightToDark .5s ease-in-out forwards;
+  animation: lightToDark 0.5s ease-in-out forwards;
 }
 
 .hero-to-light {
-    animation: darkToLight .5s ease-in-out forwards;
+  animation: darkToLight 0.5s ease-in-out forwards;
 }
 
 .sass-studios {
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 //===============================\\
 //=======END NAVBAR STYLES=======\\
 
 .headline {
-    max-width: getVal($width, container);
-    display: flex;
-    margin: getMultiVal($margin, 2.5, auto, 2.5, auto);
-    padding: getVal($padding, xl);
+  max-width: getVal($width, container);
+  display: flex;
+  margin: getMultiVal($margin, 2.5, auto, 2.5, auto);
+  padding: getVal($padding, xl);
 
-    >div {
-        flex: 1 1 50%;
-        max-width: 750px;
-    }
-
+  > div {
+    flex: 1 1 50%;
+    max-width: 750px;
+  }
 }
 
 .intro {
-    p:nth-child(2) {
-        margin-top: getVal($margin, -1.5)
+  p:nth-child(2) {
+    margin-top: getVal($margin, -1.5);
+  }
+
+  p {
+    span {
+      word-spacing: 10px;
+      white-space: nowrap;
     }
 
-    p {
-        span {
-            word-spacing: 10px;
-            white-space: nowrap;
-        }
-
-        span:first-child {
-            @include setTypography(accent-font, s, txt1, null, null);
-            font-size: min(calc(getVal($font-size, 3) + 5vw), 150px);
-        }
-
-        span:nth-child(2),
-        span:nth-child(3) {
-            font-size: min(calc(getVal($font-size, m) + 3.5vw), 80px);
-        }
-
-        span:nth-child(3) {
-            display: inline-block;
-            position: relative;
-            z-index: getVal($z-index, l) !important;
-
-        }
+    span:first-child {
+      @include setTypography(accent-font, s, txt1, null, null);
+      font-size: min(calc(getVal($font-size, 3) + 5vw), 150px);
     }
+
+    span:nth-child(2),
+    span:nth-child(3) {
+      font-size: min(calc(getVal($font-size, m) + 3.5vw), 80px);
+    }
+
+    span:nth-child(3) {
+      display: inline-block;
+      position: relative;
+      z-index: getVal($z-index, l) !important;
+    }
+  }
 }
 
 .intro-swoosh {
-    display: block;
-    width: 100%;
-    aspect-ratio: 367/100;
-    position: absolute;
-    transform: rotate(5deg);
-    z-index: getVal($z-index, s) !important;
-    opacity: 0;
+  display: block;
+  width: 100%;
+  aspect-ratio: 367/100;
+  position: absolute;
+  transform: rotate(5deg);
+  z-index: getVal($z-index, s) !important;
+  opacity: 0;
 }
 
 .intro-swoosh-down {
-    animation: downFade .4s ease-in-out forwards;
+  animation: downFade 0.4s ease-in-out forwards;
 }
 
 .intro-swoosh-up {
-    animation: upFade .4s ease-in-out forwards;
+  animation: upFade 0.4s ease-in-out forwards;
 }
 
 .intro-swoosh-first-render-sass {
-    opacity: 1;
-    bottom: -20%;
+  opacity: 1;
+  bottom: -20%;
 }
 
 .intro-swoosh-first-render-css {
-    opacity: 0 !important;
-    transition: none !important;
+  opacity: 0 !important;
+  transition: none !important;
 }
 
 .intro-sub-heading {
-    font-size: min(calc(getVal($font-size, m) + 3vw), 50px);
+  font-size: min(calc(getVal($font-size, m) + 3vw), 50px);
 }
 
 .intro-container {
-    margin-top: getVal($margin, 15);
-    display: grid;
-    place-items: center
+  margin-top: getVal($margin, 15);
+  display: grid;
+  place-items: center;
 }
 
 .intro-graphic {
-    position: relative;
-    margin: getVal($margin, center);
-    margin-right: 30%;
-    height: 60%;
-    width: 60%;
+  position: relative;
+  margin: getVal($margin, center);
+  margin-right: 30%;
+  height: 60%;
+  width: 60%;
 
-    >img:nth-child(1) {
-        width: max(300%, 1000px);
-        z-index: getVal($z-index, m) !important;
-        @include absoluteCenter(rotate(195deg));
-        margin-left: getVal($margin, xxxl);
-        margin-top: getVal($margin, l);
-        transition: all .4s ease-in-out;
-    }
+  > img:nth-child(1) {
+    width: max(300%, 1000px);
+    z-index: getVal($z-index, m) !important;
+    @include absoluteCenter(rotate(195deg));
+    margin-left: getVal($margin, xxxl);
+    margin-top: getVal($margin, l);
+    transition: all 0.4s ease-in-out;
+  }
 
-    >img:nth-child(2) {
-        width: max(300%, 1000px);
-        z-index: getVal($z-index, m) !important;
-        @include absoluteCenter(rotate(195deg));
-        margin-left: getVal($margin, xxxl);
-        transition: all .4s ease-in-out;
-    }
+  > img:nth-child(2) {
+    width: max(300%, 1000px);
+    z-index: getVal($z-index, m) !important;
+    @include absoluteCenter(rotate(195deg));
+    margin-left: getVal($margin, xxxl);
+    transition: all 0.4s ease-in-out;
+  }
 
-    img {
-        position: absolute;
-        z-index: getVal($z-index, l);
-        border-radius: $Hero-graphic-radius;
-    }
+  img {
+    position: absolute;
+    z-index: getVal($z-index, l);
+    border-radius: $Hero-graphic-radius;
+  }
 }
 
 .intro-styling-container {
-    margin-top: 4rem;
-    width: fit-content;
-    position: relative;
+  margin-top: 4rem;
+  width: fit-content;
+  position: relative;
 }
 
 .intro-styling {
-    position: absolute;
-    white-space: nowrap;
-    width: fit-content;
+  position: absolute;
+  white-space: nowrap;
+  width: fit-content;
 }
 
 .intro-primary-styling {
-    font-size: getVal($font-size, l);
-    line-height: min(getVal($line-height, 10), 35px);
-    top: -2rem;
-    animation: smallToBig .4s ease-in-out forwards;
-    transition: color .4s ease-in-out;
+  font-size: getVal($font-size, l);
+  line-height: min(getVal($line-height, 10), 35px);
+  top: -2rem;
+  animation: smallToBig 0.4s ease-in-out forwards;
+  transition: color 0.4s ease-in-out;
 }
 
 .intro-hold-width {
-    font-size: getVal($font-size, l);
-    line-height: min(getVal($line-height, 10), 35px);
-    pointer-events: none;
-    opacity: 0;
+  font-size: getVal($font-size, l);
+  line-height: min(getVal($line-height, 10), 35px);
+  pointer-events: none;
+  opacity: 0;
 }
 
 .intro-secondary-styling {
-    font-size: getVal($font-size, m);
-    color: var_(dimmed-text);
-    top: 1.5rem;
-    animation: bigToSmall .4s ease-in-out forwards;
-    transition: color .4s ease-in-out;
+  font-size: getVal($font-size, m);
+  color: var_(dimmed-text);
+  top: 1.5rem;
+  animation: bigToSmall 0.4s ease-in-out forwards;
+  transition: color 0.4s ease-in-out;
 }
 
 .intro-primary-styling-first-render {
-    font-size: getVal($font-size, l);
-    top: -2.45rem;
+  font-size: getVal($font-size, l);
+  top: -2.45rem;
 }
 
 .intro-secondary-styling-first-render {
-    font-size: getVal($font-size, m);
-    top: 1rem;
-    color: var_(dimmed-text);
+  font-size: getVal($font-size, m);
+  top: 1rem;
+  color: var_(dimmed-text);
 }
 
 .primary-graphic {
-    z-index: getVal($z-index, xxxl) !important;
+  z-index: getVal($z-index, xxxl) !important;
 }
 
 .secondary-graphic {
-    position: relative;
+  position: relative;
 }
 
 .intro-graphic-swap {
-    width: $imageAndOverlayDimensions;
-    height: auto;
-    aspect-ratio: 3/2;
+  width: $imageAndOverlayDimensions;
+  height: auto;
+  aspect-ratio: 3/2;
 }
 
 .gradient-fadein {
-    transition: all .4s ease-in-out;
-    opacity: 1;
+  transition: all 0.4s ease-in-out;
+  opacity: 1;
 }
 
 .gradient-fadeout {
-    transition: all .4s ease-in-out;
-    opacity: 0;
+  transition: all 0.4s ease-in-out;
+  opacity: 0;
 }
 
 .graphic-swap-1-dark {
-    left: 175px;
-    margin-top: -175px;
+  left: 175px;
+  margin-top: -175px;
 }
 
 .graphic-swap-2-dark {
-    margin-top: 0%;
+  margin-top: 0%;
 }
 
 .intro-swap-cont2,
 .intro-swap-cont1 {
-    position: relative;
+  position: relative;
 }
 
 .hero-overlay {
-    &::after {
-        content: "";
-        backdrop-filter: brightness(.6) saturate(122%) blur(2px);
-        z-index: getVal($z-index, xl);
-        position: absolute;
-        top: 0;
-        width: $imageAndOverlayDimensions;
-        height: 267px !important;
-        border-radius: $Hero-graphic-radius;
-    }
+  &::after {
+    content: '';
+    backdrop-filter: brightness(0.6) saturate(122%) blur(2px);
+    z-index: getVal($z-index, xl);
+    position: absolute;
+    top: 0;
+    width: $imageAndOverlayDimensions;
+    height: 267px !important;
+    border-radius: $Hero-graphic-radius;
+  }
 }
 
 .hero-overlay-adjust {
-    &::after {
-        left: 175px;
-        margin-top: -175px;
-        content: "";
-        backdrop-filter: brightness(.6) saturate(122%) blur(2px);
-        z-index: getVal($z-index, l);
-        position: absolute;
-        top: 0;
-        width: $imageAndOverlayDimensions;
-        height: 267px !important;
-        border-radius: $Hero-graphic-radius;
-    }
+  &::after {
+    left: 175px;
+    margin-top: -175px;
+    content: '';
+    backdrop-filter: brightness(0.6) saturate(122%) blur(2px);
+    z-index: getVal($z-index, l);
+    position: absolute;
+    top: 0;
+    width: $imageAndOverlayDimensions;
+    height: 267px !important;
+    border-radius: $Hero-graphic-radius;
+  }
 }
 
 #intro-after {
-    width: 25px;
-    height: 25px;
-    position: absolute;
-    top: -15px;
-    right: -25px;
-    cursor: pointer;
-    z-index: getVal($z-index, xl);
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: -15px;
+  right: -25px;
+  cursor: pointer;
+  z-index: getVal($z-index, xl);
 }
 
 #intro-highlight {
-    width: 1px;
-    height: 1px;
-    position: absolute;
-    top: -15px;
-    right: -25px;
-    animation: glow 1s infinite alternate;
-    z-index: getVal($z-index, l);
-    box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.129);
-    transform: translate(-12px, 10px);
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  top: -15px;
+  right: -25px;
+  animation: glow 1s infinite alternate;
+  z-index: getVal($z-index, l);
+  box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.129);
+  transform: translate(-12px, 10px);
 }
 
 @keyframes bigToSmall {
-    0% {
-        font-size: getVal($font-size, l);
-        top: -2.45rem;
-    }
+  0% {
+    font-size: getVal($font-size, l);
+    top: -2.45rem;
+  }
 
-    70% {
-        font-size: getVal($font-size, xs);
-    }
+  70% {
+    font-size: getVal($font-size, xs);
+  }
 
-    100% {
-        font-size: getVal($font-size, m);
-        top: 1rem;
-    }
+  100% {
+    font-size: getVal($font-size, m);
+    top: 1rem;
+  }
 }
 
 @keyframes smallToBig {
-    0% {
-        font-size: getVal($font-size, m);
-        top: 1.1rem;
-    }
+  0% {
+    font-size: getVal($font-size, m);
+    top: 1.1rem;
+  }
 
-    70% {
-        font-size: getVal($font-size, xl);
-    }
+  70% {
+    font-size: getVal($font-size, xl);
+  }
 
-    100% {
-        font-size: getVal($font-size, l);
-        top: -2rem;
-    }
+  100% {
+    font-size: getVal($font-size, l);
+    top: -2rem;
+  }
 }
 
 @keyframes upFade {
-    0% {
-        bottom: -20%;
-        opacity: 0;
-    }
+  0% {
+    bottom: -20%;
+    opacity: 0;
+  }
 
-    30% {
+  30% {
+    opacity: 0;
+  }
 
-        opacity: 0;
-    }
-
-    100% {
-        bottom: -20%;
-        opacity: 1;
-    }
+  100% {
+    bottom: -20%;
+    opacity: 1;
+  }
 }
 
 @keyframes downFade {
-    0% {
-        bottom: -20%;
-        opacity: 1;
-    }
+  0% {
+    bottom: -20%;
+    opacity: 1;
+  }
 
-    70% {
+  70% {
+    opacity: 0;
+  }
 
-        opacity: 0;
-    }
-
-    100% {
-        bottom: -20%;
-        opacity: 0;
-    }
+  100% {
+    bottom: -20%;
+    opacity: 0;
+  }
 }
 
 @keyframes lightToDark {
-    0% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(360deg);
+  }
 
-    50% {}
+  50% {
+  }
 
-    100% {
-        transform: rotate(180deg);
-
-    }
+  100% {
+    transform: rotate(180deg);
+  }
 }
 
 @keyframes darkToLight {
-    0% {
-        transform: rotate(180deg);
-    }
+  0% {
+    transform: rotate(180deg);
+  }
 
-    50% {}
+  50% {
+  }
 
-    100% {
-        transform: rotate(0deg);
-
-    }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 @keyframes glow {
-    0% {
-        box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.129);
-    }
+  0% {
+    box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.129);
+  }
 
-    100% {
-        box-shadow: 0px 0px 30px 10px rgb(255, 255, 255);
-    }
+  100% {
+    box-shadow: 0px 0px 30px 10px rgb(255, 255, 255);
+  }
 }
 
 @media (max-width: 1360px) {
-    .intro-container {
-        margin-left: calc(20vw - 300px);
-        padding-top: getVal($padding, xl)
-    }
+  .intro-container {
+    margin-left: calc(20vw - 300px);
+    padding-top: getVal($padding, xl);
+  }
 
-    .intro-graphic>img:nth-child(2),
-    .intro-graphic>img:nth-child(1) {
-        max-width: 1100px;
-    }
+  .intro-graphic > img:nth-child(2),
+  .intro-graphic > img:nth-child(1) {
+    max-width: 1100px;
+  }
 
-    .intro {
-        max-width: 500px !important;
-    }
+  .intro {
+    max-width: 500px !important;
+  }
 }
 
 @media (max-width: 1100px) {
-    .intro-container {
-        padding-top: getVal($padding, 15);
-        margin-left: calc(0rem - (getVal($margin, xxxxl) * 1.5));
-    }
+  .intro-container {
+    padding-top: getVal($padding, 15);
+    margin-left: calc(0rem - (getVal($margin, xxxxl) * 1.5));
+  }
 
-    .graphic-swap-1-dark,
-    .hero-overlay-adjust::after {
-        left: 50px;
-    }
+  .graphic-swap-1-dark,
+  .hero-overlay-adjust::after {
+    left: 50px;
+  }
 
-    .graphic-swap-2-dark,
-    .hero-overlay::after {
-        left: -100px;
-    }
+  .graphic-swap-2-dark,
+  .hero-overlay::after {
+    left: -100px;
+  }
 }
 
 @media (max-width: 800px) {
-    .headline {
-        flex-direction: column;
-    }
+  .headline {
+    flex-direction: column;
+  }
 
-    .intro-container {
-        padding: 0;
-        margin: 0;
-    }
+  .intro-container {
+    padding: 0;
+    margin: 0;
+  }
 
-    .graphic-swap-1-dark,
-    .hero-overlay-adjust::after,
-    .graphic-swap-2-dark,
-    .hero-overlay::after {
-        width: $imageAndOverlayDimensionsSmall;
-        height: $imageAndOverlayHeightSmall !important;
-        transform: translate(30%, 40%);
-    }
+  .graphic-swap-1-dark,
+  .hero-overlay-adjust::after,
+  .graphic-swap-2-dark,
+  .hero-overlay::after {
+    width: $imageAndOverlayDimensionsSmall;
+    height: $imageAndOverlayHeightSmall !important;
+    transform: translate(30%, 40%);
+  }
 
-    .intro-graphic>img:nth-child(2),
-    .intro-graphic>img:nth-child(1) {
-        max-width: 1400px;
-        transform: translate(-50%, -20%) rotate(195deg);
-    }
+  .intro-graphic > img:nth-child(2),
+  .intro-graphic > img:nth-child(1) {
+    max-width: 1400px;
+    transform: translate(-50%, -20%) rotate(195deg);
+  }
 
-    .graphic-swap-1-dark,
-    .hero-overlay-adjust::after {
-        left: 100px;
-        top: 125px;
-    }
+  .graphic-swap-1-dark,
+  .hero-overlay-adjust::after {
+    left: 100px;
+    top: 125px;
+  }
 
-    .graphic-swap-2-dark,
-    .hero-overlay::after {
-        left: -80px;
-    }
+  .graphic-swap-2-dark,
+  .hero-overlay::after {
+    left: -80px;
+  }
 
-    .hero-container {
-        min-height: 100vh;
-    }
+  .hero-container {
+    min-height: 100vh;
+  }
 
-    .intro p:nth-child(2) {
-        margin-bottom: getVal($margin, s);
-    }
+  .intro p:nth-child(2) {
+    margin-bottom: getVal($margin, s);
+  }
 
-    .headline {
-        margin: getMultiVal($margin, m, s);
-    }
+  .headline {
+    margin: getMultiVal($margin, m, s);
+  }
 
-    .sass-studios {
-        white-space: nowrap;
-        letter-spacing: 2px;
-    }
+  .sass-studios {
+    white-space: nowrap;
+    letter-spacing: 2px;
+  }
 }
 
 @media (max-width: 600px) {
+  .graphic-swap-1-dark,
+  .hero-overlay-adjust::after {
+    left: 0px;
+    top: 125px;
+  }
 
-    .graphic-swap-1-dark,
-    .hero-overlay-adjust::after {
-        left: 0px;
-        top: 125px;
-    }
+  .graphic-swap-2-dark,
+  .hero-overlay::after {
+    left: -100px;
+  }
 
-    .graphic-swap-2-dark,
-    .hero-overlay::after {
-        left: -100px;
-    }
-
-    .intro>p>span {
-        white-space: wrap;
-    }
+  .intro > p > span {
+    white-space: wrap;
+  }
 }

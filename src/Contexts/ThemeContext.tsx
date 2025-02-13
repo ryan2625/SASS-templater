@@ -1,46 +1,42 @@
-import { createContext, useState, useEffect, Children } from "react";
+import { createContext, useState, useEffect, Children } from 'react'
 
-type themes = "light" | "dark"
+type themes = 'light' | 'dark'
 
-interface ThemeContextType  {
-    context: "light" | "dark",
-    setTheme: React.Dispatch<React.SetStateAction<themes | null>>
+interface ThemeContextType {
+  context: 'light' | 'dark'
+  setTheme: React.Dispatch<React.SetStateAction<themes | null>>
 }
 
-var defaultContext:ThemeContextType = {
-    context: "dark",
-    setTheme: () => {}
+var defaultContext: ThemeContextType = {
+  context: 'dark',
+  setTheme: () => {},
 }
 
-export const ThemeContext = createContext<ThemeContextType>(defaultContext);
+export const ThemeContext = createContext<ThemeContextType>(defaultContext)
 
-const ThemeContextProvider = ({children}: { children: React.ReactNode }) => {
-    useEffect(() => {
-        document.documentElement.setAttribute('data-theme', theme)
-      }, [])
+const ThemeContextProvider = ({ children }: { children: React.ReactNode }) => {
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+  }, [])
 
-      type themes = "light" | "dark"
-    
-      const [theme, setTheme] = useState<themes>("dark")
-    
-      const changeTheme = () => {
-        setTheme(prev => {
-          const newTheme = prev === 'light' ? 'dark' : 'light'
-          document.documentElement.setAttribute('data-theme', newTheme)
-          return newTheme
-        })
-      }
-      
-      var contextTheme = {
-        context: theme,
-        setTheme: changeTheme
-      }
+  type themes = 'light' | 'dark'
 
-      return (
-        <ThemeContext.Provider value={contextTheme}>
-            {children}
-        </ThemeContext.Provider>
-      )
+  const [theme, setTheme] = useState<themes>('dark')
+
+  const changeTheme = () => {
+    setTheme((prev) => {
+      const newTheme = prev === 'light' ? 'dark' : 'light'
+      document.documentElement.setAttribute('data-theme', newTheme)
+      return newTheme
+    })
+  }
+
+  var contextTheme = {
+    context: theme,
+    setTheme: changeTheme,
+  }
+
+  return <ThemeContext.Provider value={contextTheme}>{children}</ThemeContext.Provider>
 }
 
 export default ThemeContextProvider
