@@ -2,7 +2,7 @@ name: Prettier Formatting
 
 on:
   schedule:
-    - cron: '0 12 * * 5/2'
+    - cron: '0 12 14,28 * *'
   workflow_dispatch: 
 
 permissions: 
