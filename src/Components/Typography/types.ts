@@ -16,6 +16,6 @@ export interface Scale {
 }
 
 export interface Label {
-  htmlFor: string;
-  text: string;
+  htmlFor: string
+  text: string
 }
