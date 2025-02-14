@@ -38,7 +38,7 @@ const defaultContext: StylesContext = {
 
 const BaseTotalStylesContext: TotalStylesContext = {
   styles: defaultContext,
-  setStyles: () => { },
+  setStyles: () => {},
 }
 
 export const StylesContext = createContext<TotalStylesContext>(BaseTotalStylesContext)

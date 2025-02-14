@@ -9,7 +9,7 @@ interface ThemeContextType {
 
 const defaultContext: ThemeContextType = {
   context: 'dark',
-  setTheme: () => { },
+  setTheme: () => {},
 }
 
 export const ThemeContext = createContext<ThemeContextType>(defaultContext)
