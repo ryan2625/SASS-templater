@@ -1,10 +1,10 @@
-import { useState, useEffect, useContext } from 'react'
-import './Typography.scss'
-import useTypographyReducer from '../../Hooks/useTypographyReducer'
+import { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../../Contexts/ThemeContext'
-import { calcVal, getCssVariableValue } from './utils'
-import { sizes, fonts, scales, labels } from './constants'
+import useTypographyReducer from '../../Hooks/useTypographyReducer'
+import { fonts, labels, scales, sizes } from './constants'
 import { Styles } from './types'
+import './Typography.scss'
+import { calcVal, getCssVariableValue } from './utils'
 
 function Typography() {
   const themeContext = useContext(ThemeContext)

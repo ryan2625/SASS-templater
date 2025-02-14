@@ -1,5 +1,5 @@
-import { createContext, useState, useMemo } from 'react'
-import { State as TypographyState, initialState as initialTypographyState } from '../Hooks/useTypographyReducer'
+import { createContext, useMemo, useState } from 'react'
+import { initialState as initialTypographyState, State as TypographyState } from '../Hooks/useTypographyReducer'
 
 interface StylesContext {
   tags: TypographyState

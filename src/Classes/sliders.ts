@@ -18,15 +18,18 @@ class SliderContainer {
   }
 
   public createAndAddSlider(slider: sliderInstanceProps) {
+    let newSlider
     if (this.len > 0) {
       const prevSlider: Slider = this.sliderList[this.len - 1]
-      var newSlider = new Slider(prevSlider, slider.id)
+      const newSlider = new Slider(prevSlider, slider.id)
       prevSlider.next = newSlider
     } else {
-      var newSlider = new Slider(null, slider.id)
+      newSlider = new Slider(null, slider.id)
     }
     this.len += 1
-    this.sliderList.push(newSlider)
+    if (newSlider) {
+      this.sliderList.push(newSlider)
+    }
   }
 }
 
@@ -46,7 +49,7 @@ class Slider {
   constructor(prev: Slider | null, id: string) {
     this.prev = prev
     this.id = id
-    this.position = !!prev?.position ? prev.position + 1 : 1
+    this.position = prev?.position ? prev.position + 1 : 1
     this.value = this.position * 10
     this.next = null
     this.body = document.createElement('div')
@@ -58,6 +61,7 @@ class Slider {
   moveValue() {}
 }
 
-var mainSliderContainer: SliderContainer = new SliderContainer([])
-
-var sliderPropsArr: sliderInstanceProps[] = [{ prev: null, id: '' }]
+// eslint-disable-next-line
+const mainSliderContainer: SliderContainer = new SliderContainer([])
+// eslint-disable-next-line
+const sliderPropsArr: sliderInstanceProps[] = [{ prev: null, id: '' }]

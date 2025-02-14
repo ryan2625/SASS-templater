@@ -14,7 +14,7 @@ import {
   cssLight,
   sassLight,
   darkLightMode,
-} from './Imports'
+} from '../../Assets/exports'
 
 const Hero = () => {
   const themeContext = useContext(ThemeContext)
