@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, Children } from 'react'
+import { createContext, useState, useEffect } from 'react'
 
 type themes = 'light' | 'dark'
 
@@ -7,9 +7,9 @@ interface ThemeContextType {
   setTheme: React.Dispatch<React.SetStateAction<themes | null>>
 }
 
-var defaultContext: ThemeContextType = {
+const defaultContext: ThemeContextType = {
   context: 'dark',
-  setTheme: () => {},
+  setTheme: () => { },
 }
 
 export const ThemeContext = createContext<ThemeContextType>(defaultContext)
@@ -31,7 +31,7 @@ const ThemeContextProvider = ({ children }: { children: React.ReactNode }) => {
     })
   }
 
-  var contextTheme = {
+  const contextTheme = {
     context: theme,
     setTheme: changeTheme,
   }

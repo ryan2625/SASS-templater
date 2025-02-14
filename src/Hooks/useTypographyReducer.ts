@@ -33,36 +33,38 @@ function Reducer(state: State, action: Action): State {
   const { type } = action
 
   switch (type) {
-    case 'CHANGE_SIZE':
+    case 'CHANGE_SIZE': {
       return { ...state, size: action.payload }
-    case 'CHANGE_SCALE':
+    }
+    case 'CHANGE_SCALE': {
       return { ...state, scale: action.payload }
-    case 'CHANGE_SPACING':
+    }
+    case 'CHANGE_SPACING': {
       return { ...state, spacing: action.payload }
-    case 'CHANGE_HEIGHT':
+    }
+    case 'CHANGE_HEIGHT': {
       return { ...state, height: action.payload }
-    case 'CHANGE_WEIGHT':
+    }
+    case 'CHANGE_WEIGHT': {
       return { ...state, weight: !state.weight }
-    case 'CHANGE_FONT':
+    }
+    case 'CHANGE_FONT': {
       const selectNode = document.getElementById('typography-font')
       if (selectNode instanceof HTMLSelectElement) {
         selectNode.style.fontFamily = selectNode.value
       }
       return { ...state, font: action.payload }
-    case 'CHANGE_COLOR':
+    }
+    case 'CHANGE_COLOR': {
       return { ...state, color: action.payload }
-    default:
+    }
+    default: {
       return state
+    }
   }
 }
-
 const useTypographyReducer = () => {
   return useReducer(Reducer, initialState)
-}
-
-//Not actually using this but I left it in because why not
-export interface SizeDictionary {
-  [key: string]: number
 }
 
 export default useTypographyReducer

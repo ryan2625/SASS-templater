@@ -13,13 +13,13 @@ export const counterSlice = createSlice({
   name: 'styles',
   initialState,
   reducers: {
-    increment: (state) => {
+    increment: (state: CounterState) => {
       state.value += 1
     },
-    decrement: (state) => {
+    decrement: (state: CounterState) => {
       state.value -= 1
     },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
+    incrementByAmount: (state: CounterState, action: PayloadAction<number>) => {
       state.value += action.payload
     },
   },

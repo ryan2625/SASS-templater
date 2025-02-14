@@ -21,7 +21,7 @@ interface TotalStylesContext {
   setStyles: React.Dispatch<React.SetStateAction<StylesContext>>
 }
 
-let defaultContext: StylesContext = {
+const defaultContext: StylesContext = {
   tags: initialTypographyState,
   margins: [0.25, 0.5, 1, 2, 5],
   colors: {
@@ -36,9 +36,9 @@ let defaultContext: StylesContext = {
   },
 }
 
-let BaseTotalStylesContext: TotalStylesContext = {
+const BaseTotalStylesContext: TotalStylesContext = {
   styles: defaultContext,
-  setStyles: () => {},
+  setStyles: () => { },
 }
 
 export const StylesContext = createContext<TotalStylesContext>(BaseTotalStylesContext)

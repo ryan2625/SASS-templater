@@ -24,7 +24,7 @@ const Hero = () => {
   const [notInitialRender, setNotInitialRender] = useState<boolean>(false)
 
   useEffect(() => {
-    var ele = document.getElementById('main-hero-container')
+    const ele = document.getElementById('main-hero-container')
     setTimeout(() => {
       ele?.classList.add('no-animation')
     }, 1)
@@ -42,7 +42,7 @@ const Hero = () => {
 
     window.addEventListener('scroll', onScroll)
     window.addEventListener('resize', onResize)
-    document.getElementById('intro-after')?.addEventListener('click', function (e) {
+    document.getElementById('intro-after')?.addEventListener('click', function () {
       setSwap((prev) => !prev)
       setNotInitialRender(true)
     })
@@ -51,7 +51,7 @@ const Hero = () => {
       window.removeEventListener('resize', onResize)
     }
   }, [])
-
+  // eslint-disable-next-line
   function setTheme(event: React.MouseEvent<HTMLDivElement>) {
     themeContext.setTheme(null)
   }
