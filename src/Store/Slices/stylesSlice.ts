@@ -1,32 +1,27 @@
-import type { PayloadAction } from '@reduxjs/toolkit'
+//import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
-
-export interface CounterState {
-  value: number
+import { initialState as importedInitialState, State } from '../../Hooks/useTypographyReducer'
+export interface StylesState extends State {
+  otherStyles: string
 }
 
-const initialState: CounterState = {
-  value: 0,
+const initialState: StylesState = {
+  ...importedInitialState,
+  otherStyles: ""
 }
 
 export const counterSlice = createSlice({
   name: 'styles',
   initialState,
   reducers: {
-    increment: (state: CounterState) => {
-      state.value += 1
-    },
-    decrement: (state: CounterState) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state: CounterState, action: PayloadAction<number>) => {
-      state.value += action.payload
+    increment: (state: StylesState) => {
+      state.font += 1
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const { increment } = counterSlice.actions
 
 export default counterSlice.reducer
 
@@ -35,6 +30,15 @@ export default counterSlice.reducer
 /*
 
 
-
+export interface State {
+  size: number
+  scale: number
+  spacing: number
+  height: number
+  weight: boolean
+  font: string
+  color: string
+}
+  todo edit interface but use values extend it and edit
 
 */
