@@ -7,7 +7,7 @@ export interface StylesState extends State {
 
 const initialState: StylesState = {
   ...importedInitialState,
-  otherStyles: {}
+  otherStyles: {},
 }
 
 export const counterSlice = createSlice({
@@ -23,4 +23,3 @@ export const counterSlice = createSlice({
 export const { stateFromReducer } = counterSlice.actions
 
 export default counterSlice.reducer
-

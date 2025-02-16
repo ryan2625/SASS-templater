@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import stylesReducer from "./Slices/stylesSlice"
+import stylesReducer from './Slices/stylesSlice'
 
 export const store = configureStore({
   reducer: {
-    styles: stylesReducer
+    styles: stylesReducer,
   },
 })
 

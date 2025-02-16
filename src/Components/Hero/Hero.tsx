@@ -1,20 +1,20 @@
-import React, { useEffect, useState, useContext } from 'react'
-import { ThemeContext } from '../../Contexts/ThemeContext'
-import './Hero.scss'
-import '../../Styles/__variables.scss'
+import React, { useContext, useEffect, useState } from 'react'
 import {
+  cssDark,
+  cssLight,
+  darkLightMode,
   gradient1,
   gradient2,
-  swoosh1,
-  swoosh2,
+  sassDark,
+  sassLight,
   swap1,
   swap2,
-  cssDark,
-  sassDark,
-  cssLight,
-  sassLight,
-  darkLightMode,
+  swoosh1,
+  swoosh2,
 } from '../../Assets/exports'
+import { ThemeContext } from '../../Contexts/ThemeContext'
+import '../../Styles/__variables.scss'
+import './Hero.scss'
 
 const Hero = () => {
   const themeContext = useContext(ThemeContext)
