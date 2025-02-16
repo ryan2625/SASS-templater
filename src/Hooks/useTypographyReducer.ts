@@ -1,14 +1,7 @@
 import { useReducer } from 'react'
-
-export interface State {
-  size: number
-  scale: number
-  spacing: number
-  height: number
-  weight: boolean
-  font: string
-  color: string
-}
+import { useDispatch } from 'react-redux'
+import { stateFromReducer } from '../Store/Slices/stylesSlice'
+import { initialState, State } from '../Utils/typographyutils'
 
 type Action =
   | { type: 'CHANGE_SIZE'; payload: number }
@@ -19,51 +12,54 @@ type Action =
   | { type: 'CHANGE_FONT'; payload: string }
   | { type: 'CHANGE_COLOR'; payload: string }
 
-export const initialState: State = {
-  size: 16,
-  scale: 1.25,
-  spacing: 0,
-  height: 1.5,
-  weight: false,
-  font: 'Roboto Flex, sans-serif',
-  color: '#ffffff',
-}
-
-function Reducer(state: State, action: Action): State {
-  const { type } = action
-
-  switch (type) {
-    case 'CHANGE_SIZE': {
-      return { ...state, size: action.payload }
-    }
-    case 'CHANGE_SCALE': {
-      return { ...state, scale: action.payload }
-    }
-    case 'CHANGE_SPACING': {
-      return { ...state, spacing: action.payload }
-    }
-    case 'CHANGE_HEIGHT': {
-      return { ...state, height: action.payload }
-    }
-    case 'CHANGE_WEIGHT': {
-      return { ...state, weight: !state.weight }
-    }
-    case 'CHANGE_FONT': {
-      const selectNode = document.getElementById('typography-font')
-      if (selectNode instanceof HTMLSelectElement) {
-        selectNode.style.fontFamily = selectNode.value
-      }
-      return { ...state, font: action.payload }
-    }
-    case 'CHANGE_COLOR': {
-      return { ...state, color: action.payload }
-    }
-    default: {
-      return state
-    }
-  }
-}
 const useTypographyReducer = () => {
+  const dispatch = useDispatch()
+
+  function Reducer(state: State, action: Action): State {
+    const { type } = action
+    let newState: State
+
+    switch (type) {
+      case 'CHANGE_SIZE': {
+        newState = { ...state, size: action.payload }
+        break
+      }
+      case 'CHANGE_SCALE': {
+        newState = { ...state, scale: action.payload }
+        break
+      }
+      case 'CHANGE_SPACING': {
+        newState = { ...state, spacing: action.payload }
+        break
+      }
+      case 'CHANGE_HEIGHT': {
+        newState = { ...state, height: action.payload }
+        break
+      }
+      case 'CHANGE_WEIGHT': {
+        newState = { ...state, weight: !state.weight }
+        break
+      }
+      case 'CHANGE_FONT': {
+        const selectNode = document.getElementById('typography-font')
+        if (selectNode instanceof HTMLSelectElement) {
+          selectNode.style.fontFamily = selectNode.value
+        }
+        newState = { ...state, font: action.payload }
+        break
+      }
+      case 'CHANGE_COLOR': {
+        newState = { ...state, color: action.payload }
+        break
+      }
+      default: {
+        newState = state
+        break
+      }
+    }
+    dispatch(stateFromReducer(newState))
+    return newState
+  }
   return useReducer(Reducer, initialState)
 }
 

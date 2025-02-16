@@ -1,44 +1,26 @@
-//import type { PayloadAction } from '@reduxjs/toolkit'
-import { createSlice } from '@reduxjs/toolkit'
-import { initialState as importedInitialState, State } from '../../Hooks/useTypographyReducer'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { initialState as importedInitialState, State } from '../../Utils/typographyutils'
+
 export interface StylesState extends State {
-  otherStyles: string
+  otherStyles: object
 }
 
 const initialState: StylesState = {
   ...importedInitialState,
-  otherStyles: ""
+  otherStyles: {}
 }
 
 export const counterSlice = createSlice({
   name: 'styles',
   initialState,
   reducers: {
-    increment: (state: StylesState) => {
-      state.font += 1
+    stateFromReducer: (state: StylesState, action: PayloadAction<State>) => {
+      return { ...state, ...action.payload }
     },
   },
 })
 
-// Action creators are generated for each case reducer function
-export const { increment } = counterSlice.actions
+export const { stateFromReducer } = counterSlice.actions
 
 export default counterSlice.reducer
 
-// Above is example store configuration for future
-
-/*
-
-
-export interface State {
-  size: number
-  scale: number
-  spacing: number
-  height: number
-  weight: boolean
-  font: string
-  color: string
-}
-  todo edit interface but use values extend it and edit
-
-*/
