@@ -20,7 +20,7 @@ $themes: (
     accents1: #ff0000,
     btn-bg1: rgb(255, 0, 0),
     btn-txt1: rgb(255, 0, 0),
-    slight-background: rgba(255, 255, 255, 0.445),
+    slight-background: rgba(255, 255, 255, 0.445)
   ),
   dark: (
     bg1: rgb(8, 8, 8),
@@ -37,8 +37,8 @@ $themes: (
     accents1: rgb(81, 255, 0),
     btn-bg1: rgb(255, 0, 0),
     btn-txt1: rgb(255, 0, 0),
-    slight-background: rgba(128, 128, 128, 0.174),
-  ),
+    slight-background: rgba(128, 128, 128, 0.174)
+  )
 );
 
 // Color Constants, regardless of theme
@@ -61,7 +61,7 @@ $font-family: (
   m: #{'Roboto Flex',
   sans-serif},
   accent-font: #{'Seaweed Script',
-  cursive},
+  cursive}
 );
 
 // Font weights
@@ -74,7 +74,7 @@ $font-weight: (
   xl: 600,
   xxl: 700,
   xxxl: 900,
-  auto: $auto,
+  auto: $auto
 );
 
 // Font sizes
@@ -88,7 +88,7 @@ $font-size: (
   xl: 2.75rem,
   xxl: 4rem,
   xxxl: 5.5rem,
-  auto: $auto,
+  auto: $auto
 );
 
 // Line heights
@@ -101,7 +101,7 @@ $line-height: (
   xl: 5px,
   xxl: 10px,
   xxxl: 15px,
-  auto: $auto,
+  auto: $auto
 );
 
 // Letter Spacing
@@ -112,7 +112,7 @@ $letter-spacing: (
   xl: 4px,
   xxl: 6px,
   xxxl: 10px,
-  auto: $auto,
+  auto: $auto
 );
 
 // Margins
@@ -129,7 +129,7 @@ $margin: (
   xxxl: 6rem,
   xxxxl: 10rem,
   auto: $auto,
-  center: $m_center,
+  center: $m_center
 );
 
 // Paddings
@@ -142,7 +142,7 @@ $padding: (
   xl: 2rem,
   xxl: 3.5rem,
   xxxl: 5rem,
-  auto: $auto,
+  auto: $auto
 );
 
 // Widths
@@ -150,7 +150,7 @@ $width: (
   s: 250px,
   m: 500px,
   l: 750px,
-  container: 1500px,
+  container: 1500px
 );
 
 // z-index - there should only be one mapping for max z-index
@@ -162,5 +162,5 @@ $z-index: (
   xxl: 1000,
   xxxl: 2000,
   nav: 9999,
-  max: 9999999999,
+  max: 9999999999
 );

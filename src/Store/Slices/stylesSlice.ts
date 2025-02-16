@@ -7,7 +7,7 @@ export interface StylesState extends State {
 
 const initialState: StylesState = {
   ...importedInitialState,
-  otherStyles: {},
+  otherStyles: {}
 }
 
 export const counterSlice = createSlice({
@@ -16,8 +16,8 @@ export const counterSlice = createSlice({
   reducers: {
     stateFromReducer: (state: StylesState, action: PayloadAction<State>) => {
       return { ...state, ...action.payload }
-    },
-  },
+    }
+  }
 })
 
 export const { stateFromReducer } = counterSlice.actions

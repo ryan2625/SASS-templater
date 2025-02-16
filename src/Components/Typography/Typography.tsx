@@ -15,7 +15,7 @@ function Typography() {
     color: state.color,
     lineHeight: state.height,
     letterSpacing: state.spacing,
-    fontFamily: state.font,
+    fontFamily: state.font
   }
 
   useEffect(() => {
@@ -56,7 +56,7 @@ function Typography() {
                   onChange={(e) =>
                     dispatch({
                       type: 'CHANGE_SIZE',
-                      payload: Number(e.target.value),
+                      payload: Number(e.target.value)
                     })
                   }
                   value={state.size}
@@ -100,7 +100,7 @@ function Typography() {
                   onChange={(e) =>
                     dispatch({
                       type: 'CHANGE_SCALE',
-                      payload: Number(e.target.value),
+                      payload: Number(e.target.value)
                     })
                   }
                   defaultValue="1.250"
@@ -125,7 +125,7 @@ function Typography() {
                   onChange={(e) =>
                     dispatch({
                       type: 'CHANGE_SPACING',
-                      payload: Number(e.target.value),
+                      payload: Number(e.target.value)
                     })
                   }
                   min="-4"
@@ -142,7 +142,7 @@ function Typography() {
                   onChange={(e) =>
                     dispatch({
                       type: 'CHANGE_HEIGHT',
-                      payload: Number(e.target.value),
+                      payload: Number(e.target.value)
                     })
                   }
                 />
@@ -154,7 +154,7 @@ function Typography() {
                   onChange={(e) =>
                     dispatch({
                       type: 'CHANGE_WEIGHT',
-                      payload: Boolean(e.target.value),
+                      payload: Boolean(e.target.value)
                     })
                   }
                 >
@@ -194,7 +194,7 @@ function Typography() {
                         fontSize: '15px',
                         lineHeight: state.height,
                         letterSpacing: '2px',
-                        color: getCssVariableValue('--inverse-txt1'),
+                        color: getCssVariableValue('--inverse-txt1')
                       }}
                     >
                       {tag}
@@ -203,7 +203,7 @@ function Typography() {
                       style={{
                         fontSize: '15px',
                         lineHeight: state.height,
-                        letterSpacing: '2px',
+                        letterSpacing: '2px'
                       }}
                     >
                       {(units === 'px' ? parseScale : ((parseScale * 1) / 16).toFixed(1)) + units}
@@ -212,7 +212,7 @@ function Typography() {
                       style={{
                         ...styles,
                         fontSize: parseScale,
-                        fontWeight: state.weight === true ? (sizes.length - key + 1) * 100 : 400,
+                        fontWeight: state.weight === true ? (sizes.length - key + 1) * 100 : 400
                       }}
                     >
                       Woven silk pyjamas exchanged for blue quartz gems

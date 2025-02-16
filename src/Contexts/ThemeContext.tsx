@@ -9,7 +9,7 @@ interface ThemeContextType {
 
 const defaultContext: ThemeContextType = {
   context: 'dark',
-  setTheme: () => {},
+  setTheme: () => {}
 }
 
 export const ThemeContext = createContext<ThemeContextType>(defaultContext)
@@ -33,7 +33,7 @@ const ThemeContextProvider = ({ children }: { children: React.ReactNode }) => {
 
   const contextTheme = {
     context: theme,
-    setTheme: changeTheme,
+    setTheme: changeTheme
   }
 
   return <ThemeContext.Provider value={contextTheme}>{children}</ThemeContext.Provider>

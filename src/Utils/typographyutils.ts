@@ -15,5 +15,5 @@ export const initialState: State = {
   height: 1.5,
   weight: false,
   font: 'Roboto Flex, sans-serif',
-  color: '#ffffff',
+  color: '#ffffff'
 }

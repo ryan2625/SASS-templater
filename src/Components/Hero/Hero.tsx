@@ -10,7 +10,7 @@ import {
   swap1,
   swap2,
   swoosh1,
-  swoosh2,
+  swoosh2
 } from '../../Assets/exports'
 import { ThemeContext } from '../../Contexts/ThemeContext'
 import '../../Styles/__variables.scss'

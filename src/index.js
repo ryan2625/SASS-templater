@@ -15,7 +15,7 @@ if (root) {
       <ThemeContextProvider>
         <App />
       </ThemeContextProvider>
-    </Provider>,
+    </Provider>
   )
 } else {
   throw new Error('You need a root element in your html file bro...')

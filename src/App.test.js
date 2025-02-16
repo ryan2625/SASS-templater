@@ -10,7 +10,7 @@ test('renders learn react link', () => {
       <ThemeContextProvider>
         <App />
       </ThemeContextProvider>
-    </Provider>,
+    </Provider>
   )
   const elements = screen.getAllByText('sass | studios')
   expect(elements[0]).toBeInTheDocument()
