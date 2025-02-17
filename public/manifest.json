@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Sass Studios",
+  "name": "A website where you can dynamically create and export custom CSS/SASS styles in seconds",
   "icons": [
     {
       "src": "favicon.ico",

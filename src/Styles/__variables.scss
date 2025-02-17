@@ -20,7 +20,8 @@ $themes: (
     accents1: #ff0000,
     btn-bg1: rgb(255, 0, 0),
     btn-txt1: rgb(255, 0, 0),
-    slight-background: rgba(255, 255, 255, 0.445)
+    slight-background: rgba(255, 255, 255, 0.445),
+    curve-divider: url("../Assets/Images/SVGs/bookNegative_Light.svg")
   ),
   dark: (
     bg1: rgb(8, 8, 8),
@@ -37,7 +38,8 @@ $themes: (
     accents1: rgb(81, 255, 0),
     btn-bg1: rgb(255, 0, 0),
     btn-txt1: rgb(255, 0, 0),
-    slight-background: rgba(128, 128, 128, 0.174)
+    slight-background: rgba(128, 128, 128, 0.174),
+    curve-divider: url("../Assets/Images/SVGs/bookNegative_Dark.svg")
   )
 );
 

@@ -10,7 +10,7 @@ export default [
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...globals.jest,
+        ...globals.jest
       },
     },
   },
@@ -23,7 +23,7 @@ export default [
       "react/no-unknown-property": [
         "error",
         {
-          ignore: ["colorpick-eyedropper-active"],
+          ignore: ["colorpick-eyedropper-active"]
         },
       ],
       'brace-style': ['error', '1tbs', { allowSingleLine: true }]

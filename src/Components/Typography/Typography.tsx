@@ -51,6 +51,8 @@ function Typography() {
                 <input
                   type="number"
                   id="typography-size"
+                  min="5"
+                  max="20"
                   step="0.5"
                   name="typography-size"
                   onChange={(e) =>
@@ -60,8 +62,6 @@ function Typography() {
                     })
                   }
                   value={state.size}
-                  min="5"
-                  max="20"
                 />
               </div>
               <div>
@@ -119,6 +119,8 @@ function Typography() {
                 <input
                   type="number"
                   step="0.1"
+                  min="-4"
+                  max="15"
                   name="typography-spacing"
                   id="typography-spacing"
                   value={state.spacing}
@@ -128,7 +130,6 @@ function Typography() {
                       payload: Number(e.target.value)
                     })
                   }
-                  min="-4"
                 />
               </div>
               <div>
@@ -136,6 +137,7 @@ function Typography() {
                   type="number"
                   step="0.05"
                   min="0"
+                  max="5"
                   name="typography-height"
                   id="typography-height"
                   value={state.height}
