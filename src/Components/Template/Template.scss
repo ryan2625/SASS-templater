@@ -1,4 +1,26 @@
+@use '../../Styles/_forwards' as *;
+
 .template-designer-container {
   height: 1000px;
-  background-color: black;
+  background-color: var_(bg1);
+}
+
+.template-divider {
+  height: 200px;
+  width: 100%;
+  position: relative;
+  background-color: var_(inverse-bg1);
+
+  &::after {
+    content: '';
+    position: absolute;
+    background-image: var_(curve-divider);
+    background-repeat: no-repeat;
+    background-size: contain;  
+    width: inherit;             
+    height: 100%;             
+    bottom: 0;
+    left: -30%;
+    z-index: 1;
+  }
 }

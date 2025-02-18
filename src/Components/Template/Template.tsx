@@ -3,7 +3,9 @@ import './Template.scss'
 
 function Template() {
   return (
-    <div className='template-designer-container'>Template</div>
+    <section className='template-designer-container'>
+      <div className="template-divider"></div>
+    </section>
   )
 }
 
