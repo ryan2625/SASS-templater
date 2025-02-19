@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
-import ThemeContextProvider from '../src/Contexts/ThemeContext'
-import App from '../src/App'
-import { store } from '../src/Store/store'
+import ThemeContextProvider from '../Contexts/ThemeContext'
+import App from '../App'
+import { store } from '../Store/store'
 
 describe('Typography and Navbar', () => {
   beforeEach(() => {
