@@ -5,9 +5,9 @@ import App from '../App'
 import { store } from '../Store/store'
 
 describe('Typography and Navbar', () => {
-  beforeEach(() => {
-    // None yet
-  })
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
   const rootApp = (
     <Provider store={store}>

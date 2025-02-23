@@ -69,6 +69,7 @@ const Hero = () => {
                 className={'hero-mode-picture' + (themeContext.context == 'light' ? ' hero-to-dark' : ' hero-to-light')}
                 src={darkLightMode}
                 alt={`Toggle to ${themeContext.context} mode`}
+                data-testid="change-theme-icon-1"
               />
             </div>
           </div>
@@ -84,6 +85,7 @@ const Hero = () => {
                 className={'hero-mode-picture' + (themeContext.context == 'light' ? ' hero-to-dark' : ' hero-to-light')}
                 src={darkLightMode}
                 alt={`Toggle to ${themeContext.context} mode`}
+                data-testid="change-theme-icon-2"
               />
             </div>
           </div>
@@ -132,6 +134,7 @@ const Hero = () => {
               src={themeContext.context == 'dark' ? swap2 : swap1}
               id="intro-after"
               alt="Click to swap between SASS and CSS display"
+              data-testid="style-swapper"
             />
             <div aria-label="hidden" id="intro-highlight"></div>
             <p className="intro-hold-width">SASS Styling</p>
@@ -178,6 +181,7 @@ const Hero = () => {
                 src={themeContext.context == 'dark' ? sassDark : sassLight}
                 className={'intro-graphic-swap graphic-swap-1-dark ' + (swap ? 'primary-graphic' : 'secondary-graphic')}
                 alt="SASS Styling graphic"
+                data-testid="sass-image"
               />
             </div>
             <div className={'intro-swap-cont2 ' + (swap ? 'hero-overlay' : '')}>
@@ -185,6 +189,7 @@ const Hero = () => {
                 src={themeContext.context == 'dark' ? cssDark : cssLight}
                 className={'intro-graphic-swap graphic-swap-2-dark ' + (swap ? 'secondary-graphic' : 'primary-graphic')}
                 alt="CSS Styling graphic"
+                data-testid="css-image"
               />
             </div>
           </div>
