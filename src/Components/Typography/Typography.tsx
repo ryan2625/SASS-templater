@@ -19,19 +19,12 @@ function Typography() {
   }
 
   useEffect(() => {
-    //const styleState = localStorage.getItem('styleState')
-    // if (typeGuardReducerState(styleState)) {
-    //   dispatch({ type: 'STATE_FROM_STORAGE', payload: styleState})
-    // }
-
-    addEventListener("beforeunload", (event) => {
-      //Save state to local storage 
-    });
-
-
-    return (() => {
-      console.log("Beybey")
-    })
+    // Todo - fix initial states of the inputs to align with local storage state
+    const styleState = JSON.parse(localStorage.getItem('styleState') || "{}")
+    console.log(styleState)
+    if (typeGuardReducerState(styleState)) {
+      dispatch({ type: 'STATE_FROM_STORAGE', payload: styleState })
+    }
   }, [])
 
   useEffect(() => {

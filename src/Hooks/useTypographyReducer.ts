@@ -58,14 +58,21 @@ const useTypographyReducer = () => {
         newState = { ...state, color: action.payload }
         break
       }
-      case 'STATE_FROM_STORAGE':
-        newState = state
-        //Set newState as localStorage state
+      case 'STATE_FROM_STORAGE': {
+        if (action.payload) {
+          newState = { ...action.payload }
+        } else {
+          newState = state
+        }
         break
+      }
       default: {
         newState = state
         break
       }
+    }
+    if (type != 'STATE_FROM_STORAGE') {
+      localStorage.setItem('styleState', JSON.stringify(newState))
     }
     // Added redux in later versions. Used to keep context and redux in sync.
     dispatch(stateFromReducer(newState))
