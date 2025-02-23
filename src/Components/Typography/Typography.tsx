@@ -4,7 +4,7 @@ import useTypographyReducer from '../../Hooks/useTypographyReducer'
 import { fonts, labels, scales, sizes } from './constants'
 import { Styles } from './types'
 import './Typography.scss'
-import { calcVal, getCssVariableValue } from './utils'
+import { calcVal, getCssVariableValue, typeGuardReducerState } from './utils'
 
 function Typography() {
   const themeContext = useContext(ThemeContext)
@@ -17,6 +17,22 @@ function Typography() {
     letterSpacing: state.spacing,
     fontFamily: state.font
   }
+
+  useEffect(() => {
+    //const styleState = localStorage.getItem('styleState')
+    // if (typeGuardReducerState(styleState)) {
+    //   dispatch({ type: 'STATE_FROM_STORAGE', payload: styleState})
+    // }
+
+    addEventListener("beforeunload", (event) => {
+      //Save state to local storage 
+    });
+
+
+    return (() => {
+      console.log("Beybey")
+    })
+  }, [])
 
   useEffect(() => {
     const parentEl = [].slice.call(document.getElementById('typography-font')?.children)

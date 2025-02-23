@@ -1,4 +1,4 @@
-export interface State {
+export interface TypographyReducerState {
   size: number
   scale: number
   spacing: number
@@ -8,7 +8,7 @@ export interface State {
   color: string
 }
 
-export const initialState: State = {
+export const initialState: TypographyReducerState = {
   size: 16,
   scale: 1.25,
   spacing: 0,

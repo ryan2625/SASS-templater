@@ -1,7 +1,7 @@
 import { useReducer } from 'react'
 import { useDispatch } from 'react-redux'
 import { stateFromReducer } from '../Store/Slices/stylesSlice'
-import { initialState, State } from '../Utils/typographyutils'
+import { initialState, TypographyReducerState } from '../Utils/typographyutils'
 
 type Action =
   | { type: 'CHANGE_SIZE'; payload: number }
@@ -11,13 +11,15 @@ type Action =
   | { type: 'CHANGE_WEIGHT'; payload: boolean }
   | { type: 'CHANGE_FONT'; payload: string }
   | { type: 'CHANGE_COLOR'; payload: string }
+  | { type: 'STATE_FROM_STORAGE'; payload: TypographyReducerState }
+
 
 const useTypographyReducer = () => {
   const dispatch = useDispatch()
 
-  function Reducer(state: State, action: Action): State {
+  function Reducer(state: TypographyReducerState, action: Action): TypographyReducerState {
     const { type } = action
-    let newState: State
+    let newState: TypographyReducerState
 
     switch (type) {
       case 'CHANGE_SIZE': {
@@ -42,21 +44,30 @@ const useTypographyReducer = () => {
       }
       case 'CHANGE_FONT': {
         const selectNode = document.getElementById('typography-font')
+        // Although we should keep DOM manipulation out of a reducer, its 
+        // easier to do type checking and the manipulation in one place
         if (selectNode instanceof HTMLSelectElement) {
           selectNode.style.fontFamily = selectNode.value
+          newState = { ...state, font: action.payload }
+        } else {
+          newState = state
         }
-        newState = { ...state, font: action.payload }
         break
       }
       case 'CHANGE_COLOR': {
         newState = { ...state, color: action.payload }
         break
       }
+      case 'STATE_FROM_STORAGE':
+        newState = state
+        //Set newState as localStorage state
+        break
       default: {
         newState = state
         break
       }
     }
+    // Added redux in later versions. Used to keep context and redux in sync.
     dispatch(stateFromReducer(newState))
     return newState
   }

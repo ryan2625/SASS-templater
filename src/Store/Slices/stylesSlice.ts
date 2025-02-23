@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { initialState as importedInitialState, State } from '../../Utils/typographyutils'
+import { initialState as importedInitialState, TypographyReducerState } from '../../Utils/typographyutils'
 
-export interface StylesState extends State {
+export interface StylesState extends TypographyReducerState {
   otherStyles: object
 }
 
@@ -14,7 +14,7 @@ export const counterSlice = createSlice({
   name: 'styles',
   initialState,
   reducers: {
-    stateFromReducer: (state: StylesState, action: PayloadAction<State>) => {
+    stateFromReducer: (state: StylesState, action: PayloadAction<TypographyReducerState>) => {
       return { ...state, ...action.payload }
     }
   }
