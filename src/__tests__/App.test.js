@@ -9,7 +9,7 @@ describe('Typography and Navbar', () => {
     // None yet
   })
 
-  const renderApp = (
+  const rootApp = (
     <Provider store={store}>
       <ThemeContextProvider>
         <App />
@@ -17,13 +17,12 @@ describe('Typography and Navbar', () => {
     </Provider>
   )
 
-  test('renders learn react link', () => {
+  test('Rendering the navbar properly', () => {
     render(
-      renderApp
+      rootApp
     )
     const elements = screen.getAllByText('sass | studios')
-    expect(elements[0]).toBeInTheDocument()
+    expect(elements[0] && elements[1]).toBeInTheDocument()
   })
-
 })
 

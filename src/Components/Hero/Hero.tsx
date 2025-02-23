@@ -63,11 +63,12 @@ const Hero = () => {
           <p className="sass-studios">sass | studios</p>
           <div className="hero-mode-constructor">
             <p></p>
-            <div className="hero-mode-bg" onClick={setTheme}>
+            <div className="hero-mode-bg" role="button" onClick={setTheme} data-testid="change-theme-1"
+            >
               <img
                 className={'hero-mode-picture' + (themeContext.context == 'light' ? ' hero-to-dark' : ' hero-to-light')}
                 src={darkLightMode}
-                alt=""
+                alt={`Toggle to ${themeContext.context} mode`}
               />
             </div>
           </div>
@@ -78,11 +79,11 @@ const Hero = () => {
           <p className="sass-studios">sass | studios</p>
           <div className="hero-mode-constructor">
             <p></p>
-            <div className="hero-mode-bg" onClick={setTheme}>
+            <div className="hero-mode-bg" role="button" onClick={setTheme} data-testid="change-theme-2">
               <img
                 className={'hero-mode-picture' + (themeContext.context == 'light' ? ' hero-to-dark' : ' hero-to-light')}
                 src={darkLightMode}
-                alt=""
+                alt={`Toggle to ${themeContext.context} mode`}
               />
             </div>
           </div>
@@ -105,6 +106,7 @@ const Hero = () => {
                     : 'intro-swoosh-first-render-sass')
                 }
                 src={swoosh1}
+                aria-hidden="true"
               />{' '}
               <img
                 className={
@@ -116,6 +118,7 @@ const Hero = () => {
                     : 'intro-swoosh-first-render-css')
                 }
                 src={swoosh2}
+                aria-hidden="true"
               />{' '}
             </span>
           </p>
@@ -163,20 +166,17 @@ const Hero = () => {
             <img
               src={gradient2}
               className={swap ? 'gradient-fadein' : 'gradient-fadeout'}
-              alt="Background gradient"
               aria-label="hidden"
             />
             <img
               src={gradient1}
               className={swap ? 'gradient-fadeout' : 'gradient-fadein'}
-              alt="Background gradient"
               aria-label="hidden"
             />
             <div className={'intro-swap-cont1 ' + (swap ? '' : 'hero-overlay-adjust')}>
               <img
                 src={themeContext.context == 'dark' ? sassDark : sassLight}
                 className={'intro-graphic-swap graphic-swap-1-dark ' + (swap ? 'primary-graphic' : 'secondary-graphic')}
-                aria-label="SASS Styling graphic"
                 alt="SASS Styling graphic"
               />
             </div>
@@ -184,7 +184,6 @@ const Hero = () => {
               <img
                 src={themeContext.context == 'dark' ? cssDark : cssLight}
                 className={'intro-graphic-swap graphic-swap-2-dark ' + (swap ? 'secondary-graphic' : 'primary-graphic')}
-                aria-label="CSS Styling graphic"
                 alt="CSS Styling graphic"
               />
             </div>
