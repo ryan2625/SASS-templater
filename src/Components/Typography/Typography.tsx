@@ -4,8 +4,9 @@ import useTypographyReducer from '../../Hooks/useTypographyReducer'
 import { fonts, labels, scales, sizes } from './constants'
 import { Styles } from './types'
 import './Typography.scss'
-import { calcVal, getCssVariableValue, typeGuardReducerState } from './utils'
-import { initialState } from '../../Utils/typographyutils'
+import { calcVal, typeGuardReducerState } from './utils'
+import { getCssVariableValue } from "../../Utils/generalUtils"
+import { initialState } from '../../Utils/typographyTypesUtils'
 
 function Typography() {
   const themeContext = useContext(ThemeContext)
@@ -25,7 +26,7 @@ function Typography() {
     const styleState = JSON.parse(localStorage.getItem('styleState') || "{}")
     if (styleState.color == 'rgb(245, 245, 245)') { // Set to dark theme and refresh causes problems without this check
       styleState.color = '#000000'
-    }
+    }  // TODO fix this with new util function hexToRgb
     if (typeGuardReducerState(styleState)) {
       dispatch({ type: 'STATE_FROM_STORAGE', payload: styleState })
       setStorageRetrieved(true)

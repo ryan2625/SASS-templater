@@ -1,7 +1,8 @@
 import { useReducer } from 'react'
 import { useDispatch } from 'react-redux'
 import { stateFromReducer } from '../Store/Slices/stylesSlice'
-import { initialState, TypographyReducerState } from '../Utils/typographyutils'
+import { initialState, TypographyReducerState } from '../Utils/typographyTypesUtils'
+import { getCssVariableValue, rgbToHex } from "../Utils/generalUtils"
 
 type Action =
   | { type: 'CHANGE_SIZE'; payload: number }
@@ -55,7 +56,8 @@ const useTypographyReducer = () => {
         break
       }
       case 'CHANGE_COLOR': {
-        newState = { ...state, color: action.payload }
+        const validateColor = rgbToHex(action.payload)
+        newState = { ...state, color: validateColor }
         break
       }
       case 'STATE_FROM_STORAGE': {
@@ -71,7 +73,11 @@ const useTypographyReducer = () => {
         break
       }
     }
-    if (type != 'STATE_FROM_STORAGE' && newState != initialState) {
+    const augmentedState = { ...state, color: getCssVariableValue('--bg1') }
+    if (type != 'STATE_FROM_STORAGE' &&
+      newState != initialState &&
+      augmentedState != initialState) {
+      console.log(augmentedState, initialState)
       localStorage.setItem('styleState', JSON.stringify(newState))
     }
     // Added redux in later versions. Used to keep context and redux in sync.

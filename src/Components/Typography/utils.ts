@@ -1,4 +1,4 @@
-import { TypographyReducerState } from "../../Utils/typographyutils"
+import { TypographyReducerState } from "../../Utils/typographyTypesUtils"
 
 export function calcVal(index: number, value: number, scale: number, sizes: string[]): number {
   if (index === sizes.length - 1) {
@@ -6,10 +6,6 @@ export function calcVal(index: number, value: number, scale: number, sizes: stri
   } else {
     return calcVal((index += 1), value * scale, scale, sizes)
   }
-}
-
-export function getCssVariableValue(variable: string) {
-  return getComputedStyle(document.documentElement).getPropertyValue(variable)
 }
 
 export function typeGuardReducerState(value: unknown): value is TypographyReducerState {

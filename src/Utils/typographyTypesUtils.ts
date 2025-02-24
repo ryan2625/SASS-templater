@@ -15,5 +15,5 @@ export const initialState: TypographyReducerState = {
   height: 1.5,
   weight: false,
   font: 'Roboto Flex, sans-serif',
-  color: '#000000'
+  color: '#080808'
 }
