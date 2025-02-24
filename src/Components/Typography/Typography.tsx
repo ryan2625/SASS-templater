@@ -5,11 +5,14 @@ import { fonts, labels, scales, sizes } from './constants'
 import { Styles } from './types'
 import './Typography.scss'
 import { calcVal, getCssVariableValue, typeGuardReducerState } from './utils'
+import { initialState } from '../../Utils/typographyutils'
 
 function Typography() {
   const themeContext = useContext(ThemeContext)
   const [state, dispatch] = useTypographyReducer()
   const [units, setUnits] = useState<string>('px')
+  const [storageRetrieved, setStorageRetrieved] = useState<boolean>(false)
+  const [firstRender, setFirstRender] = useState<boolean>(true)
 
   const styles: Styles = {
     color: state.color,
@@ -19,24 +22,46 @@ function Typography() {
   }
 
   useEffect(() => {
-    // Todo - fix initial states of the inputs to align with local storage state
     const styleState = JSON.parse(localStorage.getItem('styleState') || "{}")
-    console.log(styleState)
+    if (styleState.color == 'rgb(245, 245, 245)') { // Set to dark theme and refresh causes problems without this check
+      styleState.color = '#000000'
+    }
     if (typeGuardReducerState(styleState)) {
       dispatch({ type: 'STATE_FROM_STORAGE', payload: styleState })
+      setStorageRetrieved(true)
     }
+    setFirstRender(false)
   }, [])
+
+  useEffect(() => {
+    if (!firstRender) {
+      dispatch({ type: 'CHANGE_COLOR', payload: getCssVariableValue('--bg1') })
+    }
+  }, [dispatch, themeContext.context])
 
   useEffect(() => {
     const parentEl = [].slice.call(document.getElementById('typography-font')?.children)
     parentEl.forEach((child: HTMLOptionElement) => {
       child.style.fontFamily = child.value
     })
-  }, [])
-
-  useEffect(() => {
-    dispatch({ type: 'CHANGE_COLOR', payload: getCssVariableValue('--bg1') })
-  }, [dispatch, themeContext.context])
+    const selectNodes = [].slice.call(document.getElementById("typography-scale")?.children)
+    if (selectNodes && state.scale != initialState.scale) {
+      selectNodes.forEach((option: HTMLOptionElement) => {
+        if (Number(option.value) !== state.scale) {
+          option.selected = false
+        } else {
+          option.selected = true
+        }
+      })
+    } else {
+      const defaultNode = selectNodes.find((defaultOption: HTMLOptionElement) =>
+        Number(defaultOption.value) === initialState.scale
+      )
+      if (defaultNode) {
+        (defaultNode as HTMLOptionElement).selected = true
+      }
+    }
+  }, [storageRetrieved])
 
   return (
     <section className="template-container">
@@ -78,7 +103,7 @@ function Typography() {
                   name="typography-font"
                   id="typography-font"
                   onChange={(e) => dispatch({ type: 'CHANGE_FONT', payload: e.target.value })}
-                  defaultValue="Roboto Flex, sans-serif"
+                  value={state.font}
                 >
                   {fonts &&
                     fonts.map((font) => {
@@ -112,7 +137,6 @@ function Typography() {
                       payload: Number(e.target.value)
                     })
                   }
-                  defaultValue="1.250"
                 >
                   {scales &&
                     scales.map((scale) => {
@@ -162,6 +186,7 @@ function Typography() {
                 <select
                   id="typography-weight"
                   name="typography-weight"
+                  value={String(state.weight)}
                   onChange={(e) =>
                     dispatch({
                       type: 'CHANGE_WEIGHT',
@@ -169,8 +194,8 @@ function Typography() {
                     })
                   }
                 >
-                  <option value="true">Disabled</option>
-                  <option value="false">Enabled</option>
+                  <option value="false">Disabled</option>
+                  <option value="true">Enabled</option>
                 </select>
               </div>
             </div>

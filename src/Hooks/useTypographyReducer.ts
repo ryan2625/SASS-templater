@@ -45,7 +45,7 @@ const useTypographyReducer = () => {
       case 'CHANGE_FONT': {
         const selectNode = document.getElementById('typography-font')
         // Although we should keep DOM manipulation out of a reducer, its 
-        // easier to do type checking and the manipulation in one place
+        // easier to do type checking and DOM manipulation in one place
         if (selectNode instanceof HTMLSelectElement) {
           selectNode.style.fontFamily = selectNode.value
           newState = { ...state, font: action.payload }
@@ -71,7 +71,7 @@ const useTypographyReducer = () => {
         break
       }
     }
-    if (type != 'STATE_FROM_STORAGE') {
+    if (type != 'STATE_FROM_STORAGE' && newState != initialState) {
       localStorage.setItem('styleState', JSON.stringify(newState))
     }
     // Added redux in later versions. Used to keep context and redux in sync.
