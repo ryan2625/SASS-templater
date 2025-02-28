@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
-import ThemeContextProvider from '../Contexts/ThemeContext'
 import App from '../App'
+import ThemeContextProvider from '../Contexts/ThemeContext'
 import { store } from '../Store/store'
 
 describe('Typography and Navbar', () => {
   afterEach(() => {
-    jest.clearAllMocks();
-  });
+    jest.clearAllMocks()
+  })
 
   const rootApp = (
     <Provider store={store}>
@@ -18,11 +18,8 @@ describe('Typography and Navbar', () => {
   )
 
   test('Rendering the navbar properly', () => {
-    render(
-      rootApp
-    )
+    render(rootApp)
     const elements = screen.getAllByText('sass | studios')
     expect(elements[0] && elements[1]).toBeInTheDocument()
   })
 })
-

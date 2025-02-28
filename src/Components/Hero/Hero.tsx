@@ -63,8 +63,7 @@ const Hero = () => {
           <p className="sass-studios">sass | studios</p>
           <div className="hero-mode-constructor">
             <p></p>
-            <div className="hero-mode-bg" role="button" onClick={setTheme} data-testid="change-theme-1"
-            >
+            <div className="hero-mode-bg" role="button" onClick={setTheme} data-testid="change-theme-1">
               <img
                 className={'hero-mode-picture' + (themeContext.context == 'light' ? ' hero-to-dark' : ' hero-to-light')}
                 src={darkLightMode}
@@ -166,16 +165,8 @@ const Hero = () => {
         </div>
         <div className="intro-container">
           <div className="intro-graphic">
-            <img
-              src={gradient2}
-              className={swap ? 'gradient-fadein' : 'gradient-fadeout'}
-              aria-label="hidden"
-            />
-            <img
-              src={gradient1}
-              className={swap ? 'gradient-fadeout' : 'gradient-fadein'}
-              aria-label="hidden"
-            />
+            <img src={gradient2} className={swap ? 'gradient-fadein' : 'gradient-fadeout'} aria-label="hidden" />
+            <img src={gradient1} className={swap ? 'gradient-fadeout' : 'gradient-fadein'} aria-label="hidden" />
             <div className={'intro-swap-cont1 ' + (swap ? '' : 'hero-overlay-adjust')}>
               <img
                 src={themeContext.context == 'dark' ? sassDark : sassLight}

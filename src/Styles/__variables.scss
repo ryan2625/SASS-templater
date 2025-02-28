@@ -21,8 +21,8 @@ $themes: (
     btn-bg1: rgb(255, 0, 0),
     btn-txt1: rgb(255, 0, 0),
     slight-background: rgba(255, 255, 255, 0.445),
-    curve-divider: url("../Assets/Images/SVGs/bookNegative_Light.svg"),
-    inverse-curve-divider: url("../Assets/Images/SVGs/bookNegative_Dark.svg")
+    curve-divider: url('../Assets/Images/SVGs/bookNegative_Light.svg'),
+    inverse-curve-divider: url('../Assets/Images/SVGs/bookNegative_Dark.svg')
   ),
   dark: (
     bg1: rgb(8, 8, 8),
@@ -40,8 +40,8 @@ $themes: (
     btn-bg1: rgb(255, 0, 0),
     btn-txt1: rgb(255, 0, 0),
     slight-background: rgba(128, 128, 128, 0.174),
-    curve-divider: url("../Assets/Images/SVGs/bookNegative_Dark.svg"),
-    inverse-curve-divider: url("../Assets/Images/SVGs/bookNegative_Light.svg")
+    curve-divider: url('../Assets/Images/SVGs/bookNegative_Dark.svg'),
+    inverse-curve-divider: url('../Assets/Images/SVGs/bookNegative_Light.svg')
   )
 );
 

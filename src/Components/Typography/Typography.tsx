@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../../Contexts/ThemeContext'
 import useTypographyReducer from '../../Hooks/useTypographyReducer'
+import { getCssVariableValue } from '../../Utils/generalUtils'
+import { initialState } from '../../Utils/typographyTypesUtils'
 import { fonts, labels, scales, sizes } from './constants'
 import { Styles } from './types'
 import './Typography.scss'
 import { calcVal, typeGuardReducerState } from './utils'
-import { getCssVariableValue } from "../../Utils/generalUtils"
-import { initialState } from '../../Utils/typographyTypesUtils'
 
 function Typography() {
   const themeContext = useContext(ThemeContext)
@@ -23,10 +23,11 @@ function Typography() {
   }
 
   useEffect(() => {
-    const styleState = JSON.parse(localStorage.getItem('styleState') || "{}")
-    if (styleState.color == 'rgb(245, 245, 245)') { // Set to dark theme and refresh causes problems without this check
+    const styleState = JSON.parse(localStorage.getItem('styleState') || '{}')
+    if (styleState.color == 'rgb(245, 245, 245)') {
+      // Set to dark theme and refresh causes problems without this check
       styleState.color = '#000000'
-    }  // TODO fix this with new util function hexToRgb
+    } // TODO fix this with new util function hexToRgb
     if (typeGuardReducerState(styleState)) {
       dispatch({ type: 'STATE_FROM_STORAGE', payload: styleState })
       setStorageRetrieved(true)
@@ -45,7 +46,7 @@ function Typography() {
     parentEl.forEach((child: HTMLOptionElement) => {
       child.style.fontFamily = child.value
     })
-    const selectNodes = [].slice.call(document.getElementById("typography-scale")?.children)
+    const selectNodes = [].slice.call(document.getElementById('typography-scale')?.children)
     if (selectNodes && state.scale != initialState.scale) {
       selectNodes.forEach((option: HTMLOptionElement) => {
         if (Number(option.value) !== state.scale) {
@@ -55,11 +56,11 @@ function Typography() {
         }
       })
     } else {
-      const defaultNode = selectNodes.find((defaultOption: HTMLOptionElement) =>
-        Number(defaultOption.value) === initialState.scale
+      const defaultNode = selectNodes.find(
+        (defaultOption: HTMLOptionElement) => Number(defaultOption.value) === initialState.scale
       )
       if (defaultNode) {
-        (defaultNode as HTMLOptionElement).selected = true
+        ;(defaultNode as HTMLOptionElement).selected = true
       }
     }
   }, [storageRetrieved])

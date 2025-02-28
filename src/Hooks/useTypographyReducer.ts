@@ -1,8 +1,8 @@
 import { useReducer } from 'react'
 import { useDispatch } from 'react-redux'
 import { stateFromReducer } from '../Store/Slices/stylesSlice'
+import { getCssVariableValue, rgbToHex } from '../Utils/generalUtils'
 import { initialState, TypographyReducerState } from '../Utils/typographyTypesUtils'
-import { getCssVariableValue, rgbToHex } from "../Utils/generalUtils"
 
 type Action =
   | { type: 'CHANGE_SIZE'; payload: number }
@@ -13,7 +13,6 @@ type Action =
   | { type: 'CHANGE_FONT'; payload: string }
   | { type: 'CHANGE_COLOR'; payload: string }
   | { type: 'STATE_FROM_STORAGE'; payload: TypographyReducerState }
-
 
 const useTypographyReducer = () => {
   const dispatch = useDispatch()
@@ -45,7 +44,7 @@ const useTypographyReducer = () => {
       }
       case 'CHANGE_FONT': {
         const selectNode = document.getElementById('typography-font')
-        // Although we should keep DOM manipulation out of a reducer, its 
+        // Although we should keep DOM manipulation out of a reducer, its
         // easier to do type checking and DOM manipulation in one place
         if (selectNode instanceof HTMLSelectElement) {
           selectNode.style.fontFamily = selectNode.value
@@ -74,9 +73,7 @@ const useTypographyReducer = () => {
       }
     }
     const augmentedState = { ...state, color: getCssVariableValue('--bg1') }
-    if (type != 'STATE_FROM_STORAGE' &&
-      newState != initialState &&
-      augmentedState != initialState) {
+    if (type != 'STATE_FROM_STORAGE' && newState != initialState && augmentedState != initialState) {
       console.log(augmentedState, initialState)
       localStorage.setItem('styleState', JSON.stringify(newState))
     }

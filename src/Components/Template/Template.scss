@@ -3,7 +3,7 @@
 .template-designer-container {
   height: 1000px;
   background-color: var_(bg1);
-  overflow-x:hidden;
+  overflow-x: hidden;
 }
 
 .template-divider {
@@ -17,9 +17,9 @@
     position: absolute;
     background-image: var_(curve-divider);
     background-repeat: no-repeat;
-    background-size: contain;  
-    width: inherit;             
-    height: 100%;             
+    background-size: contain;
+    width: inherit;
+    height: 100%;
     bottom: 0;
     left: -30%;
     z-index: 1;
@@ -30,9 +30,9 @@
     position: absolute;
     background-image: var_(inverse-curve-divider);
     background-repeat: no-repeat;
-    background-size: contain;  
-    width: inherit;             
-    height: 100%;             
+    background-size: contain;
+    width: inherit;
+    height: 100%;
     bottom: 0;
     left: 30%;
     z-index: 1;

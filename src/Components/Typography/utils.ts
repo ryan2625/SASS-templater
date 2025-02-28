@@ -1,4 +1,4 @@
-import { TypographyReducerState } from "../../Utils/typographyTypesUtils"
+import { TypographyReducerState } from '../../Utils/typographyTypesUtils'
 
 export function calcVal(index: number, value: number, scale: number, sizes: string[]): number {
   if (index === sizes.length - 1) {

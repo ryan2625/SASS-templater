@@ -1,20 +1,22 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
-import ThemeContextProvider from '../../Contexts/ThemeContext'
 import Hero from '../../Components/Hero/Hero'
+import ThemeContextProvider from '../../Contexts/ThemeContext'
 import { store } from '../../Store/store'
 
 describe('Typography and Navbar', () => {
   afterEach(() => {
-    jest.clearAllMocks();
-  });
+    jest.clearAllMocks()
+  })
 
   const renderHeroComponent = () => {
-    render(<Provider store={store}>
-      <ThemeContextProvider>
-        <Hero />
-      </ThemeContextProvider>
-    </Provider>)
+    render(
+      <Provider store={store}>
+        <ThemeContextProvider>
+          <Hero />
+        </ThemeContextProvider>
+      </Provider>
+    )
 
     return {
       themeChanger1: screen.getByTestId('change-theme-1'),
@@ -23,7 +25,7 @@ describe('Typography and Navbar', () => {
       themeIcon2: screen.getByTestId('change-theme-icon-2'),
       swapperIcon: screen.getByTestId('style-swapper'),
       sassImage: screen.getByTestId('sass-image'),
-      cssImage: screen.getByTestId('css-image'),
+      cssImage: screen.getByTestId('css-image')
     }
   }
 
@@ -45,25 +47,24 @@ describe('Typography and Navbar', () => {
   test('First nav changing to light and dark mode', () => {
     const { themeChanger1, themeIcon1 } = renderHeroComponent()
 
-    expect(themeIcon1).toHaveClass("hero-to-light")
+    expect(themeIcon1).toHaveClass('hero-to-light')
 
     fireEvent.click(themeChanger1)
-    expect(themeIcon1).toHaveClass("hero-to-dark")
+    expect(themeIcon1).toHaveClass('hero-to-dark')
 
     fireEvent.click(themeChanger1)
-    expect(themeIcon1).toHaveClass("hero-to-light")
+    expect(themeIcon1).toHaveClass('hero-to-light')
   })
 
   test('Second nav changing to light and dark mode', () => {
     const { themeChanger2, themeIcon2 } = renderHeroComponent()
 
-    expect(themeIcon2).toHaveClass("hero-to-light")
+    expect(themeIcon2).toHaveClass('hero-to-light')
 
     fireEvent.click(themeChanger2)
-    expect(themeIcon2).toHaveClass("hero-to-dark")
+    expect(themeIcon2).toHaveClass('hero-to-dark')
 
     fireEvent.click(themeChanger2)
-    expect(themeIcon2).toHaveClass("hero-to-light")
+    expect(themeIcon2).toHaveClass('hero-to-light')
   })
 })
-
