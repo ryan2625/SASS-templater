@@ -10,7 +10,7 @@ const initialState: StylesState = {
   otherStyles: {}
 }
 
-export const counterSlice = createSlice({
+export const stylesSlice = createSlice({
   name: 'styles',
   initialState,
   reducers: {
@@ -20,6 +20,6 @@ export const counterSlice = createSlice({
   }
 })
 
-export const { stateFromReducer } = counterSlice.actions
+export const { stateFromReducer } = stylesSlice.actions
 
-export default counterSlice.reducer
+export default stylesSlice.reducer

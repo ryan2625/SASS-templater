@@ -35,7 +35,6 @@ const Hero = () => {
     const onScroll = () => {
       setScroll(window.scrollY)
     }
-
     const onResize = () => {
       setWindowHeight(window.innerHeight)
     }
@@ -51,9 +50,10 @@ const Hero = () => {
       window.removeEventListener('resize', onResize)
     }
   }, [])
+
   // eslint-disable-next-line
   function setTheme(event: React.MouseEvent<HTMLDivElement>) {
-    themeContext.setTheme(null)
+    themeContext.setTheme()
   }
 
   return (

@@ -1,34 +1,32 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useState } from 'react'
 
-type themes = 'light' | 'dark'
+export type Themes = 'light' | 'dark'
 
 interface ThemeContextType {
-  context: 'light' | 'dark'
-  setTheme: React.Dispatch<React.SetStateAction<themes | null>>
+  context: Themes
+  setTheme(theme?: Themes): Themes | undefined
 }
 
 const defaultContext: ThemeContextType = {
   context: 'dark',
-  setTheme: () => {}
+  setTheme: () => 'dark'
 }
 
 export const ThemeContext = createContext<ThemeContextType>(defaultContext)
 
 const ThemeContextProvider = ({ children }: { children: React.ReactNode }) => {
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-  }, [])
+  const [theme, setTheme] = useState<Themes>('dark')
 
-  type themes = 'light' | 'dark'
+  const themeUtil = (newTheme: Themes) => {
+    document.documentElement.setAttribute('data-theme', newTheme)
+    localStorage.setItem('theme', JSON.stringify(newTheme))
+  }
 
-  const [theme, setTheme] = useState<themes>('dark')
-
-  const changeTheme = () => {
-    setTheme((prev) => {
-      const newTheme = prev === 'light' ? 'dark' : 'light'
-      document.documentElement.setAttribute('data-theme', newTheme)
-      return newTheme
-    })
+  const changeTheme = (val?: Themes) => {
+    const newTheme: Themes = val !== undefined ? val : (theme === 'light' ? 'dark' : 'light')
+    themeUtil(newTheme)
+    setTheme(newTheme)
+    return val
   }
 
   const contextTheme = {

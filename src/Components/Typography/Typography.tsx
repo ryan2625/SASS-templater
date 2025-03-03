@@ -1,69 +1,86 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState, useRef } from 'react'
 import { ThemeContext } from '../../Contexts/ThemeContext'
 import useTypographyReducer from '../../Hooks/useTypographyReducer'
 import { getCssVariableValue } from '../../Utils/generalUtils'
-import { initialState } from '../../Utils/typographyTypesUtils'
+import { initialState, TypographyReducerState } from '../../Utils/typographyTypesUtils'
 import { fonts, labels, scales, sizes } from './constants'
 import { Styles } from './types'
 import './Typography.scss'
-import { calcVal, typeGuardReducerState } from './utils'
+import { calcVal, typeGuardReducerState, typeGuardTheme, colorThemeMismatch } from './utils'
+import { Themes } from '../../Contexts/ThemeContext'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../Store/store'
 
 function Typography() {
   const themeContext = useContext(ThemeContext)
-  const [state, dispatch] = useTypographyReducer()
+  const stylesFromRedux = useSelector((state: RootState) => state.styles)
+  const [scaleFromStorage, setScaleFromStorage] = useState<number>(1.250)
+  const [, dispatch] = useTypographyReducer()
   const [units, setUnits] = useState<string>('px')
-  const [storageRetrieved, setStorageRetrieved] = useState<boolean>(false)
-  const [firstRender, setFirstRender] = useState<boolean>(true)
+  const [isPastInitialRender, setIsPastInitialRender] = useState(false);
+  const initialRenderPhaseComplete = useRef(false);
 
   const styles: Styles = {
-    color: state.color,
-    lineHeight: state.height,
-    letterSpacing: state.spacing,
-    fontFamily: state.font
+    color: stylesFromRedux.color,
+    lineHeight: stylesFromRedux.height,
+    letterSpacing: stylesFromRedux.spacing,
+    fontFamily: stylesFromRedux.font
   }
 
   useEffect(() => {
-    const styleState = JSON.parse(localStorage.getItem('styleState') || '{}')
-    if (styleState.color == 'rgb(245, 245, 245)') {
-      // Set to dark theme and refresh causes problems without this check
-      styleState.color = '#000000'
-    } // TODO fix this with new util function hexToRgb
-    if (typeGuardReducerState(styleState)) {
-      dispatch({ type: 'STATE_FROM_STORAGE', payload: styleState })
-      setStorageRetrieved(true)
-    }
-    setFirstRender(false)
-  }, [])
-
-  useEffect(() => {
-    if (!firstRender) {
+    if (isPastInitialRender) {
       dispatch({ type: 'CHANGE_COLOR', payload: getCssVariableValue('--bg1') })
     }
   }, [dispatch, themeContext.context])
 
   useEffect(() => {
-    const parentEl = [].slice.call(document.getElementById('typography-font')?.children)
-    parentEl.forEach((child: HTMLOptionElement) => {
-      child.style.fontFamily = child.value
-    })
-    const selectNodes = [].slice.call(document.getElementById('typography-scale')?.children)
-    if (selectNodes && state.scale != initialState.scale) {
-      selectNodes.forEach((option: HTMLOptionElement) => {
-        if (Number(option.value) !== state.scale) {
-          option.selected = false
-        } else {
-          option.selected = true
-        }
+    const themeState: Themes = JSON.parse(localStorage.getItem('theme') || '"dark"')
+    if (typeGuardTheme(themeState)) {
+      themeContext.setTheme(themeState)
+    }
+    const styleState: TypographyReducerState = JSON.parse(localStorage.getItem('styleState') || `${JSON.stringify(initialState)}`)
+    if (typeGuardReducerState(styleState)) {
+      const validatedStyles = colorThemeMismatch(themeState, styleState)
+      dispatch({ type: 'STATE_FROM_STORAGE', payload: validatedStyles })
+      setScaleFromStorage(validatedStyles.scale)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (isPastInitialRender) {
+      const parentEl = [].slice.call(document.getElementById('typography-font')?.children)
+      parentEl.forEach((child: HTMLOptionElement) => {
+        child.style.fontFamily = child.value
       })
-    } else {
-      const defaultNode = selectNodes.find(
-        (defaultOption: HTMLOptionElement) => Number(defaultOption.value) === initialState.scale
-      )
-      if (defaultNode) {
-        ;(defaultNode as HTMLOptionElement).selected = true
+      const selectNodes = [].slice.call(document.getElementById("typography-scale")?.children)
+      if (selectNodes && scaleFromStorage != initialState.scale) {
+        selectNodes.forEach((option: HTMLOptionElement) => {
+          if (Number(option.value) !== scaleFromStorage) {
+            option.selected = false
+          } else {
+            option.selected = true
+          }
+        })
+      } else {
+        const defaultNode = selectNodes.find((defaultOption: HTMLOptionElement) =>
+          Number(defaultOption.value) === initialState.scale
+        )
+        if (defaultNode) {
+          (defaultNode as HTMLOptionElement).selected = true
+        }
       }
     }
-  }, [storageRetrieved])
+  }, [isPastInitialRender, scaleFromStorage])
+
+  useEffect(() => {
+    if (!initialRenderPhaseComplete.current) {
+      initialRenderPhaseComplete.current = true;
+      requestAnimationFrame(async () => {
+        await new Promise(resolve => setTimeout(resolve, 150))
+        setIsPastInitialRender(true);
+      });
+    }
+  }, []);
 
   return (
     <section className="template-container">
@@ -97,7 +114,7 @@ function Typography() {
                       payload: Number(e.target.value)
                     })
                   }
-                  value={state.size}
+                  value={stylesFromRedux.size}
                 />
               </div>
               <div>
@@ -105,7 +122,7 @@ function Typography() {
                   name="typography-font"
                   id="typography-font"
                   onChange={(e) => dispatch({ type: 'CHANGE_FONT', payload: e.target.value })}
-                  value={state.font}
+                  value={stylesFromRedux.font}
                 >
                   {fonts &&
                     fonts.map((font) => {
@@ -125,7 +142,7 @@ function Typography() {
                   data-pseudo-field="body-color"
                   colorpick-eyedropper-active="true"
                   data-gtm-form-interact-field-id="0"
-                  value={state.color}
+                  value={stylesFromRedux.color}
                   onChange={(e) => dispatch({ type: 'CHANGE_COLOR', payload: e.target.value })}
                 />
               </div>
@@ -158,7 +175,7 @@ function Typography() {
                   max="15"
                   name="typography-spacing"
                   id="typography-spacing"
-                  value={state.spacing}
+                  value={stylesFromRedux.spacing}
                   onChange={(e) =>
                     dispatch({
                       type: 'CHANGE_SPACING',
@@ -175,7 +192,7 @@ function Typography() {
                   max="5"
                   name="typography-height"
                   id="typography-height"
-                  value={state.height}
+                  value={stylesFromRedux.height}
                   onChange={(e) =>
                     dispatch({
                       type: 'CHANGE_HEIGHT',
@@ -188,7 +205,7 @@ function Typography() {
                 <select
                   id="typography-weight"
                   name="typography-weight"
-                  value={String(state.weight)}
+                  value={String(stylesFromRedux.weight)}
                   onChange={(e) =>
                     dispatch({
                       type: 'CHANGE_WEIGHT',
@@ -224,13 +241,13 @@ function Typography() {
           <div>
             {sizes &&
               sizes.map((tag, key) => {
-                const parseScale = parseFloat(calcVal(key, state.size, state.scale, sizes).toFixed(1))
+                const parseScale = parseFloat(calcVal(key, stylesFromRedux.size, stylesFromRedux.scale, sizes).toFixed(1))
                 return (
                   <div className="template-scale-preview" key={key}>
                     <div
                       style={{
                         fontSize: '15px',
-                        lineHeight: state.height,
+                        lineHeight: stylesFromRedux.height,
                         letterSpacing: '2px',
                         color: getCssVariableValue('--inverse-txt1')
                       }}
@@ -240,7 +257,7 @@ function Typography() {
                     <div
                       style={{
                         fontSize: '15px',
-                        lineHeight: state.height,
+                        lineHeight: stylesFromRedux.height,
                         letterSpacing: '2px'
                       }}
                     >
@@ -250,7 +267,7 @@ function Typography() {
                       style={{
                         ...styles,
                         fontSize: parseScale,
-                        fontWeight: state.weight === true ? (sizes.length - key + 1) * 100 : 400
+                        fontWeight: stylesFromRedux.weight === true ? (sizes.length - key + 1) * 100 : 400
                       }}
                     >
                       Woven silk pyjamas exchanged for blue quartz gems
