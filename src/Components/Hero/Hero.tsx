@@ -74,7 +74,7 @@ const Hero = () => {
           </div>
         </div>
       </nav>
-      <nav className={scroll - windowHeight / 150 > windowHeight ? 'fixed-nav' : 'static-nav'} aria-hidden="true">
+      <nav className={scroll > windowHeight / 2 ? 'fixed-nav' : 'static-nav'} aria-hidden="true">
         <div>
           <p className="sass-studios">sass | studios</p>
           <div className="hero-mode-constructor">

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useRef } from 'react'
+import { useContext, useEffect, useState, useRef, useMemo } from 'react'
 import { ThemeContext } from '../../Contexts/ThemeContext'
 import useTypographyReducer from '../../Hooks/useTypographyReducer'
 import { getCssVariableValue } from '../../Utils/generalUtils'
@@ -11,9 +11,11 @@ import { Themes } from '../../Contexts/ThemeContext'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../Store/store'
 
+// TODO : Fix with react hooks memo, callback ETC then do the same for the HERO component
+
 function Typography() {
   const themeContext = useContext(ThemeContext)
-  const stylesFromRedux = useSelector((state: RootState) => state.styles)
+  const { color, height, spacing, font, weight, scale, size } = useSelector((state: RootState) => state.styles)
   const [scaleFromStorage, setScaleFromStorage] = useState<number>(1.250)
   const [, dispatch] = useTypographyReducer()
   const [units, setUnits] = useState<string>('px')
@@ -21,11 +23,20 @@ function Typography() {
   const initialRenderPhaseComplete = useRef(false);
 
   const styles: Styles = {
-    color: stylesFromRedux.color,
-    lineHeight: stylesFromRedux.height,
-    letterSpacing: stylesFromRedux.spacing,
-    fontFamily: stylesFromRedux.font
+    color: color,
+    lineHeight: height,
+    letterSpacing: spacing,
+    fontFamily: font
   }
+
+  const fontsMap = useMemo(() =>
+    fonts.map((fontOption) => (
+      <option key={fontOption.displayName} value={fontOption.value}>
+        {fontOption.displayName}
+      </option>
+    )),
+    [fonts]
+  );
 
   useEffect(() => {
     if (isPastInitialRender) {
@@ -114,7 +125,7 @@ function Typography() {
                       payload: Number(e.target.value)
                     })
                   }
-                  value={stylesFromRedux.size}
+                  value={size}
                 />
               </div>
               <div>
@@ -122,16 +133,9 @@ function Typography() {
                   name="typography-font"
                   id="typography-font"
                   onChange={(e) => dispatch({ type: 'CHANGE_FONT', payload: e.target.value })}
-                  value={stylesFromRedux.font}
+                  value={font}
                 >
-                  {fonts &&
-                    fonts.map((font) => {
-                      return (
-                        <option key={font.displayName} value={font.value}>
-                          {font.displayName}
-                        </option>
-                      )
-                    })}
+                  {fonts && fontsMap}
                 </select>
               </div>
               <div>
@@ -142,7 +146,7 @@ function Typography() {
                   data-pseudo-field="body-color"
                   colorpick-eyedropper-active="true"
                   data-gtm-form-interact-field-id="0"
-                  value={stylesFromRedux.color}
+                  value={color}
                   onChange={(e) => dispatch({ type: 'CHANGE_COLOR', payload: e.target.value })}
                 />
               </div>
@@ -175,7 +179,7 @@ function Typography() {
                   max="15"
                   name="typography-spacing"
                   id="typography-spacing"
-                  value={stylesFromRedux.spacing}
+                  value={spacing}
                   onChange={(e) =>
                     dispatch({
                       type: 'CHANGE_SPACING',
@@ -192,7 +196,7 @@ function Typography() {
                   max="5"
                   name="typography-height"
                   id="typography-height"
-                  value={stylesFromRedux.height}
+                  value={height}
                   onChange={(e) =>
                     dispatch({
                       type: 'CHANGE_HEIGHT',
@@ -205,7 +209,7 @@ function Typography() {
                 <select
                   id="typography-weight"
                   name="typography-weight"
-                  value={String(stylesFromRedux.weight)}
+                  value={String(weight)}
                   onChange={(e) =>
                     dispatch({
                       type: 'CHANGE_WEIGHT',
@@ -241,13 +245,13 @@ function Typography() {
           <div>
             {sizes &&
               sizes.map((tag, key) => {
-                const parseScale = parseFloat(calcVal(key, stylesFromRedux.size, stylesFromRedux.scale, sizes).toFixed(1))
+                const parseScale = parseFloat(calcVal(key, size, scale, sizes).toFixed(1))
                 return (
                   <div className="template-scale-preview" key={key}>
                     <div
                       style={{
                         fontSize: '15px',
-                        lineHeight: stylesFromRedux.height,
+                        lineHeight: height,
                         letterSpacing: '2px',
                         color: getCssVariableValue('--inverse-txt1')
                       }}
@@ -257,7 +261,7 @@ function Typography() {
                     <div
                       style={{
                         fontSize: '15px',
-                        lineHeight: stylesFromRedux.height,
+                        lineHeight: height,
                         letterSpacing: '2px'
                       }}
                     >
@@ -267,7 +271,7 @@ function Typography() {
                       style={{
                         ...styles,
                         fontSize: parseScale,
-                        fontWeight: stylesFromRedux.weight === true ? (sizes.length - key + 1) * 100 : 400
+                        fontWeight: weight === true ? (sizes.length - key + 1) * 100 : 400
                       }}
                     >
                       Woven silk pyjamas exchanged for blue quartz gems
