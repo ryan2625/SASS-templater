@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useInView } from "react-intersection-observer";
 import {
   cssDark,
   cssLight,
@@ -18,10 +19,16 @@ import './Hero.scss'
 
 const Hero = () => {
   const themeContext = useContext(ThemeContext)
-  const [scroll, setScroll] = useState<number>(0)
+  const [navScrollRef, inView] = useInView({
+    /* Optional options */
+    rootMargin: "350px",
+  });
+
   const [swap, setSwap] = useState<boolean>(true)
-  const [windowHeight, setWindowHeight] = useState<number>(window.innerHeight)
   const [notInitialRender, setNotInitialRender] = useState<boolean>(false)
+
+  // TODO : investigate replacing scroll with intersection observer, memoizing and improving event handler 
+  // performance, and finding a better and non ugly way to set the no animation functions
 
   useEffect(() => {
     const ele = document.getElementById('main-hero-container')
@@ -32,23 +39,10 @@ const Hero = () => {
       ele?.classList.remove('no-animation')
     }, 5)
 
-    const onScroll = () => {
-      setScroll(window.scrollY)
-    }
-    const onResize = () => {
-      setWindowHeight(window.innerHeight)
-    }
-
-    window.addEventListener('scroll', onScroll)
-    window.addEventListener('resize', onResize)
     document.getElementById('intro-after')?.addEventListener('click', function () {
       setSwap((prev) => !prev)
       setNotInitialRender(true)
     })
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onResize)
-    }
   }, [])
 
   // eslint-disable-next-line
@@ -58,7 +52,7 @@ const Hero = () => {
 
   return (
     <section className="hero-container" id="main-hero-container">
-      <nav className="main-nav">
+      <nav className="main-nav" ref={navScrollRef}>
         <div>
           <p className="sass-studios">sass | studios</p>
           <div className="hero-mode-constructor">
@@ -74,7 +68,7 @@ const Hero = () => {
           </div>
         </div>
       </nav>
-      <nav className={scroll > windowHeight / 2 ? 'fixed-nav' : 'static-nav'} aria-hidden="true">
+      <nav className={!inView ? 'fixed-nav' : 'static-nav'} aria-hidden="true">
         <div>
           <p className="sass-studios">sass | studios</p>
           <div className="hero-mode-constructor">

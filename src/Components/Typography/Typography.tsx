@@ -87,7 +87,7 @@ function Typography() {
     if (!initialRenderPhaseComplete.current) {
       initialRenderPhaseComplete.current = true;
       requestAnimationFrame(async () => {
-        await new Promise(resolve => setTimeout(resolve, 150))
+        await new Promise(resolve => setTimeout(resolve, 200))
         setIsPastInitialRender(true);
       });
     }
