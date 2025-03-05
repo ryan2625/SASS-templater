@@ -21,6 +21,8 @@ function Typography() {
   const [units, setUnits] = useState<string>('px')
   const [isPastInitialRender, setIsPastInitialRender] = useState(false);
   const initialRenderPhaseComplete = useRef(false);
+  const typographyFontRef = useRef<HTMLSelectElement>(null);
+  const typographyScaleRef = useRef<HTMLSelectElement>(null);
 
   const styles: Styles = {
     color: color,
@@ -59,25 +61,28 @@ function Typography() {
 
   useEffect(() => {
     if (isPastInitialRender) {
-      const parentEl = [].slice.call(document.getElementById('typography-font')?.children)
-      parentEl.forEach((child: HTMLOptionElement) => {
-        child.style.fontFamily = child.value
-      })
-      const selectNodes = [].slice.call(document.getElementById("typography-scale")?.children)
-      if (selectNodes && scaleFromStorage != initialState.scale) {
-        selectNodes.forEach((option: HTMLOptionElement) => {
-          if (Number(option.value) !== scaleFromStorage) {
-            option.selected = false
-          } else {
-            option.selected = true
+      if (typographyFontRef.current) {
+        Array.from(typographyFontRef.current.children).forEach((child) => {
+          (child as HTMLOptionElement).style.fontFamily = (child as HTMLOptionElement).value;
+        });
+      }
+
+      if (typographyScaleRef.current) {
+        const selectNodes = Array.from(typographyScaleRef.current.children);
+
+        if (selectNodes && scaleFromStorage != initialState.scale) {
+          selectNodes.forEach((option) => {
+            (option as HTMLOptionElement).selected =
+              Number((option as HTMLOptionElement).value) === scaleFromStorage;
+          });
+        } else {
+          const defaultNode = selectNodes.find((defaultOption) =>
+            Number((defaultOption as HTMLOptionElement).value) === initialState.scale
+          );
+
+          if (defaultNode) {
+            (defaultNode as HTMLOptionElement).selected = true;
           }
-        })
-      } else {
-        const defaultNode = selectNodes.find((defaultOption: HTMLOptionElement) =>
-          Number(defaultOption.value) === initialState.scale
-        )
-        if (defaultNode) {
-          (defaultNode as HTMLOptionElement).selected = true
         }
       }
     }
@@ -130,6 +135,7 @@ function Typography() {
               </div>
               <div>
                 <select
+                  ref={typographyFontRef}
                   name="typography-font"
                   id="typography-font"
                   onChange={(e) => dispatch({ type: 'CHANGE_FONT', payload: e.target.value })}
@@ -152,6 +158,7 @@ function Typography() {
               </div>
               <div>
                 <select
+                  ref={typographyScaleRef}
                   id="typography-scale"
                   name="typography-scale"
                   onChange={(e) =>

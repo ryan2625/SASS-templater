@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 import { useInView } from "react-intersection-observer";
 import {
   cssDark,
@@ -23,20 +23,19 @@ const Hero = () => {
     rootMargin: "350px",
     initialInView: true
   });
+  const heroRef = useRef<HTMLDivElement>(null)
   const [swap, setSwap] = useState<boolean>(true)
   const [notInitialRender, setNotInitialRender] = useState<boolean>(false)
 
-  // TODO : investigate replacing scroll with intersection observer, memoizing and improving event handler 
-  // performance, and finding a better and non ugly way to set the no animation functions
-
   useEffect(() => {
-    const ele = document.getElementById('main-hero-container')
-    setTimeout(() => {
-      ele?.classList.add('no-animation')
-    }, 1)
-    setTimeout(() => {
-      ele?.classList.remove('no-animation')
-    }, 5)
+    if (heroRef.current) {
+      setTimeout(() => {
+        heroRef.current?.classList.add('no-animation')
+      }, 1)
+      setTimeout(() => {
+        heroRef.current?.classList.remove('no-animation')
+      }, 10)
+    }
   }, [])
 
   // eslint-disable-next-line
@@ -45,7 +44,7 @@ const Hero = () => {
   }
 
   return (
-    <section className="hero-container" id="main-hero-container">
+    <section className="hero-container" id="main-hero-container" ref={heroRef}>
       <nav className="main-nav" ref={navScrollRef}>
         <div>
           <p className="sass-studios">sass | studios</p>
