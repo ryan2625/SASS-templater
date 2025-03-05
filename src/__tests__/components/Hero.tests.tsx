@@ -4,7 +4,7 @@ import Hero from '../../Components/Hero/Hero'
 import ThemeContextProvider from '../../Contexts/ThemeContext'
 import { store } from '../../Store/store'
 
-describe('Typography and Navbar', () => {
+describe('Hero and Navbar', () => {
   afterEach(() => {
     jest.clearAllMocks()
   })

@@ -4,6 +4,7 @@ import App from '../App'
 import ThemeContextProvider from '../Contexts/ThemeContext'
 import { store } from '../Store/store'
 
+// Initial tests discovery file
 describe('Typography and Navbar', () => {
   afterEach(() => {
     jest.clearAllMocks()

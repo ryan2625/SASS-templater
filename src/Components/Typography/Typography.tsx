@@ -69,7 +69,6 @@ function Typography() {
 
       if (typographyScaleRef.current) {
         const selectNodes = Array.from(typographyScaleRef.current.children);
-
         if (selectNodes && scaleFromStorage != initialState.scale) {
           selectNodes.forEach((option) => {
             (option as HTMLOptionElement).selected =
@@ -79,7 +78,6 @@ function Typography() {
           const defaultNode = selectNodes.find((defaultOption) =>
             Number((defaultOption as HTMLOptionElement).value) === initialState.scale
           );
-
           if (defaultNode) {
             (defaultNode as HTMLOptionElement).selected = true;
           }
@@ -124,6 +122,7 @@ function Typography() {
                   max="20"
                   step="0.5"
                   name="typography-size"
+                  aria-label="Typography size"
                   onChange={(e) =>
                     dispatch({
                       type: 'CHANGE_SIZE',
@@ -138,6 +137,7 @@ function Typography() {
                   ref={typographyFontRef}
                   name="typography-font"
                   id="typography-font"
+                  aria-label="Typography font"
                   onChange={(e) => dispatch({ type: 'CHANGE_FONT', payload: e.target.value })}
                   value={font}
                 >
@@ -149,6 +149,7 @@ function Typography() {
                   type="color"
                   name="typography-color"
                   id="typography-color"
+                  aria-label="Typography color"
                   data-pseudo-field="body-color"
                   colorpick-eyedropper-active="true"
                   data-gtm-form-interact-field-id="0"
@@ -161,6 +162,7 @@ function Typography() {
                   ref={typographyScaleRef}
                   id="typography-scale"
                   name="typography-scale"
+                  aria-label="Typography scale"
                   onChange={(e) =>
                     dispatch({
                       type: 'CHANGE_SCALE',
@@ -186,6 +188,7 @@ function Typography() {
                   max="15"
                   name="typography-spacing"
                   id="typography-spacing"
+                  aria-label="Typography letter spacing"
                   value={spacing}
                   onChange={(e) =>
                     dispatch({
@@ -203,6 +206,7 @@ function Typography() {
                   max="5"
                   name="typography-height"
                   id="typography-height"
+                  aria-label="Typography line height"
                   value={height}
                   onChange={(e) =>
                     dispatch({
@@ -216,6 +220,7 @@ function Typography() {
                 <select
                   id="typography-weight"
                   name="typography-weight"
+                  aria-label="Typography font weight"
                   value={String(weight)}
                   onChange={(e) =>
                     dispatch({
@@ -254,7 +259,7 @@ function Typography() {
               sizes.map((tag, key) => {
                 const parseScale = parseFloat(calcVal(key, size, scale, sizes).toFixed(1))
                 return (
-                  <div className="template-scale-preview" key={key}>
+                  <div className="template-scale-preview" key={key} data-testid="font-preview-container">
                     <div
                       style={{
                         fontSize: '15px',
