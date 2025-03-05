@@ -20,10 +20,9 @@ import './Hero.scss'
 const Hero = () => {
   const themeContext = useContext(ThemeContext)
   const [navScrollRef, inView] = useInView({
-    /* Optional options */
     rootMargin: "350px",
+    initialInView: true
   });
-
   const [swap, setSwap] = useState<boolean>(true)
   const [notInitialRender, setNotInitialRender] = useState<boolean>(false)
 
@@ -38,11 +37,6 @@ const Hero = () => {
     setTimeout(() => {
       ele?.classList.remove('no-animation')
     }, 5)
-
-    document.getElementById('intro-after')?.addEventListener('click', function () {
-      setSwap((prev) => !prev)
-      setNotInitialRender(true)
-    })
   }, [])
 
   // eslint-disable-next-line
@@ -128,6 +122,10 @@ const Hero = () => {
               id="intro-after"
               alt="Click to swap between SASS and CSS display"
               data-testid="style-swapper"
+              onClick={() => {
+                setSwap((prev) => !prev)
+                setNotInitialRender(true)
+              }}
             />
             <div aria-label="hidden" id="intro-highlight"></div>
             <p className="intro-hold-width">SASS Styling</p>
