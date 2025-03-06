@@ -151,7 +151,7 @@ function Typography() {
                   ref={typographyFontRef}
                   name="typography-font"
                   id="typography-font"
-                  aria-label="Typography font"
+                  aria-label="Typography font size"
                   onChange={(e) => dispatch({ type: 'CHANGE_FONT', payload: e.target.value })}
                   value={font}
                 >

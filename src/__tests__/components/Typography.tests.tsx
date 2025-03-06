@@ -5,7 +5,7 @@ import Hero from '../../Components/Hero/Hero'
 import ThemeContextProvider from '../../Contexts/ThemeContext'
 import { store } from '../../Store/store'
 
-describe('Typography', () => {
+describe('Typography component', () => {
   afterEach(() => {
     jest.clearAllMocks()
   })
@@ -21,10 +21,10 @@ describe('Typography', () => {
     return {
       fontPreviewContainer: screen.getByTestId('font-preview-container'),
       fontSizeInput: screen.getByRole('spinbutton', { name: /typography size/i }),
-      fontFamilyInput: screen.getByRole('combobox', { name: /typography font/i }),
+      fontFamilyInput: screen.getByRole('combobox', { name: /typography font size/i }),
       fontColorInput: screen.getByLabelText(/typography color/i),
       fontScaleInput: screen.getByRole('combobox', { name: /typography scale/i }),
-      fontSpacingInput: screen.getByRole('spinbutton', { name: /typography letter spacing"/i }),
+      fontSpacingInput: screen.getByRole('spinbutton', { name: /typography letter spacing/i }),
       fontHeightInput: screen.getByRole('spinbutton', { name: /typography line height/i }),
       fontWeightInput: screen.getByRole('combobox', { name: /typography font weight/i }),
     }
@@ -42,7 +42,7 @@ describe('Typography', () => {
   }
   test('Increasing font size onClick', () => {
     const { fontSizeInput, fontPreviewContainer } = renderTypographyComponent()
-    console.log(fontPreviewContainer)
+
   })
   // test('Changing font family onClick', () => {
   //   const { swapperIcon, sassImage, cssImage } = renderTypographyComponent()
