@@ -3,10 +3,16 @@ import { Provider } from 'react-redux'
 import Hero from '../../Components/Hero/Hero'
 import ThemeContextProvider from '../../Contexts/ThemeContext'
 import { store } from '../../Store/store'
+import { resetIntersectionMocking, setupIntersectionMocking } from 'react-intersection-observer/test-utils';
 
 describe('Hero and Navbar', () => {
+  beforeEach(() => {
+    setupIntersectionMocking(jest.fn);
+  });
+
   afterEach(() => {
     jest.clearAllMocks()
+    resetIntersectionMocking();
   })
 
   const renderHeroComponent = () => {

@@ -1,6 +1,4 @@
 import { useReducer } from 'react'
-import { useDispatch } from 'react-redux'
-import { stateFromReducer } from '../Store/Slices/stylesSlice'
 import { rgbToHex } from '../Utils/generalUtils'
 import { initialState, TypographyReducerState } from '../Utils/typographyTypesUtils'
 
@@ -15,8 +13,6 @@ type Action =
   | { type: 'STATE_FROM_STORAGE'; payload: TypographyReducerState }
 
 const useTypographyReducer = () => {
-  const dispatch = useDispatch()
-
   function Reducer(state: TypographyReducerState, action: Action): TypographyReducerState {
     const { type } = action
     let newState: TypographyReducerState
@@ -77,8 +73,6 @@ const useTypographyReducer = () => {
       newState != initialState) {
       localStorage.setItem('styleState', JSON.stringify(newState))
     }
-    // Added redux in later versions. Used to keep context and redux in sync.
-    dispatch(stateFromReducer(newState))
     return newState
   }
   return useReducer(Reducer, initialState)

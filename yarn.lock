@@ -3095,6 +3095,11 @@ batch@0.6.1:
   resolved "https://registry.npmjs.org/batch/-/batch-0.6.1.tgz"
   integrity sha512-x+VAiMRL6UPkx+kudNvxTl6hB2XNNCG2r+7wixVfIYwu/2HKRXimwQyaumLjMveWvT2Hkd/cAJw+QBMfJ/EKVw==
 
+bezier-easing@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/bezier-easing/-/bezier-easing-2.1.0.tgz"
+  integrity sha512-gbIqZ/eslnUFC1tjEvtz0sgx+xTK20wDnYMIA27VA04R7w6xxXQPZDbibjA9DTWZRA2CXtwHykkVzlCaAJAZig==
+
 bfj@^7.0.2:
   version "7.1.0"
   resolved "https://registry.npmjs.org/bfj/-/bfj-7.1.0.tgz"
@@ -3630,6 +3635,11 @@ css-loader@^6.5.1:
     postcss-modules-values "^4.0.0"
     postcss-value-parser "^4.2.0"
     semver "^7.5.4"
+
+css-mediaquery@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.npmjs.org/css-mediaquery/-/css-mediaquery-0.1.2.tgz"
+  integrity sha512-COtn4EROW5dBGlE/4PiKnh6rZpAPxDeFLaEEwt4i10jpDMFt2EhQGS79QmmrO+iKCHv0PU/HrOWEhijFd1x99Q==
 
 css-minimizer-webpack-plugin@^3.2.0:
   version "3.4.1"
@@ -6481,6 +6491,14 @@ js-yaml@^4.1.0:
   integrity sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==
   dependencies:
     argparse "^2.0.1"
+
+jsdom-testing-mocks@^1.13.1:
+  version "1.13.1"
+  resolved "https://registry.npmjs.org/jsdom-testing-mocks/-/jsdom-testing-mocks-1.13.1.tgz"
+  integrity sha512-8BAsnuoO4DLGTf7LDbSm8fcx5CUHSv4h+bdUbwyt6rMYAXWjeHLRx9f8sYiSxoOTXy3S1e06pe87KER39o1ckA==
+  dependencies:
+    bezier-easing "^2.1.0"
+    css-mediaquery "^0.1.2"
 
 jsdom@^16.6.0:
   version "16.7.0"

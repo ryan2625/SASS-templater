@@ -8,21 +8,26 @@ import { Styles } from './types'
 import './Typography.scss'
 import { calcVal, typeGuardReducerState, typeGuardTheme, colorThemeMismatch } from './utils'
 import { Themes } from '../../Contexts/ThemeContext'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../Store/store'
+import { stateFromReducer } from '../../Store/Slices/stylesSlice'
 
 // TODO : Fix with react hooks memo, callback ETC then do the same for the HERO component
 
 function Typography() {
+  const reduxDispatch = useDispatch()
   const themeContext = useContext(ThemeContext)
-  const { color, height, spacing, font, weight, scale, size } = useSelector((state: RootState) => state.styles)
+  const stylesObject = useSelector((state: RootState) => state.styles);
   const [scaleFromStorage, setScaleFromStorage] = useState<number>(1.250)
-  const [, dispatch] = useTypographyReducer()
+  const [state, dispatch] = useTypographyReducer()
   const [units, setUnits] = useState<string>('px')
   const [isPastInitialRender, setIsPastInitialRender] = useState(false);
   const initialRenderPhaseComplete = useRef(false);
   const typographyFontRef = useRef<HTMLSelectElement>(null);
   const typographyScaleRef = useRef<HTMLSelectElement>(null);
+
+  const { color, height, spacing, font, weight, scale, size } = stylesObject;
+
 
   const styles: Styles = {
     color: color,
@@ -90,11 +95,20 @@ function Typography() {
     if (!initialRenderPhaseComplete.current) {
       initialRenderPhaseComplete.current = true;
       requestAnimationFrame(async () => {
-        await new Promise(resolve => setTimeout(resolve, 200))
+        await new Promise(resolve => setTimeout(resolve, 125))
         setIsPastInitialRender(true);
       });
     }
   }, []);
+
+  useEffect(() => {
+    // eslint-disable-next-line
+    const { otherStyles, ...rest } = stylesObject;
+    if (JSON.stringify(state) !== JSON.stringify(rest))
+      // Added redux in later versions. Used to keep context and redux in sync.
+      reduxDispatch(stateFromReducer(state))
+  }, [state])
+
 
   return (
     <section className="template-container">
@@ -254,12 +268,12 @@ function Typography() {
               rem
             </span>
           </div>
-          <div>
+          <div data-testid="font-preview-container">
             {sizes &&
               sizes.map((tag, key) => {
                 const parseScale = parseFloat(calcVal(key, size, scale, sizes).toFixed(1))
                 return (
-                  <div className="template-scale-preview" key={key} data-testid="font-preview-container">
+                  <div className="template-scale-preview" key={key}>
                     <div
                       style={{
                         fontSize: '15px',

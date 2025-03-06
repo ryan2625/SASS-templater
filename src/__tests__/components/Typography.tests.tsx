@@ -40,20 +40,10 @@ describe('Typography', () => {
       </Provider>
     )
   }
-  // test('Increasing font size onClick', () => {
-  //   const { swapperIcon, sassImage, cssImage } = renderTypographyComponent()
-
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
-
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('secondary-graphic')
-  //   expect(cssImage).toHaveClass('primary-graphic')
-
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
-  // })
+  test('Increasing font size onClick', () => {
+    const { fontSizeInput, fontPreviewContainer } = renderTypographyComponent()
+    console.log(fontPreviewContainer)
+  })
   // test('Changing font family onClick', () => {
   //   const { swapperIcon, sassImage, cssImage } = renderTypographyComponent()
 
