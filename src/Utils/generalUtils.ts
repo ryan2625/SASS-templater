@@ -36,3 +36,13 @@ export function rgbToHex(rgb: string) {
 
   return `#${toHex(r)}${toHex(g)}${toHex(b)}`
 }
+
+export function removeNumbers(string: string) {
+  return string.replace(/\d+/igm, '')
+}
+
+export function removeLetters(string: string | null) {
+  if (string)
+    return string.replace(/[a-zA-Z]/igm, '')
+  else return
+}

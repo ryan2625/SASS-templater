@@ -4,11 +4,15 @@ import Typography from '../../Components/Typography/Typography'
 import Hero from '../../Components/Hero/Hero'
 import ThemeContextProvider from '../../Contexts/ThemeContext'
 import { store } from '../../Store/store'
-
+import { removeLetters } from '../../Utils/generalUtils'
 describe('Typography component', () => {
   afterEach(() => {
     jest.clearAllMocks()
   })
+
+  const getCssProp = (element: HTMLElement) => {
+    return window.getComputedStyle(element)
+  }
 
   const renderTypographyComponent = () => {
     render(
@@ -30,18 +34,25 @@ describe('Typography component', () => {
     }
   }
 
-  const renderTypographyandHeroComponent = () => {
-    render(
-      <Provider store={store}>
-        <ThemeContextProvider>
-          <Hero />
-          <Typography />
-        </ThemeContextProvider>
-      </Provider>
-    )
-  }
+  // const renderTypographyandHeroComponent = () => {
+  //   render(
+  //     <Provider store={store}>
+  //       <ThemeContextProvider>
+  //         <Hero />
+  //         <Typography />
+  //       </ThemeContextProvider>
+  //     </Provider>
+  //   )
+  // }
+
   test('Increasing font size onClick', () => {
-    const { fontSizeInput, fontPreviewContainer } = renderTypographyComponent()
+    const { fontSizeInput } = renderTypographyComponent()
+    // Retrieve text fields such as 16px, 20.5px, 1rem
+    const elements = screen.getAllByText(/[0-9]+\.?[0-9]*\s?(px|rem)/i)
+    const initialVal = (elements[elements.length - 1])
+    expect(initialVal).toHaveTextContent('16px')
+    expect(removeLetters((fontSizeInput as HTMLInputElement).value)).toBe(removeLetters(initialVal.textContent))
+
 
   })
   // test('Changing font family onClick', () => {
