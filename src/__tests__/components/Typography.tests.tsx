@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
+import userEvent from '@testing-library/user-event';
 import Typography from '../../Components/Typography/Typography'
 import Hero from '../../Components/Hero/Hero'
 import ThemeContextProvider from '../../Contexts/ThemeContext'
@@ -45,30 +46,32 @@ describe('Typography component', () => {
   //   )
   // }
 
-  test('Increasing font size onClick', () => {
+  test('Increasing font size onClick', async () => {
     const { fontSizeInput } = renderTypographyComponent()
     // Retrieve text fields such as 16px, 20.5px, 1rem
     const elements = screen.getAllByText(/[0-9]+\.?[0-9]*\s?(px|rem)/i)
-    const initialVal = (elements[elements.length - 1])
-    expect(initialVal).toHaveTextContent('16px')
-    expect(removeLetters((fontSizeInput as HTMLInputElement).value)).toBe(removeLetters(initialVal.textContent))
+    const initialVal = removeLetters((elements[elements.length - 1]).textContent)
+    const step = fontSizeInput.getAttribute('step')
 
+    expect(initialVal).toBe('16')
+    expect((fontSizeInput as HTMLInputElement).value).toBe(initialVal)
 
+    fireEvent.change(fontSizeInput, { target: { value: `${Number(initialVal) + Number(step)}` } })
+
+    const updatedElements = screen.getAllByText(/[0-9]+\.?[0-9]*\s?(px|rem)/i)
+    const updatedVal = (updatedElements[updatedElements.length - 1])
+
+    expect(updatedVal).toHaveTextContent(`${Number(initialVal) + Number(step)}px`)
   })
-  // test('Changing font family onClick', () => {
-  //   const { swapperIcon, sassImage, cssImage } = renderTypographyComponent()
+  test('Changing font family onClick', () => {
+    const { fontFamilyInput } = renderTypographyComponent()
 
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
-
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('secondary-graphic')
-  //   expect(cssImage).toHaveClass('primary-graphic')
-
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
-  // })
+    Array.from(fontFamilyInput.children).forEach((child) => {
+      const htmlChild = child as HTMLOptionElement
+      console.log(getCssProp(htmlChild).fontFamily)
+      console.log(htmlChild.getAttribute('style'))
+    })
+  })
   // test('Changing color onClick', () => {
   //   const { swapperIcon, sassImage, cssImage } = renderTypographyComponent()
 
