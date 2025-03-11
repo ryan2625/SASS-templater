@@ -11,8 +11,7 @@ import { Themes } from '../../Contexts/ThemeContext'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../Store/store'
 import { stateFromReducer } from '../../Store/Slices/stylesSlice'
-
-// TODO : Fix with react hooks memo, callback ETC then do the same for the HERO component
+import { demoString } from './constants'
 
 function Typography() {
   const reduxDispatch = useDispatch()
@@ -27,7 +26,6 @@ function Typography() {
   const typographyScaleRef = useRef<HTMLSelectElement>(null);
 
   const { color, height, spacing, font, weight, scale, size } = stylesObject;
-
 
   const styles: Styles = {
     color: color,
@@ -71,7 +69,6 @@ function Typography() {
           (child as HTMLOptionElement).style.fontFamily = (child as HTMLOptionElement).value;
         });
       }
-
       if (typographyScaleRef.current) {
         const selectNodes = Array.from(typographyScaleRef.current.children);
         if (selectNodes && scaleFromStorage != initialState.scale) {
@@ -107,7 +104,7 @@ function Typography() {
     if (JSON.stringify(state) !== JSON.stringify(rest))
       // Added redux in later versions. Used to keep context and redux in sync.
       reduxDispatch(stateFromReducer(state))
-  }, [state])
+  }, [state, reduxDispatch, stylesObject])
 
 
   return (
@@ -300,7 +297,7 @@ function Typography() {
                         fontWeight: weight === true ? (sizes.length - key + 1) * 100 : 400
                       }}
                     >
-                      Woven silk pyjamas exchanged for blue quartz gems
+                      {demoString}
                     </div>
                   </div>
                 )

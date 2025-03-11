@@ -6,6 +6,8 @@ import Hero from '../../Components/Hero/Hero'
 import ThemeContextProvider from '../../Contexts/ThemeContext'
 import { store } from '../../Store/store'
 import { removeLetters } from '../../Utils/generalUtils'
+import { demoString } from '../../Components/Typography/constants';
+
 describe('Typography component', () => {
   afterEach(() => {
     jest.clearAllMocks()
@@ -24,14 +26,14 @@ describe('Typography component', () => {
       </Provider>
     )
     return {
-      fontPreviewContainer: screen.getByTestId('font-preview-container'),
-      fontSizeInput: screen.getByRole('spinbutton', { name: /typography size/i }),
-      fontFamilyInput: screen.getByRole('combobox', { name: /typography font size/i }),
-      fontColorInput: screen.getByLabelText(/typography color/i),
-      fontScaleInput: screen.getByRole('combobox', { name: /typography scale/i }),
-      fontSpacingInput: screen.getByRole('spinbutton', { name: /typography letter spacing/i }),
-      fontHeightInput: screen.getByRole('spinbutton', { name: /typography line height/i }),
-      fontWeightInput: screen.getByRole('combobox', { name: /typography font weight/i }),
+      fontPreviewContainer: screen.getByTestId('font-preview-container') as HTMLDivElement,
+      fontSizeInput: screen.getByRole('spinbutton', { name: /typography size/i }) as HTMLInputElement,
+      fontFamilyInput: screen.getByRole('combobox', { name: /typography font size/i }) as HTMLSelectElement,
+      fontColorInput: screen.getByLabelText(/typography color/i) as HTMLInputElement,
+      fontScaleInput: screen.getByRole('combobox', { name: /typography scale/i }) as HTMLSelectElement,
+      fontSpacingInput: screen.getByRole('spinbutton', { name: /typography letter spacing/i }) as HTMLInputElement,
+      fontHeightInput: screen.getByRole('spinbutton', { name: /typography line height/i }) as HTMLInputElement,
+      fontWeightInput: screen.getByRole('combobox', { name: /typography font weight/i }) as HTMLSelectElement,
     }
   }
 
@@ -54,7 +56,7 @@ describe('Typography component', () => {
     const step = fontSizeInput.getAttribute('step')
 
     expect(initialVal).toBe('16')
-    expect((fontSizeInput as HTMLInputElement).value).toBe(initialVal)
+    expect(fontSizeInput.value).toBe(initialVal)
 
     fireEvent.change(fontSizeInput, { target: { value: `${Number(initialVal) + Number(step)}` } })
 
@@ -64,13 +66,15 @@ describe('Typography component', () => {
     expect(updatedVal).toHaveTextContent(`${Number(initialVal) + Number(step)}px`)
   })
   test('Changing font family onClick', () => {
-    const { fontFamilyInput } = renderTypographyComponent()
+    const { fontFamilyInput } = renderTypographyComponent();
 
-    Array.from(fontFamilyInput.children).forEach((child) => {
-      const htmlChild = child as HTMLOptionElement
-      console.log(getCssProp(htmlChild).fontFamily)
-      console.log(htmlChild.getAttribute('style'))
-    })
+    const firstOption = fontFamilyInput.querySelector('option');
+    const selectedFontFamily = firstOption?.value;
+    const textElement = screen.getAllByText(new RegExp(demoString, "i"))
+
+    fireEvent.change(fontFamilyInput, { target: { value: selectedFontFamily } });
+
+    expect(textElement[0]).toHaveStyle(`font-family: ${selectedFontFamily}`);
   })
   // test('Changing color onClick', () => {
   //   const { swapperIcon, sassImage, cssImage } = renderTypographyComponent()
@@ -184,4 +188,5 @@ describe('Typography component', () => {
   //   expect(sassImage).toHaveClass('primary-graphic')
   //   expect(cssImage).toHaveClass('secondary-graphic')
   // })
-})
+}
+)
