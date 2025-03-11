@@ -18,6 +18,10 @@ describe('Typography component', () => {
     return window.getComputedStyle(element)
   }
 
+  const getLargeDemoText = () => {
+    return screen.getAllByText(new RegExp(demoString, 'i'))[0]
+  }
+
   const renderTypographyComponent = () => {
     render(
       <Provider store={store}>
@@ -70,29 +74,26 @@ describe('Typography component', () => {
     const { fontFamilyInput } = renderTypographyComponent()
     const firstOption = fontFamilyInput.querySelector('option')
     const selectedFontFamily = firstOption?.value
-    const demoTexts = screen.getAllByText(new RegExp(demoString, "i"))
 
     fireEvent.change(fontFamilyInput, { target: { value: selectedFontFamily } })
 
-    expect(demoTexts[0]).toHaveStyle(`font-family: ${selectedFontFamily}`);
+    expect(getLargeDemoText()).toHaveStyle(`font-family: ${selectedFontFamily}`);
   })
   test('Changing color onClick', () => {
     const { fontColorInput } = renderTypographyComponent()
     const initalColor = fontColorInput.value
-    const demoTexts = screen.getAllByText(new RegExp(demoString, 'i'))
     const changedColor = '#AAAAAA'
 
-    expect(demoTexts[0]).toHaveStyle(`color: ${initalColor}`)
+    expect(getLargeDemoText()).toHaveStyle(`color: ${initalColor}`)
 
     fireEvent.change(fontColorInput, { target: { value: changedColor } })
 
-    expect(demoTexts[0]).toHaveStyle(`color: ${changedColor}`)
+    expect(getLargeDemoText()).toHaveStyle(`color: ${changedColor}`)
   })
   test('Changing scale onClick', () => {
     const { fontScaleInput } = renderTypographyComponent()
-    const demoTexts = screen.getAllByText(new RegExp(demoString, 'i'))
     const option = fontScaleInput.querySelector('option')
-    let scale = demoTexts[0].getAttribute('data-scale-assertion')
+    let scale = getLargeDemoText().getAttribute('data-scale-assertion')
     let testScaleValue = null
     if (option instanceof (HTMLOptionElement)) {
       testScaleValue = option?.value
@@ -102,25 +103,28 @@ describe('Typography component', () => {
     expect(testScaleValue).not.toBeNull()
 
     fireEvent.change(fontScaleInput, { target: { value: testScaleValue } })
-    scale = demoTexts[0].getAttribute('data-scale-assertion')
+    scale = getLargeDemoText().getAttribute('data-scale-assertion')
 
     expect(scale).toEqual(testScaleValue)
 
   })
-  // test('Changing spacing onClick', () => {
-  //   const { swapperIcon, sassImage, cssImage } = renderTypographyComponent()
+  test('Changing spacing onClick', () => {
+    const { fontSpacingInput } = renderTypographyComponent()
+    const step = fontSpacingInput.getAttribute('step')
+    const initialVal = fontSpacingInput.value
+    const demoText = getLargeDemoText()
+    const increasedSpacing = initialVal + step
 
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
+    expect(getCssProp(demoText).letterSpacing).toBe(initialVal)
 
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('secondary-graphic')
-  //   expect(cssImage).toHaveClass('primary-graphic')
+    fireEvent.change(fontSpacingInput, { target: { value: `${increasedSpacing}` } })
 
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
-  // })
+    const cleanEndResult = removeLetters(getCssProp(demoText).letterSpacing)
+
+    if (cleanEndResult) {
+      expect(parseFloat(cleanEndResult)).toBeCloseTo(parseFloat(increasedSpacing));
+    }
+  })
   // test('Changing Height onClick', () => {
   //   const { swapperIcon, sassImage, cssImage } = renderTypographyComponent()
 
