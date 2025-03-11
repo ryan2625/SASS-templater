@@ -49,7 +49,7 @@ describe('Typography component', () => {
   //   )
   // }
 
-  test('Increasing font size onClick', async () => {
+  test('Increasing font size onClick', () => {
     const { fontSizeInput } = renderTypographyComponent()
     // Retrieve text fields such as 16px, 20.5px, 1rem
     const elements = screen.getAllByText(/[0-9]+\.?[0-9]*\s?(px|rem)/i)
