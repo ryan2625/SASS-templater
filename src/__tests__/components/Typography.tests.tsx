@@ -7,6 +7,7 @@ import ThemeContextProvider from '../../Contexts/ThemeContext'
 import { store } from '../../Store/store'
 import { removeLetters } from '../../Utils/generalUtils'
 import { demoString } from '../../Components/Typography/constants';
+import { initialState as initialFontValues } from '../../Utils/typographyTypesUtils';
 
 describe('Typography component', () => {
   afterEach(() => {
@@ -55,7 +56,7 @@ describe('Typography component', () => {
     const initialVal = removeLetters((elements[elements.length - 1]).textContent)
     const step = fontSizeInput.getAttribute('step')
 
-    expect(initialVal).toBe('16')
+    expect(initialVal).toBe(String(initialFontValues.size))
     expect(fontSizeInput.value).toBe(initialVal)
 
     fireEvent.change(fontSizeInput, { target: { value: `${Number(initialVal) + Number(step)}` } })
@@ -66,44 +67,46 @@ describe('Typography component', () => {
     expect(updatedVal).toHaveTextContent(`${Number(initialVal) + Number(step)}px`)
   })
   test('Changing font family onClick', () => {
-    const { fontFamilyInput } = renderTypographyComponent();
+    const { fontFamilyInput } = renderTypographyComponent()
+    const firstOption = fontFamilyInput.querySelector('option')
+    const selectedFontFamily = firstOption?.value
+    const demoTexts = screen.getAllByText(new RegExp(demoString, "i"))
 
-    const firstOption = fontFamilyInput.querySelector('option');
-    const selectedFontFamily = firstOption?.value;
-    const textElement = screen.getAllByText(new RegExp(demoString, "i"))
+    fireEvent.change(fontFamilyInput, { target: { value: selectedFontFamily } })
 
-    fireEvent.change(fontFamilyInput, { target: { value: selectedFontFamily } });
-
-    expect(textElement[0]).toHaveStyle(`font-family: ${selectedFontFamily}`);
+    expect(demoTexts[0]).toHaveStyle(`font-family: ${selectedFontFamily}`);
   })
-  // test('Changing color onClick', () => {
-  //   const { swapperIcon, sassImage, cssImage } = renderTypographyComponent()
+  test('Changing color onClick', () => {
+    const { fontColorInput } = renderTypographyComponent()
+    const initalColor = fontColorInput.value
+    const demoTexts = screen.getAllByText(new RegExp(demoString, 'i'))
+    const changedColor = '#AAAAAA'
 
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
+    expect(demoTexts[0]).toHaveStyle(`color: ${initalColor}`)
 
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('secondary-graphic')
-  //   expect(cssImage).toHaveClass('primary-graphic')
+    fireEvent.change(fontColorInput, { target: { value: changedColor } })
 
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
-  // })
-  // test('Changing scale onClick', () => {
-  //   const { swapperIcon, sassImage, cssImage } = renderTypographyComponent()
+    expect(demoTexts[0]).toHaveStyle(`color: ${changedColor}`)
+  })
+  test('Changing scale onClick', () => {
+    const { fontScaleInput } = renderTypographyComponent()
+    const demoTexts = screen.getAllByText(new RegExp(demoString, 'i'))
+    const option = fontScaleInput.querySelector('option')
+    let scale = demoTexts[0].getAttribute('data-scale-assertion')
+    let testScaleValue = null
+    if (option instanceof (HTMLOptionElement)) {
+      testScaleValue = option?.value
+    }
 
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
+    expect(Number(scale)).toEqual(initialFontValues.scale)
+    expect(testScaleValue).not.toBeNull()
 
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('secondary-graphic')
-  //   expect(cssImage).toHaveClass('primary-graphic')
+    fireEvent.change(fontScaleInput, { target: { value: testScaleValue } })
+    scale = demoTexts[0].getAttribute('data-scale-assertion')
 
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
-  // })
+    expect(scale).toEqual(testScaleValue)
+
+  })
   // test('Changing spacing onClick', () => {
   //   const { swapperIcon, sassImage, cssImage } = renderTypographyComponent()
 

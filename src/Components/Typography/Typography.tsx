@@ -296,6 +296,7 @@ function Typography() {
                         fontSize: parseScale,
                         fontWeight: weight === true ? (sizes.length - key + 1) * 100 : 400
                       }}
+                      data-scale-assertion={String(scale)}
                     >
                       {demoString}
                     </div>
