@@ -1,4 +1,4 @@
-import { Font, Label, Scale } from './types'
+import type { Font, Label, Scale } from './types'
 
 export const fonts: Font[] = [
   { value: "'Webdings', fantasy", displayName: 'Webdings' },

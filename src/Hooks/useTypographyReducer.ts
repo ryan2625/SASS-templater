@@ -1,6 +1,6 @@
 import { useReducer } from 'react'
 import { rgbToHex } from '../Utils/generalUtils'
-import { initialState, TypographyReducerState } from '../Utils/typographyTypesUtils'
+import { initialState, type TypographyReducerState } from '../Utils/typographyTypesUtils'
 
 type Action =
   | { type: 'CHANGE_SIZE'; payload: number }

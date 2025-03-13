@@ -1,4 +1,4 @@
-import { TypographyReducerState } from "../../Utils/typographyTypesUtils"
+import type { TypographyReducerState } from "../../Utils/typographyTypesUtils"
 import { Themes } from "../../Contexts/ThemeContext"
 import { rgbToHex } from "../../Utils/generalUtils"
 
