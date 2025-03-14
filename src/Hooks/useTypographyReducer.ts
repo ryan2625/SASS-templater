@@ -69,8 +69,7 @@ const useTypographyReducer = () => {
       }
     }
 
-    if (type != 'STATE_FROM_STORAGE' &&
-      newState != initialState) {
+    if (type != 'STATE_FROM_STORAGE' && newState != initialState) {
       localStorage.setItem('styleState', JSON.stringify(newState))
     }
     return newState

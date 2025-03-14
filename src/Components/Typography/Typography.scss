@@ -19,7 +19,7 @@
   gap: 2.5rem;
 }
 
-.template-creator>div {
+.template-creator > div {
   margin-top: getVal($margin, xxxl);
 }
 
@@ -73,7 +73,7 @@
     overflow: hidden;
   }
 
-  >div:first-child {
+  > div:first-child {
     margin-bottom: getVal($margin, m);
   }
 }
@@ -87,7 +87,7 @@
   display: flex;
   justify-content: space-between;
 
-  >div {
+  > div {
     display: flex;
     flex-direction: column;
     color: var_(inverse-txt2);
@@ -96,7 +96,7 @@
       align-items: flex-end;
     }
 
-    >* {
+    > * {
       height: 50px;
       display: inline-block;
       white-space: nowrap;
@@ -109,7 +109,7 @@
   white-space: nowrap;
   align-items: baseline;
 
-  >div {
+  > div {
     vertical-align: middle !important;
 
     &:first-child {
@@ -134,7 +134,6 @@
 }
 
 .typography-inputs {
-
   select,
   input {
     width: 160px;

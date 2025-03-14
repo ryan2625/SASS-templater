@@ -1,6 +1,6 @@
-import type { TypographyReducerState } from "../../Utils/typographyTypesUtils"
-import { Themes } from "../../Contexts/ThemeContext"
-import { rgbToHex } from "../../Utils/generalUtils"
+import { Themes } from '../../Contexts/ThemeContext'
+import { rgbToHex } from '../../Utils/generalUtils'
+import type { TypographyReducerState } from '../../Utils/typographyTypesUtils'
 
 export function typeGuardReducerState(value: unknown): value is TypographyReducerState {
   return (
@@ -24,12 +24,7 @@ export function typeGuardReducerState(value: unknown): value is TypographyReduce
 }
 
 export function typeGuardTheme(value: unknown): value is Themes {
-  return (
-    typeof value === 'string' &&
-    value !== null &&
-    value === 'light' ||
-    value === 'dark'
-  )
+  return (typeof value === 'string' && value !== null && value === 'light') || value === 'dark'
 }
 
 export function calcVal(index: number, value: number, scale: number, sizes: string[]): number {
@@ -42,15 +37,15 @@ export function calcVal(index: number, value: number, scale: number, sizes: stri
 
 // Most likely redundant but initially was needed as validation when I didn't retain theme in storage
 export function colorThemeMismatch(themeState: Themes, styleState: TypographyReducerState) {
-  const darkDiv = document.createElement('div');
-  darkDiv.className = "theme-dark";
-  document.body.appendChild(darkDiv);
-  const darkColor = window.getComputedStyle(darkDiv).getPropertyValue('--bg1');
+  const darkDiv = document.createElement('div')
+  darkDiv.className = 'theme-dark'
+  document.body.appendChild(darkDiv)
+  const darkColor = window.getComputedStyle(darkDiv).getPropertyValue('--bg1')
 
-  const lightDiv = document.createElement('div');
-  lightDiv.className = "theme-light";
-  document.body.appendChild(lightDiv);
-  const lightColor = window.getComputedStyle(lightDiv).getPropertyValue('--bg1');
+  const lightDiv = document.createElement('div')
+  lightDiv.className = 'theme-light'
+  document.body.appendChild(lightDiv)
+  const lightColor = window.getComputedStyle(lightDiv).getPropertyValue('--bg1')
 
   document.body.removeChild(darkDiv)
   document.body.removeChild(lightDiv)
@@ -62,5 +57,5 @@ export function colorThemeMismatch(themeState: Themes, styleState: TypographyRed
     styleState = { ...styleState, color: rgbToHex(lightColor) }
   }
 
-  return styleState;
+  return styleState
 }

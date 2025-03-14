@@ -1,19 +1,19 @@
 import { fireEvent, render, screen } from '@testing-library/react'
+import { resetIntersectionMocking, setupIntersectionMocking } from 'react-intersection-observer/test-utils'
 import { Provider } from 'react-redux'
 import Hero from '../../Components/Hero/Hero'
 import ThemeContextProvider from '../../Contexts/ThemeContext'
 import { store } from '../../Store/store'
-import { resetIntersectionMocking, setupIntersectionMocking } from 'react-intersection-observer/test-utils';
 //import 'react-intersection-observer'
 
 describe('Hero and Navbar', () => {
   beforeEach(() => {
-    setupIntersectionMocking(jest.fn);
-  });
+    setupIntersectionMocking(jest.fn)
+  })
 
   afterEach(() => {
     jest.clearAllMocks()
-    resetIntersectionMocking();
+    resetIntersectionMocking()
   })
 
   const renderHeroComponent = () => {

@@ -1,13 +1,13 @@
 import { fireEvent, render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { Provider } from 'react-redux'
-import userEvent from '@testing-library/user-event';
-import Typography from '../../Components/Typography/Typography'
 import Hero from '../../Components/Hero/Hero'
+import { demoString } from '../../Components/Typography/constants'
+import Typography from '../../Components/Typography/Typography'
 import ThemeContextProvider from '../../Contexts/ThemeContext'
 import { store } from '../../Store/store'
 import { removeLetters } from '../../Utils/generalUtils'
-import { demoString } from '../../Components/Typography/constants';
-import { initialState as initialFontValues } from '../../Utils/typographyTypesUtils';
+import { initialState as initialFontValues } from '../../Utils/typographyTypesUtils'
 
 describe('Typography component', () => {
   afterEach(() => {
@@ -38,7 +38,7 @@ describe('Typography component', () => {
       fontScaleInput: screen.getByRole('combobox', { name: /typography scale/i }) as HTMLSelectElement,
       fontSpacingInput: screen.getByRole('spinbutton', { name: /typography letter spacing/i }) as HTMLInputElement,
       fontHeightInput: screen.getByRole('spinbutton', { name: /typography line height/i }) as HTMLInputElement,
-      fontWeightInput: screen.getByRole('combobox', { name: /typography font weight/i }) as HTMLSelectElement,
+      fontWeightInput: screen.getByRole('combobox', { name: /typography font weight/i }) as HTMLSelectElement
     }
   }
 
@@ -57,7 +57,7 @@ describe('Typography component', () => {
     const { fontSizeInput } = renderTypographyComponent()
     // Retrieve text fields such as 16px, 20.5px, 1rem
     const elements = screen.getAllByText(/[0-9]+\.?[0-9]*\s?(px|rem)/i)
-    const initialVal = removeLetters((elements[elements.length - 1]).textContent)
+    const initialVal = removeLetters(elements[elements.length - 1].textContent)
     const step = fontSizeInput.getAttribute('step')
 
     expect(initialVal).toBe(String(initialFontValues.size))
@@ -66,7 +66,7 @@ describe('Typography component', () => {
     fireEvent.change(fontSizeInput, { target: { value: `${Number(initialVal) + Number(step)}` } })
 
     const updatedElements = screen.getAllByText(/[0-9]+\.?[0-9]*\s?(px|rem)/i)
-    const updatedVal = (updatedElements[updatedElements.length - 1])
+    const updatedVal = updatedElements[updatedElements.length - 1]
 
     expect(updatedVal).toHaveTextContent(`${Number(initialVal) + Number(step)}px`)
   })
@@ -77,7 +77,7 @@ describe('Typography component', () => {
 
     fireEvent.change(fontFamilyInput, { target: { value: selectedFontFamily } })
 
-    expect(getLargeDemoText()).toHaveStyle(`font-family: ${selectedFontFamily}`);
+    expect(getLargeDemoText()).toHaveStyle(`font-family: ${selectedFontFamily}`)
   })
   test('Changing color onClick', () => {
     const { fontColorInput } = renderTypographyComponent()
@@ -95,7 +95,7 @@ describe('Typography component', () => {
     const option = fontScaleInput.querySelector('option')
     let scale = getLargeDemoText().getAttribute('data-scale-assertion')
     let testScaleValue = null
-    if (option instanceof (HTMLOptionElement)) {
+    if (option instanceof HTMLOptionElement) {
       testScaleValue = option?.value
     }
 
@@ -106,7 +106,6 @@ describe('Typography component', () => {
     scale = getLargeDemoText().getAttribute('data-scale-assertion')
 
     expect(scale).toEqual(testScaleValue)
-
   })
   test('Changing spacing onClick', () => {
     const { fontSpacingInput } = renderTypographyComponent()
@@ -122,7 +121,7 @@ describe('Typography component', () => {
     const cleanEndResult = removeLetters(getCssProp(demoText).letterSpacing)
 
     if (cleanEndResult) {
-      expect(parseFloat(cleanEndResult)).toBeCloseTo(parseFloat(increasedSpacing));
+      expect(parseFloat(cleanEndResult)).toBeCloseTo(parseFloat(increasedSpacing))
     }
   })
   // test('Changing Height onClick', () => {
@@ -195,5 +194,4 @@ describe('Typography component', () => {
   //   expect(sassImage).toHaveClass('primary-graphic')
   //   expect(cssImage).toHaveClass('secondary-graphic')
   // })
-}
-)
+})

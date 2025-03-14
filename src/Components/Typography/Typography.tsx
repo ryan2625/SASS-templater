@@ -1,31 +1,30 @@
-import { useContext, useEffect, useState, useRef, useMemo } from 'react'
+import { useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import type { Themes } from '../../Contexts/ThemeContext'
 import { ThemeContext } from '../../Contexts/ThemeContext'
 import useTypographyReducer from '../../Hooks/useTypographyReducer'
+import { stateFromReducer } from '../../Store/Slices/stylesSlice'
+import type { RootState } from '../../Store/store'
 import { getCssVariableValue } from '../../Utils/generalUtils'
 import { initialState, type TypographyReducerState } from '../../Utils/typographyTypesUtils'
-import { fonts, labels, scales, sizes } from './constants'
+import { demoString, fonts, labels, scales, sizes } from './constants'
 import type { Styles } from './types'
 import './Typography.scss'
-import { calcVal, typeGuardReducerState, typeGuardTheme, colorThemeMismatch } from './utils'
-import type { Themes } from '../../Contexts/ThemeContext'
-import { useDispatch, useSelector } from 'react-redux'
-import type { RootState } from '../../Store/store'
-import { stateFromReducer } from '../../Store/Slices/stylesSlice'
-import { demoString } from './constants'
+import { calcVal, colorThemeMismatch, typeGuardReducerState, typeGuardTheme } from './utils'
 
 function Typography() {
   const reduxDispatch = useDispatch()
   const themeContext = useContext(ThemeContext)
-  const stylesObject = useSelector((state: RootState) => state.styles);
-  const [scaleFromStorage, setScaleFromStorage] = useState<number>(1.250)
+  const stylesObject = useSelector((state: RootState) => state.styles)
+  const [scaleFromStorage, setScaleFromStorage] = useState<number>(1.25)
   const [state, dispatch] = useTypographyReducer()
   const [units, setUnits] = useState<string>('px')
-  const [isPastInitialRender, setIsPastInitialRender] = useState(false);
-  const initialRenderPhaseComplete = useRef(false);
-  const typographyFontRef = useRef<HTMLSelectElement>(null);
-  const typographyScaleRef = useRef<HTMLSelectElement>(null);
+  const [isPastInitialRender, setIsPastInitialRender] = useState(false)
+  const initialRenderPhaseComplete = useRef(false)
+  const typographyFontRef = useRef<HTMLSelectElement>(null)
+  const typographyScaleRef = useRef<HTMLSelectElement>(null)
 
-  const { color, height, spacing, font, weight, scale, size } = stylesObject;
+  const { color, height, spacing, font, weight, scale, size } = stylesObject
 
   const styles: Styles = {
     color: color,
@@ -34,14 +33,15 @@ function Typography() {
     fontFamily: font
   }
 
-  const fontsMap = useMemo(() =>
-    fonts.map((fontOption) => (
-      <option key={fontOption.displayName} value={fontOption.value}>
-        {fontOption.displayName}
-      </option>
-    )),
+  const fontsMap = useMemo(
+    () =>
+      fonts.map((fontOption) => (
+        <option key={fontOption.displayName} value={fontOption.value}>
+          {fontOption.displayName}
+        </option>
+      )),
     [fonts]
-  );
+  )
 
   useEffect(() => {
     if (isPastInitialRender) {
@@ -54,7 +54,9 @@ function Typography() {
     if (typeGuardTheme(themeState)) {
       themeContext.setTheme(themeState)
     }
-    const styleState: TypographyReducerState = JSON.parse(localStorage.getItem('styleState') || `${JSON.stringify(initialState)}`)
+    const styleState: TypographyReducerState = JSON.parse(
+      localStorage.getItem('styleState') || `${JSON.stringify(initialState)}`
+    )
     if (typeGuardReducerState(styleState)) {
       const validatedStyles = colorThemeMismatch(themeState, styleState)
       dispatch({ type: 'STATE_FROM_STORAGE', payload: validatedStyles })
@@ -66,22 +68,21 @@ function Typography() {
     if (isPastInitialRender) {
       if (typographyFontRef.current) {
         Array.from(typographyFontRef.current.children).forEach((child) => {
-          (child as HTMLOptionElement).style.fontFamily = (child as HTMLOptionElement).value;
-        });
+          ;(child as HTMLOptionElement).style.fontFamily = (child as HTMLOptionElement).value
+        })
       }
       if (typographyScaleRef.current) {
-        const selectNodes = Array.from(typographyScaleRef.current.children);
+        const selectNodes = Array.from(typographyScaleRef.current.children)
         if (selectNodes && scaleFromStorage != initialState.scale) {
           selectNodes.forEach((option) => {
-            (option as HTMLOptionElement).selected =
-              Number((option as HTMLOptionElement).value) === scaleFromStorage;
-          });
+            ;(option as HTMLOptionElement).selected = Number((option as HTMLOptionElement).value) === scaleFromStorage
+          })
         } else {
-          const defaultNode = selectNodes.find((defaultOption) =>
-            Number((defaultOption as HTMLOptionElement).value) === initialState.scale
-          );
+          const defaultNode = selectNodes.find(
+            (defaultOption) => Number((defaultOption as HTMLOptionElement).value) === initialState.scale
+          )
           if (defaultNode) {
-            (defaultNode as HTMLOptionElement).selected = true;
+            ;(defaultNode as HTMLOptionElement).selected = true
           }
         }
       }
@@ -90,22 +91,21 @@ function Typography() {
 
   useEffect(() => {
     if (!initialRenderPhaseComplete.current) {
-      initialRenderPhaseComplete.current = true;
+      initialRenderPhaseComplete.current = true
       requestAnimationFrame(async () => {
-        await new Promise(resolve => setTimeout(resolve, 125))
-        setIsPastInitialRender(true);
-      });
+        await new Promise((resolve) => setTimeout(resolve, 125))
+        setIsPastInitialRender(true)
+      })
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     // eslint-disable-next-line
-    const { otherStyles, ...rest } = stylesObject;
+    const { otherStyles, ...rest } = stylesObject
     if (JSON.stringify(state) !== JSON.stringify(rest))
       // Added redux in later versions. Used to keep context and redux in sync.
       reduxDispatch(stateFromReducer(state))
   }, [state, reduxDispatch, stylesObject])
-
 
   return (
     <section className="template-container">

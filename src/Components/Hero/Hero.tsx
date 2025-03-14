@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState, useRef } from 'react'
-import { useInView } from "react-intersection-observer";
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import { useInView } from 'react-intersection-observer'
 import {
   cssDark,
   cssLight,
@@ -20,9 +20,9 @@ import './Hero.scss'
 const Hero = () => {
   const themeContext = useContext(ThemeContext)
   const [navScrollRef, inView] = useInView({
-    rootMargin: "350px",
+    rootMargin: '350px',
     initialInView: true
-  });
+  })
   const heroRef = useRef<HTMLDivElement>(null)
   const [swap, setSwap] = useState<boolean>(true)
   const [notInitialRender, setNotInitialRender] = useState<boolean>(false)

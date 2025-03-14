@@ -38,11 +38,10 @@ export function rgbToHex(rgb: string) {
 }
 
 export function removeNumbers(string: string) {
-  return string.replace(/\d+/igm, '')
+  return string.replace(/\d+/gim, '')
 }
 
 export function removeLetters(string: string | null) {
-  if (string)
-    return string.replace(/[a-zA-Z]/igm, '')
+  if (string) return string.replace(/[a-zA-Z]/gim, '')
   else return
 }

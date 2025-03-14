@@ -48,4 +48,4 @@ export const labels: Label[] = [
 
 export const sizes: string[] = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p']
 
-export const demoString = "Woven silk pyjamas exchanged for blue quartz gems"
+export const demoString = 'Woven silk pyjamas exchanged for blue quartz gems'

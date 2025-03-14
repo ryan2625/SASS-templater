@@ -23,7 +23,7 @@ const ThemeContextProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   const changeTheme = (val?: Themes) => {
-    const newTheme: Themes = val !== undefined ? val : (theme === 'light' ? 'dark' : 'light')
+    const newTheme: Themes = val !== undefined ? val : theme === 'light' ? 'dark' : 'light'
     themeUtil(newTheme)
     setTheme(newTheme)
     return val
