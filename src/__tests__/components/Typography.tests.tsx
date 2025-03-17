@@ -124,20 +124,20 @@ describe('Typography component', () => {
       expect(parseFloat(cleanEndResult)).toBeCloseTo(parseFloat(increasedSpacing))
     }
   })
-  // test('Changing Height onClick', () => {
-  //   const { swapperIcon, sassImage, cssImage } = renderTypographyComponent()
+  test('Changing Height onClick', () => {
+    const { fontHeightInput } = renderTypographyComponent()
+    const demoText = getLargeDemoText()
+    const initialHeight = getCssProp(demoText).lineHeight
+    const step = fontHeightInput.getAttribute('step')
+    const increasedHeight = String(Number(step) + Number(initialHeight)) // I know... lol
 
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
+    expect(getCssProp(demoText).lineHeight).toBe(initialHeight)
 
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('secondary-graphic')
-  //   expect(cssImage).toHaveClass('primary-graphic')
+    fireEvent.change(fontHeightInput, { target: { value: `${increasedHeight}` } })
 
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
-  // })
+    expect(parseFloat(getCssProp(demoText).lineHeight)).toBeCloseTo(parseFloat(increasedHeight))
+
+  })
   // test('Changing weight onClick', () => {
   //   const { swapperIcon, sassImage, cssImage } = renderTypographyComponent()
 
