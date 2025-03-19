@@ -1,7 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 import { Provider } from 'react-redux'
-import Hero from '../../Components/Hero/Hero'
 import { demoString } from '../../Components/Typography/constants'
 import Typography from '../../Components/Typography/Typography'
 import ThemeContextProvider from '../../Contexts/ThemeContext'
@@ -20,6 +18,13 @@ describe('Typography component', () => {
 
   const getLargeDemoText = () => {
     return screen.getAllByText(new RegExp(demoString, 'i'))[0]
+  }
+
+  const setupTestsHelper = (element: HTMLElement, property: keyof CSSStyleDeclaration, input: HTMLElement) => {
+    const demoText = getLargeDemoText()
+    const cssProp = getCssProp(element)[property]
+    const step = input.getAttribute('step')
+    return { demoText, cssProp, step }
   }
 
   const renderTypographyComponent = () => {
@@ -138,60 +143,13 @@ describe('Typography component', () => {
     expect(parseFloat(getCssProp(demoText).lineHeight)).toBeCloseTo(parseFloat(increasedHeight))
 
   })
-  // test('Changing weight onClick', () => {
-  //   const { swapperIcon, sassImage, cssImage } = renderTypographyComponent()
+  test('Changing weight onClick', () => {
+    const { fontWeightInput } = renderTypographyComponent()
+    const demoText = getLargeDemoText()
+    const initialWeight = getCssProp(demoText).fontWeight
 
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
+    fireEvent.change(fontWeightInput, { target: { value: true } })
 
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('secondary-graphic')
-  //   expect(cssImage).toHaveClass('primary-graphic')
-
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
-  // })
-  // test('Properly changing units between rem and px', () => {
-  //   const { swapperIcon, sassImage, cssImage } = renderTypographyComponent()
-
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
-
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('secondary-graphic')
-  //   expect(cssImage).toHaveClass('primary-graphic')
-
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
-  // })
-  // test('Setting the scale from local storage', () => {
-  //   const { swapperIcon, sassImage, cssImage } = renderTypographyComponent()
-
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
-
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('secondary-graphic')
-  //   expect(cssImage).toHaveClass('primary-graphic')
-
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
-  // })
-  // test('Color changing during theme swap', () => {
-  //   const { swapperIcon, sassImage, cssImage } = renderTypographyComponent()
-
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
-
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('secondary-graphic')
-  //   expect(cssImage).toHaveClass('primary-graphic')
-
-  //   fireEvent.click(swapperIcon)
-  //   expect(sassImage).toHaveClass('primary-graphic')
-  //   expect(cssImage).toHaveClass('secondary-graphic')
-  // })
+    expect(getCssProp(demoText).fontWeight).not.toBe(initialWeight)
+  })
 })

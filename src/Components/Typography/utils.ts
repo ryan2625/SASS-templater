@@ -23,18 +23,6 @@ export function typeGuardReducerState(value: unknown): value is TypographyReduce
   )
 }
 
-export function typeGuardTheme(value: unknown): value is Themes {
-  return (typeof value === 'string' && value !== null && value === 'light') || value === 'dark'
-}
-
-export function calcVal(index: number, value: number, scale: number, sizes: string[]): number {
-  if (index === sizes.length - 1) {
-    return value
-  } else {
-    return calcVal((index += 1), value * scale, scale, sizes)
-  }
-}
-
 // Most likely redundant but initially was needed as validation when I didn't retain theme in storage
 export function colorThemeMismatch(themeState: Themes, styleState: TypographyReducerState) {
   const darkDiv = document.createElement('div')
@@ -58,4 +46,16 @@ export function colorThemeMismatch(themeState: Themes, styleState: TypographyRed
   }
 
   return styleState
+}
+
+export function typeGuardTheme(value: unknown): value is Themes {
+  return (typeof value === 'string' && value !== null && value === 'light') || value === 'dark'
+}
+
+export function calcVal(index: number, value: number, scale: number, sizes: string[]): number {
+  if (index === sizes.length - 1) {
+    return value
+  } else {
+    return calcVal((index += 1), value * scale, scale, sizes)
+  }
 }

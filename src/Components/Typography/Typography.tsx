@@ -19,7 +19,6 @@ function Typography() {
   const [scaleFromStorage, setScaleFromStorage] = useState<number>(1.25)
   const [state, dispatch] = useTypographyReducer()
   const [units, setUnits] = useState<string>('px')
-  const [isPastInitialRender, setIsPastInitialRender] = useState(false)
   const initialRenderPhaseComplete = useRef(false)
   const typographyFontRef = useRef<HTMLSelectElement>(null)
   const typographyScaleRef = useRef<HTMLSelectElement>(null)
@@ -44,7 +43,7 @@ function Typography() {
   )
 
   useEffect(() => {
-    if (isPastInitialRender) {
+    if (initialRenderPhaseComplete.current === true) {
       dispatch({ type: 'CHANGE_COLOR', payload: getCssVariableValue('--bg1') })
     }
   }, [dispatch, themeContext.context])
@@ -65,36 +64,35 @@ function Typography() {
   }, [])
 
   useEffect(() => {
-    if (isPastInitialRender) {
+    if (initialRenderPhaseComplete.current === true) {
       if (typographyFontRef.current) {
         Array.from(typographyFontRef.current.children).forEach((child) => {
-          ;(child as HTMLOptionElement).style.fontFamily = (child as HTMLOptionElement).value
+          (child as HTMLOptionElement).style.fontFamily = (child as HTMLOptionElement).value
         })
       }
       if (typographyScaleRef.current) {
         const selectNodes = Array.from(typographyScaleRef.current.children)
         if (selectNodes && scaleFromStorage != initialState.scale) {
           selectNodes.forEach((option) => {
-            ;(option as HTMLOptionElement).selected = Number((option as HTMLOptionElement).value) === scaleFromStorage
+            (option as HTMLOptionElement).selected = Number((option as HTMLOptionElement).value) === scaleFromStorage
           })
         } else {
           const defaultNode = selectNodes.find(
             (defaultOption) => Number((defaultOption as HTMLOptionElement).value) === initialState.scale
           )
           if (defaultNode) {
-            ;(defaultNode as HTMLOptionElement).selected = true
+            (defaultNode as HTMLOptionElement).selected = true
           }
         }
       }
     }
-  }, [isPastInitialRender, scaleFromStorage])
+  }, [initialRenderPhaseComplete.current, scaleFromStorage])
 
   useEffect(() => {
     if (!initialRenderPhaseComplete.current) {
-      initialRenderPhaseComplete.current = true
       requestAnimationFrame(async () => {
-        await new Promise((resolve) => setTimeout(resolve, 125))
-        setIsPastInitialRender(true)
+        await new Promise((resolve) => setTimeout(resolve, 100))
+        initialRenderPhaseComplete.current = true
       })
     }
   }, [])
