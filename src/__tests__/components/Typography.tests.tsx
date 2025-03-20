@@ -20,11 +20,15 @@ describe('Typography component', () => {
     return screen.getAllByText(new RegExp(demoString, 'i'))[0]
   }
 
-  const setupTestsHelper = (element: HTMLElement, property: keyof CSSStyleDeclaration, input: HTMLElement) => {
+  const setupTestsHelper = (input: HTMLElement, property: keyof CSSStyleDeclaration, getStep?: boolean) => {
     const demoText = getLargeDemoText()
-    const cssProp = getCssProp(element)[property]
-    const step = input.getAttribute('step')
-    return { demoText, cssProp, step }
+    const cssProp = getCssProp(demoText)[property]
+    if (getStep) {
+      const step = input.getAttribute('step')
+      return { demoText, cssProp, step }
+    } else {
+      return { demoText, cssProp }
+    }
   }
 
   const renderTypographyComponent = () => {
@@ -46,17 +50,6 @@ describe('Typography component', () => {
       fontWeightInput: screen.getByRole('combobox', { name: /typography font weight/i }) as HTMLSelectElement
     }
   }
-
-  // const renderTypographyandHeroComponent = () => {
-  //   render(
-  //     <Provider store={store}>
-  //       <ThemeContextProvider>
-  //         <Hero />
-  //         <Typography />
-  //       </ThemeContextProvider>
-  //     </Provider>
-  //   )
-  // }
 
   test('Increasing font size onClick', () => {
     const { fontSizeInput } = renderTypographyComponent()
@@ -114,12 +107,10 @@ describe('Typography component', () => {
   })
   test('Changing spacing onClick', () => {
     const { fontSpacingInput } = renderTypographyComponent()
-    const step = fontSpacingInput.getAttribute('step')
-    const initialVal = fontSpacingInput.value
-    const demoText = getLargeDemoText()
-    const increasedSpacing = initialVal + step
+    const { demoText, cssProp: initialSpacing, step } = setupTestsHelper(fontSpacingInput, 'letterSpacing', true)
+    const increasedSpacing = String(Number(initialSpacing) + Number(step))
 
-    expect(getCssProp(demoText).letterSpacing).toBe(initialVal)
+    expect(getCssProp(demoText).letterSpacing).toBe(initialSpacing)
 
     fireEvent.change(fontSpacingInput, { target: { value: `${increasedSpacing}` } })
 
@@ -131,9 +122,7 @@ describe('Typography component', () => {
   })
   test('Changing Height onClick', () => {
     const { fontHeightInput } = renderTypographyComponent()
-    const demoText = getLargeDemoText()
-    const initialHeight = getCssProp(demoText).lineHeight
-    const step = fontHeightInput.getAttribute('step')
+    const { demoText, cssProp: initialHeight, step } = setupTestsHelper(fontHeightInput, 'lineHeight', true)
     const increasedHeight = String(Number(step) + Number(initialHeight)) // I know... lol
 
     expect(getCssProp(demoText).lineHeight).toBe(initialHeight)
@@ -145,10 +134,9 @@ describe('Typography component', () => {
   })
   test('Changing weight onClick', () => {
     const { fontWeightInput } = renderTypographyComponent()
-    const demoText = getLargeDemoText()
-    const initialWeight = getCssProp(demoText).fontWeight
+    const { demoText, cssProp: initialWeight } = setupTestsHelper(fontWeightInput, 'fontWeight')
 
-    fireEvent.change(fontWeightInput, { target: { value: true } })
+    fireEvent.change(fontWeightInput, { target: { value: !initialWeight } })
 
     expect(getCssProp(demoText).fontWeight).not.toBe(initialWeight)
   })
