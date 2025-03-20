@@ -13,15 +13,18 @@ import './Typography.scss'
 import { calcVal, colorThemeMismatch, typeGuardReducerState, typeGuardTheme } from './utils'
 
 function Typography() {
-  const reduxDispatch = useDispatch()
-  const themeContext = useContext(ThemeContext)
-  const stylesObject = useSelector((state: RootState) => state.styles)
-  const [scaleFromStorage, setScaleFromStorage] = useState<number>(1.25)
-  const [state, dispatch] = useTypographyReducer()
-  const [units, setUnits] = useState<string>('px')
   const initialRenderPhaseComplete = useRef(false)
   const typographyFontRef = useRef<HTMLSelectElement>(null)
   const typographyScaleRef = useRef<HTMLSelectElement>(null)
+
+  const [units, setUnits] = useState<string>('px')
+  const [scaleFromStorage, setScaleFromStorage] = useState<number>(1.25)
+
+  const stylesObject = useSelector((state: RootState) => state.styles)
+  const reduxDispatch = useDispatch()
+
+  const [state, dispatch] = useTypographyReducer()
+  const themeContext = useContext(ThemeContext)
 
   const { color, height, spacing, font, weight, scale, size } = stylesObject
 
