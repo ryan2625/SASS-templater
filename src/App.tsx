@@ -1,5 +1,3 @@
-//import { useState, useEffect } from 'react'
-import './App.scss'
 import Hero from './Components/Hero/Hero'
 import Template from './Components/Template/Template'
 import Typography from './Components/Typography/Typography'

@@ -4,7 +4,7 @@ import App from '../App'
 import ThemeContextProvider from '../Contexts/ThemeContext'
 import { store } from '../Store/store'
 
-// Initial tests discovery file
+// Testing to see if jest is setup properly
 describe('Typography and Navbar', () => {
   afterEach(() => {
     jest.clearAllMocks()
