@@ -130,7 +130,6 @@ describe('Typography component', () => {
     fireEvent.change(fontHeightInput, { target: { value: `${increasedHeight}` } })
 
     expect(parseFloat(getCssProp(demoText).lineHeight)).toBeCloseTo(parseFloat(increasedHeight))
-
   })
   test('Changing weight onClick', () => {
     const { fontWeightInput } = renderTypographyComponent()

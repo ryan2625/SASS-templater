@@ -1,8 +1,8 @@
-import { getCssVariableValue, hexToRgb, rgbToHex, removeNumbers, removeLetters } from "../../Utils/generalUtils";
+import { getCssVariableValue, hexToRgb, removeLetters, removeNumbers, rgbToHex } from '../../Utils/generalUtils'
 
 describe('Testing general utility functions', () => {
   test('getCssVariableValue gets correct value', () => {
-    document.documentElement.style.setProperty('--inverse-txt1', '#FFFFFF');
+    document.documentElement.style.setProperty('--inverse-txt1', '#FFFFFF')
     expect(getCssVariableValue('--inverse-txt1')).not.toBeNull()
   })
   test('hexToRgb converts hex values to rgb format', () => {
@@ -13,7 +13,7 @@ describe('Testing general utility functions', () => {
   test('rgbToHex converts rgb values to hex format', () => {
     expect(rgbToHex('rgb(255, 0, 0)')).toBe('#ff0000')
     expect(rgbToHex('rgb(18, 52, 86)')).toBe('#123456')
-    expect(rgbToHex('#ff0000')).toBe('#ff0000');
+    expect(rgbToHex('#ff0000')).toBe('#ff0000')
   })
   test('removeNumbers strips digits from strings', () => {
     expect(removeNumbers('abc123')).toBe('abc')
@@ -25,4 +25,4 @@ describe('Testing general utility functions', () => {
     expect(removeLetters('123abc456')).toBe('123456')
     expect(removeLetters(null)).toBeUndefined()
   })
-});
+})
