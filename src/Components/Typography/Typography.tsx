@@ -70,21 +70,21 @@ function Typography() {
     if (initialRenderPhaseComplete.current === true) {
       if (typographyFontRef.current) {
         Array.from(typographyFontRef.current.children).forEach((child) => {
-          ;(child as HTMLOptionElement).style.fontFamily = (child as HTMLOptionElement).value
+          (child as HTMLOptionElement).style.fontFamily = (child as HTMLOptionElement).value
         })
       }
       if (typographyScaleRef.current) {
         const selectNodes = Array.from(typographyScaleRef.current.children)
         if (selectNodes && scaleFromStorage != initialState.scale) {
           selectNodes.forEach((option) => {
-            ;(option as HTMLOptionElement).selected = Number((option as HTMLOptionElement).value) === scaleFromStorage
+            (option as HTMLOptionElement).selected = Number((option as HTMLOptionElement).value) === scaleFromStorage
           })
         } else {
           const defaultNode = selectNodes.find(
             (defaultOption) => Number((defaultOption as HTMLOptionElement).value) === initialState.scale
           )
           if (defaultNode) {
-            ;(defaultNode as HTMLOptionElement).selected = true
+            (defaultNode as HTMLOptionElement).selected = true
           }
         }
       }
@@ -104,7 +104,7 @@ function Typography() {
     // eslint-disable-next-line
     const { otherStyles, ...rest } = stylesObject
     if (JSON.stringify(state) !== JSON.stringify(rest))
-      // Added redux in later versions. Used to keep context and redux in sync.
+      // Added redux in later versions. Used to keep reducer and redux in sync.
       reduxDispatch(stateFromReducer(state))
   }, [state, reduxDispatch, stylesObject])
 
