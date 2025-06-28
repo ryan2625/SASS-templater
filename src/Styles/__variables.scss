@@ -5,8 +5,7 @@
 // Setting up color theme keys and values - themes are created at compilation time
 // (see __functions). These colors will change respective to the current data theme
 $themes: (
-  light: (
-    bg1: rgb(245, 245, 245),
+  light: (bg1: rgb(245, 245, 245),
     bg2: rgb(193, 193, 193),
     inverse-bg1: rgb(8, 8, 8),
     inverse-bg2: rgb(45, 45, 45),
@@ -22,10 +21,14 @@ $themes: (
     btn-txt1: rgb(255, 0, 0),
     slight-background: rgba(255, 255, 255, 0.445),
     curve-divider: url('../Assets/Images/SVGs/bookNegative_Light.svg'),
-    inverse-curve-divider: url('../Assets/Images/SVGs/bookNegative_Dark.svg')
-  ),
-  dark: (
-    bg1: rgb(8, 8, 8),
+    inverse-curve-divider: url('../Assets/Images/SVGs/bookNegative_Dark.svg'),
+    pastel-pink: rgb(204, 102, 119),
+    pastel-peach: rgb(204, 153, 102),
+    pastel-yellow: rgb(187, 187, 102),
+    pastel-green: rgb(102, 187, 102),
+    pastel-blue: rgb(102, 153, 204),
+    pastel-purple: rgb(153, 102, 204)),
+  dark: (bg1: rgb(8, 8, 8),
     bg2: rgb(49, 49, 49),
     inverse-bg1: rgb(245, 245, 245),
     inverse-bg2: rgb(237, 237, 237),
@@ -41,8 +44,13 @@ $themes: (
     btn-txt1: rgb(255, 0, 0),
     slight-background: rgba(128, 128, 128, 0.174),
     curve-divider: url('../Assets/Images/SVGs/bookNegative_Dark.svg'),
-    inverse-curve-divider: url('../Assets/Images/SVGs/bookNegative_Light.svg')
-  )
+    inverse-curve-divider: url('../Assets/Images/SVGs/bookNegative_Light.svg'),
+    pastel-pink: rgb(255, 179, 186),
+    pastel-peach: rgb(255, 212, 179),
+    pastel-yellow: rgb(255, 255, 179),
+    pastel-green: rgb(186, 255, 179),
+    pastel-blue: rgb(179, 212, 255),
+    pastel-purple: rgb(212, 179, 255)),
 );
 
 // Color Constants, regardless of theme
@@ -63,9 +71,13 @@ $auto: auto;
 // Standard font, for unity's sake in the $standard variable, is 'm'
 $font-family: (
   m: #{'Roboto Flex',
-  sans-serif},
-  accent-font: #{'Seaweed Script',
-  cursive}
+ sans-serif
+}
+
+,
+accent-font: #{'Seaweed Script',
+ cursive
+}
 );
 
 // Font weights
