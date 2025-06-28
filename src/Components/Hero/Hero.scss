@@ -55,14 +55,14 @@ nav {
     max-height: 80px;
   }
 
-  >div {
+  > div {
     width: 100%;
     max-width: getVal($width, container);
     display: flex;
     justify-content: space-between;
     margin: $m_center;
 
-    >* {
+    > * {
       display: inline-block;
       margin: getMultiVal($margin, auto, xl);
       @include setTypography(null, xs, txt1, null, l);
@@ -70,7 +70,7 @@ nav {
     }
   }
 
-  >div:first-child {
+  > div:first-child {
     height: 100%;
   }
 }
@@ -102,18 +102,18 @@ nav {
   align-items: center;
 }
 
-.hero-mode-constructor>div:first-child {
+.hero-mode-constructor > div:first-child {
   display: flex;
   align-items: center;
 }
 
-.hero-mode-constructor>div>p>span {
+.hero-mode-constructor > div > p > span {
   display: inline-block;
   padding: getMultiVal($padding, xs, 0, s, xs);
   border-radius: 10px;
 }
 
-.hero-mode-constructor>div>p>span:hover {
+.hero-mode-constructor > div > p > span:hover {
   animation: rainbow 0.5s linear;
 }
 
@@ -156,7 +156,7 @@ nav {
   margin: getMultiVal($margin, 2.5, auto, 2.5, auto);
   padding: getVal($padding, xl);
 
-  >div {
+  > div {
     flex: 1 1 50%;
     max-width: 750px;
   }
@@ -236,7 +236,7 @@ nav {
   height: 60%;
   width: 60%;
 
-  >img:nth-child(1) {
+  > img:nth-child(1) {
     width: max(300%, 1000px);
     z-index: getVal($z-index, m) !important;
     @include absoluteCenter(rotate(195deg));
@@ -245,7 +245,7 @@ nav {
     transition: all 0.4s ease-in-out;
   }
 
-  >img:nth-child(2) {
+  > img:nth-child(2) {
     width: max(300%, 1000px);
     z-index: getVal($z-index, m) !important;
     @include absoluteCenter(rotate(195deg));
@@ -463,7 +463,8 @@ nav {
     transform: rotate(360deg);
   }
 
-  50% {}
+  50% {
+  }
 
   100% {
     transform: rotate(180deg);
@@ -475,7 +476,8 @@ nav {
     transform: rotate(180deg);
   }
 
-  50% {}
+  50% {
+  }
 
   100% {
     transform: rotate(0deg);
@@ -502,7 +504,7 @@ nav {
   }
 
   33% {
-    color: var_(pastel-yellow)
+    color: var_(pastel-yellow);
   }
 
   50% {
@@ -522,15 +524,14 @@ nav {
   }
 }
 
-
 @media (max-width: 1360px) {
   .intro-container {
     margin-left: calc(20vw - 300px);
     padding-top: getVal($padding, xl);
   }
 
-  .intro-graphic>img:nth-child(2),
-  .intro-graphic>img:nth-child(1) {
+  .intro-graphic > img:nth-child(2),
+  .intro-graphic > img:nth-child(1) {
     max-width: 1100px;
   }
 
@@ -575,8 +576,8 @@ nav {
     transform: translate(30%, 40%);
   }
 
-  .intro-graphic>img:nth-child(2),
-  .intro-graphic>img:nth-child(1) {
+  .intro-graphic > img:nth-child(2),
+  .intro-graphic > img:nth-child(1) {
     max-width: 1400px;
     transform: translate(-50%, -20%) rotate(195deg);
   }
@@ -611,7 +612,6 @@ nav {
 }
 
 @media (max-width: 600px) {
-
   .graphic-swap-1-dark,
   .hero-overlay-adjust::after {
     left: 0px;
@@ -623,7 +623,7 @@ nav {
     left: -100px;
   }
 
-  .intro>p>span {
+  .intro > p > span {
     white-space: wrap;
   }
 }
