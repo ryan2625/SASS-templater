@@ -69,9 +69,11 @@ const Hero = () => {
         <div>
           <p className="sass-studios">sass | studios</p>
           <div className="hero-mode-constructor">
-            <p>
-              <span>&#123;styles&#125;</span> /{' '}
-            </p>
+            <div>
+              <p>
+                <span>&#123;styles&#125;</span> /{' '}
+              </p>
+            </div>
             <div className="hero-mode-bg" role="button" onClick={setTheme} data-testid="change-theme-2">
               <img
                 className={'hero-mode-picture' + (themeContext.context == 'light' ? ' hero-to-dark' : ' hero-to-light')}
