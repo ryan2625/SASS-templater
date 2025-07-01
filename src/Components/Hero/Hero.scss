@@ -111,6 +111,7 @@ nav {
   display: inline-block;
   padding: getMultiVal($padding, xs, 0, s, xs);
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .hero-mode-constructor>div>p>span:hover {

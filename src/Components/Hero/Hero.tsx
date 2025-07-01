@@ -14,6 +14,7 @@ import {
   swoosh2
 } from '../../Assets/exports'
 import { ThemeContext } from '../../Contexts/ThemeContext'
+import Stylesheet from '../StyleSheet/Stylesheet'
 import '../../Styles/__variables.scss'
 import './Hero.scss'
 
@@ -25,6 +26,7 @@ const Hero = () => {
   })
   const heroRef = useRef<HTMLDivElement>(null)
   const [swap, setSwap] = useState<boolean>(true)
+  const [active, setActive] = useState<boolean>(false)
   const [notInitialRender, setNotInitialRender] = useState<boolean>(false)
 
   useEffect(() => {
@@ -51,7 +53,7 @@ const Hero = () => {
           <div className="hero-mode-constructor">
             <div>
               <p>
-                <span>&#123;styles&#125;</span> /{' '}
+                <span onClick={() => { setActive(prev => !prev) }}>&#123;styles&#125;</span> /{' '}
               </p>
             </div>
             <div className="hero-mode-bg" role="button" onClick={setTheme} data-testid="change-theme-1">
@@ -71,7 +73,7 @@ const Hero = () => {
           <div className="hero-mode-constructor">
             <div>
               <p>
-                <span>&#123;styles&#125;</span> /{' '}
+                <span onClick={(prev) => { setActive(!prev) }}>&#123;styles&#125;</span> /{' '}
               </p>
             </div>
             <div className="hero-mode-bg" role="button" onClick={setTheme} data-testid="change-theme-2">
@@ -185,6 +187,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      <Stylesheet active={active} />
       <div className="separator" aria-label="hidden"></div>
     </section>
   )

@@ -1,7 +1,14 @@
 import React from 'react'
+import props from './types'
 
-function Stylesheet() {
-  return <div>Stylesheet</div>
+function Stylesheet({ active }: props) {
+  return (
+    <>
+      {active &&
+        <div>Stylesheet</div>
+      }
+    </>
+  )
 }
 
 export default Stylesheet
