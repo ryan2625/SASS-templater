@@ -1,11 +1,14 @@
 import React from 'react'
 import props from './types'
+import './Stylesheet.scss'
 
 function Stylesheet({ active }: props) {
   return (
     <>
       {active &&
-        <div>Stylesheet</div>
+        <section className='stylesheet-modal'>
+          ASD
+        </section>
       }
     </>
   )
