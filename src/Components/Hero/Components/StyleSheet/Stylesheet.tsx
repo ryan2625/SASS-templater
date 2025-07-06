@@ -38,6 +38,10 @@ function Stylesheet({ active }: props) {
           <div className="modal-body">
             {JSON.stringify(styles)}
             {renderFonts()}
+            <span>font-family: {font}</span>
+            <span>font-weight: {weight}</span>
+            <span>line-height: {height}</span>
+            <span>color: {color}</span>
           </div>
         </section>
       )}
