@@ -58,7 +58,7 @@ class Slider {
     //Need to append it to parent div element
   }
 
-  moveValue() { }
+  moveValue() {}
 }
 
 // eslint-disable-next-line

@@ -14,8 +14,8 @@ import {
   swoosh2
 } from '../../Assets/exports'
 import { ThemeContext } from '../../Contexts/ThemeContext'
-import Stylesheet from '../StyleSheet/Stylesheet'
 import '../../Styles/__variables.scss'
+import Stylesheet from '../StyleSheet/Stylesheet'
 import './Hero.scss'
 
 const Hero = () => {
@@ -53,7 +53,14 @@ const Hero = () => {
           <div className="hero-mode-constructor">
             <div>
               <p>
-                <span onClick={() => { setActive(prev => !prev) }}>&#123;styles&#125;</span> /{' '}
+                <span
+                  onClick={() => {
+                    setActive((prev) => !prev)
+                  }}
+                >
+                  &#123;styles&#125;
+                </span>{' '}
+                /{' '}
               </p>
             </div>
             <div className="hero-mode-bg" role="button" onClick={setTheme} data-testid="change-theme-1">
@@ -73,7 +80,14 @@ const Hero = () => {
           <div className="hero-mode-constructor">
             <div>
               <p>
-                <span onClick={() => { setActive(prev => !prev) }}>&#123;styles&#125;</span> /{' '}
+                <span
+                  onClick={() => {
+                    setActive((prev) => !prev)
+                  }}
+                >
+                  &#123;styles&#125;
+                </span>{' '}
+                /{' '}
               </p>
             </div>
             <div className="hero-mode-bg" role="button" onClick={setTheme} data-testid="change-theme-2">

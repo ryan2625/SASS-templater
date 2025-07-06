@@ -5,7 +5,8 @@
 // Setting up color theme keys and values - themes are created at compilation time
 // (see __functions). These colors will change respective to the current data theme
 $themes: (
-  light: (bg1: rgb(245, 245, 245),
+  light: (
+    bg1: rgb(245, 245, 245),
     bg2: rgb(193, 193, 193),
     inverse-bg1: rgb(8, 8, 8),
     inverse-bg2: rgb(45, 45, 45),
@@ -28,8 +29,10 @@ $themes: (
     pastel-green: rgb(102, 187, 102),
     pastel-blue: rgb(102, 153, 204),
     pastel-purple: rgb(153, 102, 204),
-    overlay: rgba(0, 0, 0, 0.478)),
-  dark: (bg1: rgb(8, 8, 8),
+    overlay: rgba(0, 0, 0, 0.478)
+  ),
+  dark: (
+    bg1: rgb(8, 8, 8),
     bg2: rgb(49, 49, 49),
     inverse-bg1: rgb(245, 245, 245),
     inverse-bg2: rgb(237, 237, 237),
@@ -52,7 +55,8 @@ $themes: (
     pastel-green: rgb(186, 255, 179),
     pastel-blue: rgb(179, 212, 255),
     pastel-purple: rgb(212, 179, 255),
-    overlay: rgba(0, 0, 0, 0.478))
+    overlay: rgba(0, 0, 0, 0.478)
+  )
 );
 
 // Color Constants, regardless of theme
@@ -73,14 +77,10 @@ $auto: auto;
 // Standard font, for unity's sake in the $standard variable, is 'm'
 $font-family: (
   m: #{'Roboto Flex',
- sans-serif
-}
+  sans-serif},
 
-,
-
-accent-font: #{'Seaweed Script',
- cursive
-}
+  accent-font: #{'Seaweed Script',
+  cursive}
 );
 
 // Font weights
