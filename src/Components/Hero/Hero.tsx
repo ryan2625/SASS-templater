@@ -15,7 +15,7 @@ import {
 } from '../../Assets/exports'
 import { ThemeContext } from '../../Contexts/ThemeContext'
 import '../../Styles/__variables.scss'
-import Stylesheet from '../StyleSheet/Stylesheet'
+import Stylesheet from './Components/StyleSheet/Stylesheet'
 import './Hero.scss'
 
 const Hero = () => {
