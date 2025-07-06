@@ -1,8 +1,19 @@
+@use '../../Styles/_forwards' as *;
+
 .stylesheet-modal {
   position: fixed;
+  width: 100vw;
+  top: 0;
+  height: 100vh;
+  background-color: var_(overlay);
+  z-index: getVal($z-index, max);
+  display: grid;
+  place-items: center;
+}
+
+.modal-body {
   width: 80%;
-  background-color: red;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
+  min-height: 80%;
+  padding: getVal($padding, xl);
+  background-color: var_(bg2);
 }

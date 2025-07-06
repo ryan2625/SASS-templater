@@ -73,7 +73,7 @@ const Hero = () => {
           <div className="hero-mode-constructor">
             <div>
               <p>
-                <span onClick={(prev) => { setActive(!prev) }}>&#123;styles&#125;</span> /{' '}
+                <span onClick={() => { setActive(prev => !prev) }}>&#123;styles&#125;</span> /{' '}
               </p>
             </div>
             <div className="hero-mode-bg" role="button" onClick={setTheme} data-testid="change-theme-2">
@@ -187,7 +187,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <Stylesheet active={active} />
+      <Stylesheet active={active} setActive={setActive} />
       <div className="separator" aria-label="hidden"></div>
     </section>
   )

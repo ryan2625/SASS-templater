@@ -14,7 +14,7 @@ class SliderContainer {
     this.body = document.createElement('div')
     this.styles = ``
     this.len = 0
-    //Append it to parent div element
+    //Need to append it to parent div element
   }
 
   public createAndAddSlider(slider: sliderInstanceProps) {
@@ -33,7 +33,7 @@ class SliderContainer {
   }
 }
 
-//Be prepared to use boundind rect's BS
+//Be prepared to use bounding rect's API
 //Make CSS class/styles. Absoulte positioning. The value will be the relative X coordinates in pixels.
 //Update value function to ensure the position is not greater than the next position. Add event listeners.
 
@@ -55,10 +55,10 @@ class Slider {
     this.body = document.createElement('div')
     this.body.addEventListener('click', () => console.log('Event Working'))
     this.styles = ``
-    //Append it to slider container
+    //Need to append it to parent div element
   }
 
-  moveValue() {}
+  moveValue() { }
 }
 
 // eslint-disable-next-line
