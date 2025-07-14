@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../../Store/store'
-import './Stylesheet.scss'
 import { textSizeLabels } from './constants'
+import './Stylesheet.scss'
 import props from './types'
 
 function Stylesheet({ active }: props) {
@@ -23,7 +23,12 @@ function Stylesheet({ active }: props) {
       <>
         {textSizeLabels.map((label, index) => {
           return (
-            <div key={index}><span>{styleType}{label}</span></div>
+            <div key={index}>
+              <span>
+                {styleType}
+                {label}
+              </span>
+            </div>
           )
         })}
       </>
@@ -36,8 +41,13 @@ function Stylesheet({ active }: props) {
       <>
         {textSizeLabels.map((label, index) => {
           return (
-            <div key={index}><span>.{label} &#123; font-size: {accessType}
-              {label}{accessType === '$' ? '' : ')'};&#125;</span></div>
+            <div key={index}>
+              <span>
+                .{label} &#123; font-size: {accessType}
+                {label}
+                {accessType === '$' ? '' : ')'};&#125;
+              </span>
+            </div>
           )
         })}
       </>
