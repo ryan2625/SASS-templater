@@ -12,8 +12,8 @@
 }
 
 .modal-body {
+  padding-top: getMultiVal($padding, xxxl);
   width: 80%;
   min-height: 80%;
-  padding: getVal($padding, xl);
   background-color: var_(bg2);
 }
