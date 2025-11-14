@@ -61,17 +61,49 @@ function Stylesheet({ active }: props) {
           <div className="modal-body">
             {JSON.stringify(styles)}
             {renderFonts()}
-            <span>font-family: {font} <br /></span>
-            <span>font-weight: {weight}<br /></span>
-            <span>line-height: {height}<br /></span>
-            <span>color: {color}<br /></span>
-            <span>h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 &#123;<br /></span>
-            <span>small &#123;<br /></span>
-            <span>h6, .h6 &#123;<br /></span>
-            <span>h5, .h5 &#123;<br /></span>
-            <span>h4, .h4 &#123;<br /></span>
-            <span>h3, .h3 &#123;<br /></span>
-            <span>h2, .h2 &#123;<br /></span>
+            <span>
+              font-family: {font} <br />
+            </span>
+            <span>
+              font-weight: {weight}
+              <br />
+            </span>
+            <span>
+              line-height: {height}
+              <br />
+            </span>
+            <span>
+              color: {color}
+              <br />
+            </span>
+            <span>
+              h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 &#123;
+              <br />
+            </span>
+            <span>
+              small &#123;
+              <br />
+            </span>
+            <span>
+              h6, .h6 &#123;
+              <br />
+            </span>
+            <span>
+              h5, .h5 &#123;
+              <br />
+            </span>
+            <span>
+              h4, .h4 &#123;
+              <br />
+            </span>
+            <span>
+              h3, .h3 &#123;
+              <br />
+            </span>
+            <span>
+              h2, .h2 &#123;
+              <br />
+            </span>
             <span>h1, .h1 &#123;</span>
             {renderClasses()}
           </div>
